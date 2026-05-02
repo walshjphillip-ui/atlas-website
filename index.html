@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Atlas — Your Personal AI Chief-of-Staff</title>
-  <meta name="description" content="Atlas delivers your morning brief, tracks your markets, finds opportunities, and drafts your emails. Built for ambitious students." />
+  <title>Atlas — AI Assistant for Finance & Business Students</title>
+  <meta name="description" content="Atlas is the AI chief-of-staff built for finance, economics, and business students. Morning market brief, stock tracking, internship outreach, cover letters — all in Telegram." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
@@ -166,6 +166,25 @@
       color: var(--muted); max-width: 520px; font-size: 1.05rem;
     }
 
+    /* ── WHO IT'S FOR ── */
+    .for-section { background: var(--subtle); }
+    .for-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem; margin-top: 3rem;
+      max-width: 1100px; margin-left: auto; margin-right: auto;
+    }
+    .for-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.5rem;
+      transition: border-color 0.2s;
+    }
+    .for-card:hover { border-color: rgba(99,102,241,0.4); }
+    .for-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .for-card p  { font-size: 0.88rem; color: var(--muted); line-height: 1.55; }
+    .for-intro { max-width: 1100px; margin: 0 auto; }
+
     /* ── FEATURES ── */
     .features { background: var(--bg); }
     .features-intro { max-width: 1100px; margin: 0 auto; }
@@ -293,11 +312,11 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">🤖 Now in beta</div>
-  <h1>Your personal<br /><em>AI chief-of-staff.</em></h1>
+  <div class="hero-badge">📈 Built for finance & business students</div>
+  <h1>The AI built for students<br />who follow <em>the market.</em></h1>
   <p class="hero-sub">
-    Atlas wakes up before you do — delivering your morning brief, tracking your markets,
-    and moving your career forward. All in Telegram.
+    Atlas delivers your morning market brief, tracks your stocks, finds finance internships,
+    and drafts your cold emails to Goldman — all from Telegram.
   </p>
   <form class="hero-form" id="hero-form">
     <input type="email" id="hero-email" placeholder="your@email.com" required autocomplete="email" />
@@ -315,12 +334,50 @@
 
 <!-- SOCIAL PROOF -->
 <div class="proof">
-  <p>Used by students at</p>
+  <p>Used by finance & business students at</p>
   <div class="proof-schools">
-    <span>NYU</span><span>Georgetown</span><span>Michigan</span>
-    <span>UVA</span><span>Fordham</span><span>Boston College</span>
+    <span>NYU Stern</span><span>Georgetown McDonough</span><span>Michigan Ross</span>
+    <span>UVA McIntire</span><span>Fordham Gabelli</span><span>Boston College CSOM</span>
   </div>
 </div>
+
+<!-- WHO IT'S FOR -->
+<section class="for-section">
+  <div class="for-intro">
+    <p class="section-label">Who it's for</p>
+    <h2 class="section-title">If the market is on your mind, Atlas is for you.</h2>
+    <p class="section-sub">
+      Built specifically for students who think about money, markets, and their career
+      more than the average person.
+    </p>
+  </div>
+  <div class="for-grid">
+    <div class="for-card">
+      <h4>📊 Finance & Economics Majors</h4>
+      <p>Track your sectors, follow macro trends, and walk into every class knowing what moved overnight.</p>
+    </div>
+    <div class="for-card">
+      <h4>🏦 Investment Banking Hopefuls</h4>
+      <p>Atlas finds open analyst roles, cold emails boutique firms near you, and writes your cover letters — all tailored to IB recruiting.</p>
+    </div>
+    <div class="for-card">
+      <h4>📉 Self-Taught Investors</h4>
+      <p>You follow NVDA, PLTR, and the Fed. Atlas tracks your watchlist, gives you a real take on moves, and keeps you sharp every morning.</p>
+    </div>
+    <div class="for-card">
+      <h4>💹 Business & Commerce Students</h4>
+      <p>Stay ahead of classmates who rely on Google. Atlas synthesizes markets, news, and opportunities into one daily brief built around your goals.</p>
+    </div>
+    <div class="for-card">
+      <h4>⚖️ Pre-Law & Policy Students</h4>
+      <p>Track regulatory shifts, geopolitical events, and firm recruiting timelines — all in one place, filtered for what actually matters to you.</p>
+    </div>
+    <div class="for-card">
+      <h4>🚀 Ambitious Students, Full Stop</h4>
+      <p>If you have a career goal and want to move faster than everyone around you, Atlas is the unfair advantage you've been looking for.</p>
+    </div>
+  </div>
+</section>
 
 <!-- FEATURES -->
 <section class="features">
@@ -422,7 +479,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <span>© 2025 Atlas. Built for ambitious students.</span>
+  <span>© 2025 Atlas. Built for finance & business students.</span>
   <div style="display:flex; gap:1.5rem;">
     <a href="https://t.me/AtlasAIAdvisorBot" target="_blank">Telegram</a>
   </div>
