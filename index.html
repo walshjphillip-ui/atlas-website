@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atlas — Your Personal AI Chief-of-Staff</title>
+  <meta name="description" content="Atlas delivers your morning brief, tracks your markets, finds opportunities, and drafts your emails. Built for ambitious students." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #08080f;
+      --surface:  #10101a;
+      --border:   #1e1e2e;
+      --accent:   #6366f1;
+      --accent2:  #818cf8;
+      --text:     #f0f0f8;
+      --muted:    #6b7280;
+      --subtle:   #1a1a2e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: rgba(8,8,15,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 1.3rem; font-weight: 800; letter-spacing: -0.03em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent2); }
+    .nav-cta {
+      background: var(--accent);
+      color: #fff; font-weight: 600; font-size: 0.9rem;
+      padding: 0.55rem 1.3rem; border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 8rem 5% 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute; top: -30%; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 600px;
+      background: radial-gradient(ellipse at center, rgba(99,102,241,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(99,102,241,0.12);
+      border: 1px solid rgba(99,102,241,0.3);
+      color: var(--accent2); font-size: 0.8rem; font-weight: 600;
+      padding: 0.35rem 0.9rem; border-radius: 99px;
+      margin-bottom: 1.8rem; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900; letter-spacing: -0.04em; line-height: 1.05;
+      max-width: 800px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent2), #a78bfa);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--muted); max-width: 560px; line-height: 1.7;
+    }
+    .hero-form {
+      margin-top: 2.5rem;
+      display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;
+    }
+    .hero-form input {
+      padding: 0.85rem 1.2rem; border-radius: 10px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); font-size: 1rem; font-family: inherit;
+      width: 300px; outline: none;
+      transition: border-color 0.2s;
+    }
+    .hero-form input:focus { border-color: var(--accent); }
+    .hero-form input::placeholder { color: var(--muted); }
+    .btn-primary {
+      padding: 0.85rem 1.8rem; border-radius: 10px;
+      background: var(--accent); color: #fff;
+      font-size: 1rem; font-weight: 700; font-family: inherit;
+      border: none; cursor: pointer;
+      transition: transform 0.15s, opacity 0.2s;
+      white-space: nowrap;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+    .form-note {
+      margin-top: 0.9rem;
+      font-size: 0.82rem; color: var(--muted);
+    }
+    #form-success {
+      display: none;
+      margin-top: 1.5rem;
+      background: rgba(99,102,241,0.1);
+      border: 1px solid rgba(99,102,241,0.3);
+      color: var(--accent2);
+      padding: 0.9rem 1.5rem; border-radius: 10px;
+      font-weight: 600;
+    }
+
+    /* ── SOCIAL PROOF ── */
+    .proof {
+      padding: 2rem 5%;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .proof p {
+      font-size: 0.85rem; color: var(--muted); letter-spacing: 0.08em;
+      text-transform: uppercase; font-weight: 500;
+    }
+    .proof-schools {
+      display: flex; flex-wrap: wrap; gap: 2rem;
+      justify-content: center; margin-top: 1rem;
+      font-size: 0.95rem; font-weight: 600; color: #4b5563;
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 6rem 5%; }
+    .section-label {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent2);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800; letter-spacing: -0.03em;
+      max-width: 620px; line-height: 1.15;
+    }
+    .section-sub {
+      margin-top: 1rem;
+      color: var(--muted); max-width: 520px; font-size: 1.05rem;
+    }
+
+    /* ── FEATURES ── */
+    .features { background: var(--bg); }
+    .features-intro { max-width: 1100px; margin: 0 auto; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+      margin-top: 3.5rem;
+      max-width: 1100px; margin-left: auto; margin-right: auto;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.8rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feature-card:hover {
+      border-color: rgba(99,102,241,0.4);
+      transform: translateY(-3px);
+    }
+    .feature-icon {
+      font-size: 1.8rem; margin-bottom: 1rem;
+    }
+    .feature-card h3 {
+      font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;
+    }
+    .feature-card p {
+      font-size: 0.92rem; color: var(--muted); line-height: 1.6;
+    }
+    .feature-card .tag {
+      display: inline-block; margin-top: 1rem;
+      background: rgba(99,102,241,0.1);
+      color: var(--accent2); font-size: 0.78rem; font-weight: 600;
+      padding: 0.25rem 0.7rem; border-radius: 99px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how { background: var(--subtle); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem; margin-top: 3rem;
+      max-width: 900px;
+    }
+    .step { display: flex; gap: 1.2rem; align-items: flex-start; }
+    .step-num {
+      flex-shrink: 0;
+      width: 2.2rem; height: 2.2rem;
+      background: var(--accent);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.9rem; color: #fff;
+    }
+    .step h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .step p { font-size: 0.9rem; color: var(--muted); }
+
+    /* ── CTA BOTTOM ── */
+    .cta-bottom {
+      background: var(--bg);
+      text-align: center;
+      padding: 7rem 5%;
+      position: relative; overflow: hidden;
+    }
+    .cta-bottom::before {
+      content: "";
+      position: absolute; bottom: -20%; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse, rgba(99,102,241,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-bottom h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900; letter-spacing: -0.04em;
+      max-width: 680px; margin: 0 auto;
+    }
+    .cta-bottom h2 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent2), #a78bfa);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .cta-bottom p { margin-top: 1rem; color: var(--muted); font-size: 1.05rem; }
+    .cta-bottom .hero-form { margin-top: 2rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+      font-size: 0.85rem; color: var(--muted);
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* ── TELEGRAM BUTTON ── */
+    .tg-link {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      margin-top: 1.2rem;
+      color: var(--muted); font-size: 0.88rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .tg-link:hover { color: var(--accent2); }
+    .tg-icon {
+      width: 20px; height: 20px; fill: currentColor;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      .hero-form input { width: 100%; }
+      .hero-form { flex-direction: column; align-items: stretch; width: 100%; max-width: 360px; }
+      .btn-primary { width: 100%; text-align: center; }
+      .proof-schools { gap: 1rem; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Atlas<span>.</span></a>
+  <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" class="nav-cta">Open in Telegram →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🤖 Now in beta</div>
+  <h1>Your personal<br /><em>AI chief-of-staff.</em></h1>
+  <p class="hero-sub">
+    Atlas wakes up before you do — delivering your morning brief, tracking your markets,
+    and moving your career forward. All in Telegram.
+  </p>
+  <form class="hero-form" id="hero-form">
+    <input type="email" id="hero-email" placeholder="your@email.com" required autocomplete="email" />
+    <button type="submit" class="btn-primary">Get Started Free →</button>
+  </form>
+  <p class="form-note">Free to use. No credit card. Opens directly in Telegram.</p>
+  <div id="form-success">✅ You're in — opening Atlas now!</div>
+  <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" class="tg-link">
+    <svg class="tg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 14.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/>
+    </svg>
+    or just message @AtlasAIAdvisorBot on Telegram
+  </a>
+</section>
+
+<!-- SOCIAL PROOF -->
+<div class="proof">
+  <p>Used by students at</p>
+  <div class="proof-schools">
+    <span>NYU</span><span>Georgetown</span><span>Michigan</span>
+    <span>UVA</span><span>Fordham</span><span>Boston College</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="features-intro">
+    <p class="section-label">What Atlas does</p>
+    <h2 class="section-title">Not a search engine. An advisor.</h2>
+    <p class="section-sub">
+      Google finds information. Atlas connects the dots, knows your goals,
+      and tells you what to actually do with it.
+    </p>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🌅</div>
+      <h3>Morning Brief</h3>
+      <p>Every morning you wake up knowing what moved overnight, what it means for your goals, and exactly what to do that day. No scrolling required.</p>
+      <span class="tag">Daily at your time</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">📈</div>
+      <h3>Market Intelligence</h3>
+      <p>Ask about any stock, sector, or macro trend and get a real take — not just a price. "Is now a good time to buy NVDA?" gets you an actual answer.</p>
+      <span class="tag">Live data</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">💼</div>
+      <h3>Opportunity Radar</h3>
+      <p>Atlas finds real internships, cold emails the right firms with a personalized pitch, and tracks your pipeline — all from one message.</p>
+      <span class="tag">Jobs + outreach</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">✉️</div>
+      <h3>Your Voice, Amplified</h3>
+      <p>Need to email a recruiter or a partner at a PE firm? Atlas writes it the way you'd want to sound, then saves it straight to Gmail.</p>
+      <span class="tag">Gmail drafts</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">📄</div>
+      <h3>Cover Letter Generator</h3>
+      <p>Paste a job URL or description. Atlas reads it, matches it to your profile, and writes a tailored cover letter in under 30 seconds.</p>
+      <span class="tag">Role-specific</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🧠</div>
+      <h3>Memory</h3>
+      <p>Atlas remembers your goals, your deadlines, your preferences. Every conversation makes it sharper. It's the assistant that actually knows you.</p>
+      <span class="tag">Learns over time</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <p class="section-label">Getting started</p>
+  <h2 class="section-title">Up and running in 60 seconds.</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <h4>Open Atlas on Telegram</h4>
+        <p>No app download. No account. Just tap the link and you're in.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <h4>Tell Atlas your goals</h4>
+        <p>A quick 2-minute setup — your school, career goal, and interests. That's it.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <h4>Wake up to your first brief</h4>
+        <p>Tomorrow morning, Atlas delivers your personalized daily brief. Then just ask it anything.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="cta-bottom">
+  <h2>Start your first day<br />with <em>an edge.</em></h2>
+  <p>Free. No credit card. Takes 60 seconds.</p>
+  <form class="hero-form" id="bottom-form">
+    <input type="email" id="bottom-email" placeholder="your@email.com" required autocomplete="email" />
+    <button type="submit" class="btn-primary">Get Started Free →</button>
+  </form>
+  <div id="bottom-success" style="display:none; margin-top:1.5rem; background:rgba(99,102,241,0.1); border:1px solid rgba(99,102,241,0.3); color:#818cf8; padding:0.9rem 1.5rem; border-radius:10px; font-weight:600; display:none;">
+    ✅ You're in — opening Atlas now!
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Atlas. Built for ambitious students.</span>
+  <div style="display:flex; gap:1.5rem;">
+    <a href="https://t.me/AtlasAIAdvisorBot" target="_blank">Telegram</a>
+  </div>
+</footer>
+
+<script>
+  const TG_URL = "https://t.me/AtlasAIAdvisorBot";
+
+  async function handleSignup(email, formEl, successEl) {
+    try {
+      const res = await fetch("/api/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      // Whether it worked or not, send them to Telegram
+    } catch (e) {
+      // Silently ignore — still open Telegram
+    }
+    formEl.style.display = "none";
+    successEl.style.display = "block";
+    setTimeout(() => window.open(TG_URL, "_blank"), 900);
+  }
+
+  document.getElementById("hero-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const email = document.getElementById("hero-email").value.trim();
+    handleSignup(email, this, document.getElementById("form-success"));
+  });
+
+  document.getElementById("bottom-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const email = document.getElementById("bottom-email").value.trim();
+    handleSignup(email, this, document.getElementById("bottom-success"));
+  });
+</script>
+
+</body>
+</html>
