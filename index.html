@@ -1198,7 +1198,7 @@
     } catch (e) { /* silent */ }
     formEl.style.display = "none";
     successEl.style.display = "block";
-    setTimeout(() => window.open(TG_URL, "_blank"), 800);
+    window.location.href = TG_URL;
   }
   document.getElementById("hero-form").addEventListener("submit", function (e) {
     e.preventDefault();
