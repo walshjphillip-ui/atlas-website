@@ -67,23 +67,55 @@
   /* ─────────── NAV ─────────── */
   nav {
     position: sticky; top: 0; z-index: 50;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     gap: 28px;
+    align-items: center;
     padding: 14px clamp(20px, 4vw, 48px);
     background: rgba(10, 6, 18, 0.82);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line-soft);
   }
-  .nav-links {
-    display: flex; gap: 32px;
-    font-size: 13px; font-weight: 500;
-    color: var(--dim);
+
+  /* scrolling marquee */
+  .nav-marquee {
+    overflow: hidden;
+    position: relative;
+    height: 22px;
+    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    margin: 0 4px;
   }
-  .nav-links a:hover { color: var(--ink); }
-  @media (max-width: 760px) { .nav-links { display: none; } }
+  .nav-marquee::before, .nav-marquee::after {
+    content: ""; position: absolute; top: 0; bottom: 0; width: 40px;
+    z-index: 2; pointer-events: none;
+  }
+  .nav-marquee::before { left: 0; background: linear-gradient(90deg, rgba(10,6,18,0.95), transparent); }
+  .nav-marquee::after  { right: 0; background: linear-gradient(270deg, rgba(10,6,18,0.95), transparent); }
+  .nav-marquee-track {
+    display: flex; gap: 36px; white-space: nowrap;
+    padding-top: 4px;
+    animation: marquee 40s linear infinite;
+    will-change: transform;
+  }
+  .nav-marquee-track span {
+    font-family: var(--mono); font-size: 11px; color: var(--dim);
+    letter-spacing: 0.14em; text-transform: uppercase;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .nav-marquee-track span::before {
+    content: ""; width: 4px; height: 4px; border-radius: 50%;
+    background: var(--violet-soft);
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @media (max-width: 880px) {
+    nav { grid-template-columns: auto auto; }
+    .nav-marquee { display: none; }
+  }
   .nav-left { display: flex; align-items: center; gap: 12px; }
   .nav-mark { width: 30px; height: 30px; }
   .nav-word {
@@ -752,11 +784,28 @@
     <svg class="nav-mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#atlas-mark" /></svg>
     <span class="nav-word">ΛTLΛS</span>
   </a>
-  <nav class="nav-links">
-    <a href="#why">Why Atlas</a>
-    <a href="#capabilities">What it does</a>
-    <a href="#faq">FAQ</a>
-  </nav>
+  <div class="nav-marquee" aria-hidden="true">
+    <div class="nav-marquee-track">
+      <span>Morning briefs</span>
+      <span>Real-time news</span>
+      <span>Stock alerts</span>
+      <span>Macro signals</span>
+      <span>Internship search</span>
+      <span>Cold emails</span>
+      <span>Cover letters</span>
+      <span>Reminders</span>
+      <span>Memory that compounds</span>
+      <span>Morning briefs</span>
+      <span>Real-time news</span>
+      <span>Stock alerts</span>
+      <span>Macro signals</span>
+      <span>Internship search</span>
+      <span>Cold emails</span>
+      <span>Cover letters</span>
+      <span>Reminders</span>
+      <span>Memory that compounds</span>
+    </div>
+  </div>
   <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener" class="nav-cta">
     Open in Telegram
     <svg viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
@@ -788,7 +837,7 @@
       <div id="form-success">✓ You're in. Opening Atlas now…</div>
       <div class="tg-why">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 5L2 12.5l7 1M21 5l-5.5 15-4-5.5M21 5L9 13.5m0 0v5l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <p><strong>Why Telegram?</strong> Atlas doesn't wait to be opened — it reaches you. Your brief lands at 6:42am like a text. Alerts hit your phone the moment a price moves. Reminders fire before your deadline. That's only possible through your messages, not a website you have to remember to check.</p>
+        <p><strong>Why Telegram?</strong> Atlas texts you — you don't open it. Briefs, alerts, and reminders land in your pocket like messages. No dashboard, no checking.</p>
       </div>
     </div>
 
