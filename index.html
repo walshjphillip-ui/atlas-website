@@ -720,45 +720,45 @@
   /* ─────────── SIDEBAR NAV ─────────── */
   .sidenav {
     position: fixed;
-    left: 28px;
-    top: 72px;
+    left: 20px;
+    top: 80px;
     z-index: 40;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 18px;
+    background: none;
+    border: none;
+    padding: 0;
   }
   .sidenav a {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 9px;
     text-decoration: none;
     cursor: pointer;
-    padding: 4px 0;
   }
   .sidenav a .dot {
-    width: 5px; height: 5px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: var(--dimmer);
-    transition: background 0.25s, transform 0.25s;
     flex-shrink: 0;
+    transition: background 0.2s;
   }
   .sidenav a .label {
     font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.16em;
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--dimmer);
     transition: color 0.2s;
     white-space: nowrap;
   }
+  .sidenav a.active .dot { background: var(--violet-soft); }
   .sidenav a.active .label { color: var(--violet-soft); }
-  .sidenav a:hover .label { color: var(--ink-2); }
-  .sidenav a.active .dot {
-    background: var(--violet-soft);
-    transform: scale(1.4);
-  }
   .sidenav a:hover .dot { background: var(--ink-2); }
-  @media (max-width: 1100px) { .sidenav { display: none; } }
+  .sidenav a:hover .label { color: var(--ink-2); }
+  @media (max-width: 1200px) { .sidenav { display: none; } }
 </style>
 </head>
 <body>
