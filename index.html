@@ -743,7 +743,7 @@
   <div class="hero-glows" aria-hidden="true"></div>
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow hero-eyebrow"><span class="pulse"></span>Live · markets open · 09:30 ET</div>
+      <div class="eyebrow hero-eyebrow"><span class="pulse" id="market-pulse"></span><span id="market-status">Live · markets open · 09:30 ET</span></div>
       <h1 class="display">
         The AI Market<br/>
         Advantage<br/>
@@ -1294,6 +1294,46 @@
     e.preventDefault();
     handleSignup(document.getElementById("bottom-email").value.trim(), this, document.getElementById("bottom-success"));
   });
+
+  // ── MARKET STATUS ──────────────────────────────────────────────────────────
+  (function () {
+    const statusEl = document.getElementById('market-status');
+    const pulseEl  = document.getElementById('market-pulse');
+
+    function getETDate() {
+      // Use Intl to get current time in ET regardless of user timezone
+      const now = new Date();
+      const etStr = now.toLocaleString('en-US', { timeZone: 'America/New_York' });
+      return new Date(etStr);
+    }
+
+    function updateMarket() {
+      const et = getETDate();
+      const day = et.getDay(); // 0=Sun, 6=Sat
+      const h = et.getHours();
+      const m = et.getMinutes();
+      const mins = h * 60 + m;
+      const open  = 9 * 60 + 30;  // 9:30 AM
+      const close = 16 * 60;       // 4:00 PM
+
+      const isWeekday = day >= 1 && day <= 5;
+      const isOpen    = isWeekday && mins >= open && mins < close;
+
+      if (isOpen) {
+        statusEl.textContent = 'Live · markets open · 9:30–4:00 ET';
+        pulseEl.style.background = 'var(--gain)';
+        pulseEl.style.boxShadow  = '0 0 0 0 rgba(111,227,176,0.5)';
+      } else {
+        statusEl.textContent = 'Markets closed · opens Mon–Fri 9:30 ET';
+        pulseEl.style.background = 'var(--dim)';
+        pulseEl.style.boxShadow  = 'none';
+        pulseEl.style.animation  = 'none';
+      }
+    }
+
+    updateMarket();
+    setInterval(updateMarket, 60000); // refresh every minute
+  })();
 
   // ── SCROLL ARROW ───────────────────────────────────────────────────────────
   document.getElementById('scroll-down').addEventListener('click', function () {
