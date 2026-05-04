@@ -431,18 +431,7 @@
   .tg-input .send svg { width: 14px; height: 14px; color: #fff; }
 
   /* progress dots inside the phone */
-  .phone-dots {
-    position: absolute;
-    bottom: -28px; left: 50%; transform: translateX(-50%);
-    display: flex; gap: 8px;
-  }
-  .phone-dots button {
-    width: 22px; height: 3px; border-radius: 2px;
-    background: var(--line);
-    border: none; padding: 0; cursor: pointer;
-    transition: background 0.3s;
-  }
-  .phone-dots button.active { background: var(--violet-soft); }
+  .phone-dots { display: none; }
 
   @media (max-width: 880px) {
     .hero-grid { grid-template-columns: 1fr; }
