@@ -749,17 +749,11 @@
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--dimmer);
-    opacity: 0;
-    transform: translateX(-6px);
-    transition: opacity 0.2s, transform 0.2s, color 0.2s;
+    transition: color 0.2s;
     white-space: nowrap;
-    pointer-events: none;
   }
-  .sidenav a:hover .label,
-  .sidenav a.active .label {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  .sidenav a.active .label { color: var(--violet-soft); }
+  .sidenav a:hover .label { color: var(--ink-2); }
   .sidenav a.active .dot {
     background: var(--violet-soft);
     transform: scale(1.4);
