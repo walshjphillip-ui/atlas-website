@@ -611,6 +611,49 @@
   }
   details.q .a a { color: var(--violet-soft); border-bottom: 1px solid var(--violet-deep); }
 
+  /* ─────────── CONTRAST ─────────── */
+  .contrast { padding-bottom: 80px; border-bottom: 1px solid var(--line-soft); }
+  .contrast-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .contrast-col {
+    background: var(--bg);
+    padding: 0;
+  }
+  .contrast-col-head {
+    padding: 18px 28px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; font-weight: 500;
+    border-bottom: 1px solid var(--line);
+  }
+  .contrast-col.other .contrast-col-head { color: var(--dim); }
+  .contrast-col.atlas .contrast-col-head { color: var(--violet-soft); background: rgba(124,77,255,0.04); }
+  .contrast-item {
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .contrast-item:last-child { border-bottom: none; }
+  .contrast-item .trigger {
+    font-family: var(--mono); font-size: 11.5px;
+    color: var(--dim); margin-bottom: 10px;
+  }
+  .contrast-item .result {
+    font-size: 14px; line-height: 1.55; color: var(--ink-2);
+  }
+  .contrast-col.atlas .result { color: var(--ink); }
+  .contrast-col.atlas .contrast-item { background: rgba(124,77,255,0.02); }
+  .contrast-check { color: var(--gain); font-weight: 600; margin-right: 4px; }
+  .contrast-x { color: var(--loss); font-weight: 600; margin-right: 4px; }
+  @media (max-width: 720px) {
+    .contrast-grid { grid-template-columns: 1fr; }
+  }
+
   /* ─────────── END / CTA ─────────── */
   .end {
     padding: clamp(110px, 16vh, 180px) 0 clamp(80px, 12vh, 130px);
@@ -725,7 +768,7 @@
         <em>For Students.</em>
       </h1>
       <p class="hero-sub">
-        Wake up knowing what moved. Get pinged when your stocks hit. Find internships and send cold emails in seconds. All through Telegram — free during beta.
+        The AI that doesn't just answer — it acts. Drafts your emails. Tracks your stocks. Finds internships. Texts you what matters. Built for finance, econ, and business students.
       </p>
       <form class="hero-form" id="hero-form">
         <input type="email" id="hero-email" placeholder="your@email.edu" required autocomplete="email" />
@@ -848,13 +891,66 @@
   </div>
 </section>
 
+<!-- CONTRAST -->
+<section class="contrast">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="bar"></span>Why Atlas</div>
+      <h2>Not a chatbot. <em>An assistant.</em></h2>
+      <p class="sub">ChatGPT answers questions. Atlas takes action. You tell it what you need — it handles the rest.</p>
+    </div>
+
+    <div class="contrast-grid">
+      <div class="contrast-col other">
+        <div class="contrast-col-head">Every other AI</div>
+        <div class="contrast-item">
+          <div class="trigger">"Draft me a cold email to Goldman"</div>
+          <div class="result"><span class="contrast-x">✕</span> Here's a template — edit it, copy it, open Gmail, paste it, fill in the blanks...</div>
+        </div>
+        <div class="contrast-item">
+          <div class="trigger">"Alert me when NVDA hits $140"</div>
+          <div class="result"><span class="contrast-x">✕</span> I can't monitor prices. You'll need to set that up in your brokerage app.</div>
+        </div>
+        <div class="contrast-item">
+          <div class="trigger">"What's moving in the market today?"</div>
+          <div class="result"><span class="contrast-x">✕</span> Generic summary with no connection to your watchlist, your goals, or your timeline.</div>
+        </div>
+        <div class="contrast-item">
+          <div class="trigger">"Find me IB internships in NYC"</div>
+          <div class="result"><span class="contrast-x">✕</span> Here are some job boards where you can search for opportunities...</div>
+        </div>
+      </div>
+
+      <div class="contrast-col atlas">
+        <div class="contrast-col-head">Atlas</div>
+        <div class="contrast-item">
+          <div class="trigger">"Draft me a cold email to Goldman"</div>
+          <div class="result"><span class="contrast-check">✓</span> Written, personalized to your profile, and saved directly to your Gmail drafts.</div>
+        </div>
+        <div class="contrast-item">
+          <div class="trigger">"Alert me when NVDA hits $140"</div>
+          <div class="result"><span class="contrast-check">✓</span> Set. Atlas texts you the moment it crosses — with context on why it moved.</div>
+        </div>
+        <div class="contrast-item">
+          <div class="trigger">Every morning, before you ask</div>
+          <div class="result"><span class="contrast-check">✓</span> Your brief lands at sunrise — markets, news, and what it means for your specific goals.</div>
+        </div>
+        <div class="contrast-item">
+          <div class="trigger">"Find me IB internships in NYC"</div>
+          <div class="result"><span class="contrast-check">✓</span> Found 3 openings. Cold emails drafted for each. Just say the word.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CAPABILITIES -->
 <section id="capabilities" class="caps">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow"><span class="bar"></span>What Atlas does</div>
-      <h2>One conversation. <em>Everything</em> handled.</h2>
-      <p class="sub">Google finds information. Atlas tells you what to do with it.</p>
+      <div class="eyebrow"><span class="bar"></span>What Atlas does for you</div>
+      <h2>It doesn't just answer. <em>It executes.</em></h2>
+      <p class="sub">Every feature is an action — something Atlas does for you, not something it tells you to go do yourself.</p>
     </div>
 
     <div class="caps-list">
