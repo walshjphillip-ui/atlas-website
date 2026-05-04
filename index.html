@@ -716,9 +716,69 @@
   footer .links { display: flex; gap: 22px; }
   footer .links a:hover { color: var(--violet-soft); }
   @media (max-width: 600px) { footer { justify-content: center; text-align: center; } }
+
+  /* ─────────── SIDEBAR NAV ─────────── */
+  .sidenav {
+    position: fixed;
+    left: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .sidenav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 4px 0;
+  }
+  .sidenav a .dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--dimmer);
+    transition: background 0.25s, transform 0.25s;
+    flex-shrink: 0;
+  }
+  .sidenav a .label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dimmer);
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.2s, transform 0.2s, color 0.2s;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .sidenav a:hover .label,
+  .sidenav a.active .label {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .sidenav a.active .dot {
+    background: var(--violet-soft);
+    transform: scale(1.4);
+  }
+  .sidenav a:hover .dot { background: var(--ink-2); }
+  @media (max-width: 1100px) { .sidenav { display: none; } }
 </style>
 </head>
 <body>
+
+<!-- SIDEBAR -->
+<nav class="sidenav" aria-label="Page sections">
+  <a href="#hero" data-section="hero"><span class="dot"></span><span class="label">Top</span></a>
+  <a href="#why" data-section="why"><span class="dot"></span><span class="label">Why Atlas</span></a>
+  <a href="#capabilities" data-section="capabilities"><span class="dot"></span><span class="label">What It Does</span></a>
+  <a href="#audiences" data-section="audiences"><span class="dot"></span><span class="label">Built For</span></a>
+  <a href="#how" data-section="how"><span class="dot"></span><span class="label">How It Works</span></a>
+  <a href="#faq" data-section="faq"><span class="dot"></span><span class="label">FAQ</span></a>
+</nav>
 
 <!-- NAV -->
 <nav>
@@ -758,7 +818,7 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="hero">
   <div class="wrap hero-grid">
     <div>
       <div class="eyebrow hero-eyebrow"><span class="pulse"></span>Live · markets open · 09:30 ET</div>
@@ -892,7 +952,7 @@
 </section>
 
 <!-- CONTRAST -->
-<section class="contrast">
+<section class="contrast" id="why">
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow"><span class="bar"></span>Why Atlas</div>
@@ -1304,6 +1364,30 @@
     e.preventDefault();
     handleSignup(document.getElementById("bottom-email").value.trim(), this, document.getElementById("bottom-success"));
   });
+
+  // ── SIDEBAR: active section on scroll ──────────────────────────────────────
+  (function () {
+    const links = document.querySelectorAll('.sidenav a');
+    const sections = Array.from(links).map(a => document.getElementById(a.dataset.section)).filter(Boolean);
+
+    function onScroll() {
+      const mid = window.scrollY + window.innerHeight * 0.4;
+      let active = sections[0];
+      for (const s of sections) {
+        if (s.offsetTop <= mid) active = s;
+      }
+      links.forEach(a => a.classList.toggle('active', a.dataset.section === active.id));
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    links.forEach(a => a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.getElementById(a.dataset.section);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    }));
+  })();
 </script>
 
 </body>
