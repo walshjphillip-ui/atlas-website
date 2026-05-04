@@ -718,39 +718,36 @@
   @media (max-width: 600px) { footer { justify-content: center; text-align: center; } }
 
   /* ─────────── SCROLL ARROW ─────────── */
-  .scroll-arrow {
-    position: absolute;
-    bottom: 36px;
-    left: 50%;
-    transform: translateX(-50%);
+  .scroll-arrow-wrap {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    border: none;
-    background: none;
-    padding: 0;
-    z-index: 10;
-    animation: arrowfloat 2.4s ease-in-out infinite;
+    justify-content: center;
+    padding: 48px 0 20px;
   }
-  .scroll-arrow span {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--dim);
+  .scroll-arrow {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--bg-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    animation: arrowfloat 2.4s ease-in-out infinite;
   }
   .scroll-arrow svg {
     width: 20px; height: 20px;
     color: var(--dim);
     transition: color 0.2s;
   }
-  .scroll-arrow:hover svg,
-  .scroll-arrow:hover span { color: var(--violet-soft); }
+  .scroll-arrow:hover {
+    border-color: var(--violet-soft);
+    background: rgba(124,77,255,0.08);
+  }
+  .scroll-arrow:hover svg { color: var(--violet-soft); }
   @keyframes arrowfloat {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50%       { transform: translateX(-50%) translateY(6px); }
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(7px); }
   }
 </style>
 </head>
@@ -926,12 +923,13 @@
     </div>
   </div>
 
-  <button class="scroll-arrow" id="scroll-down" aria-label="Scroll down">
-    <span>Scroll</span>
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-      <path d="M12 5v14M5 12l7 7 7-7"/>
-    </svg>
-  </button>
+  <div class="scroll-arrow-wrap">
+    <button class="scroll-arrow" id="scroll-down" aria-label="Scroll down">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </button>
+  </div>
 </section>
 
 <!-- CONTRAST -->
