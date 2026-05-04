@@ -49,7 +49,6 @@
     color: var(--ink);
     font-family: var(--sans);
     line-height: 1.55;
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; text-decoration: none; }
@@ -140,23 +139,27 @@
     padding: clamp(60px, 9vh, 110px) 0 clamp(70px, 9vh, 110px);
     position: relative;
     border-bottom: 1px solid var(--line-soft);
-    overflow: hidden;
   }
-  .hero::before {
+  .hero-glows {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-glows::before {
     content: "";
     position: absolute;
     top: -20%; right: -10%;
     width: 900px; height: 900px;
     background: radial-gradient(circle, rgba(124,77,255,0.18) 0%, transparent 55%);
-    pointer-events: none;
   }
-  .hero::after {
+  .hero-glows::after {
     content: "";
     position: absolute;
     bottom: -30%; left: -10%;
     width: 700px; height: 700px;
     background: radial-gradient(circle, rgba(75,45,186,0.14) 0%, transparent 60%);
-    pointer-events: none;
   }
   .hero-grid {
     position: relative;
@@ -719,9 +722,17 @@
 
   /* ─────────── SCROLL ARROW ─────────── */
   .scroll-arrow-wrap {
-    display: flex;
-    justify-content: center;
-    padding: 48px 0 20px;
+    position: fixed;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 45;
+    transition: opacity 0.5s, visibility 0.5s;
+  }
+  .scroll-arrow-wrap.gone {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
   .scroll-arrow {
     width: 52px; height: 52px;
@@ -792,6 +803,7 @@
 
 <!-- HERO -->
 <section class="hero" id="hero">
+  <div class="hero-glows" aria-hidden="true"></div>
   <div class="wrap hero-grid">
     <div>
       <div class="eyebrow hero-eyebrow"><span class="pulse"></span>Live · markets open · 09:30 ET</div>
@@ -1350,6 +1362,12 @@
   document.getElementById('scroll-down').addEventListener('click', function () {
     document.getElementById('why').scrollIntoView({ behavior: 'smooth' });
   });
+  (function () {
+    const wrap = document.querySelector('.scroll-arrow-wrap');
+    window.addEventListener('scroll', function () {
+      wrap.classList.toggle('gone', window.scrollY > 60);
+    }, { passive: true });
+  })();
 </script>
 
 </body>
