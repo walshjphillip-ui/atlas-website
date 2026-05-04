@@ -717,61 +717,44 @@
   footer .links a:hover { color: var(--violet-soft); }
   @media (max-width: 600px) { footer { justify-content: center; text-align: center; } }
 
-  /* ─────────── SIDEBAR NAV ─────────── */
-  .sidenav {
-    position: fixed;
-    left: 20px;
-    top: 80px;
-    z-index: 40;
+  /* ─────────── SCROLL ARROW ─────────── */
+  .scroll-arrow {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    background: none;
-    border: none;
-    padding: 0;
-  }
-  .sidenav a {
-    display: flex;
     align-items: center;
-    gap: 9px;
-    text-decoration: none;
+    gap: 8px;
     cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    z-index: 10;
+    animation: arrowfloat 2.4s ease-in-out infinite;
   }
-  .sidenav a .dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--dimmer);
-    flex-shrink: 0;
-    transition: background 0.2s;
-  }
-  .sidenav a .label {
+  .scroll-arrow span {
     font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.12em;
+    font-size: 10px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--dimmer);
-    transition: color 0.2s;
-    white-space: nowrap;
+    color: var(--dim);
   }
-  .sidenav a.active .dot { background: var(--violet-soft); }
-  .sidenav a.active .label { color: var(--violet-soft); }
-  .sidenav a:hover .dot { background: var(--ink-2); }
-  .sidenav a:hover .label { color: var(--ink-2); }
-  @media (max-width: 1200px) { .sidenav { display: none; } }
+  .scroll-arrow svg {
+    width: 20px; height: 20px;
+    color: var(--dim);
+    transition: color 0.2s;
+  }
+  .scroll-arrow:hover svg,
+  .scroll-arrow:hover span { color: var(--violet-soft); }
+  @keyframes arrowfloat {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(6px); }
+  }
 </style>
 </head>
 <body>
-
-<!-- SIDEBAR -->
-<nav class="sidenav" aria-label="Page sections">
-  <a href="#hero" data-section="hero"><span class="dot"></span><span class="label">Top</span></a>
-  <a href="#why" data-section="why"><span class="dot"></span><span class="label">Why Atlas</span></a>
-  <a href="#capabilities" data-section="capabilities"><span class="dot"></span><span class="label">What It Does</span></a>
-  <a href="#audiences" data-section="audiences"><span class="dot"></span><span class="label">Built For</span></a>
-  <a href="#how" data-section="how"><span class="dot"></span><span class="label">How It Works</span></a>
-  <a href="#faq" data-section="faq"><span class="dot"></span><span class="label">FAQ</span></a>
-</nav>
 
 <!-- NAV -->
 <nav>
@@ -942,6 +925,13 @@
       </div>
     </div>
   </div>
+
+  <button class="scroll-arrow" id="scroll-down" aria-label="Scroll down">
+    <span>Scroll</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+  </button>
 </section>
 
 <!-- CONTRAST -->
@@ -1358,29 +1348,10 @@
     handleSignup(document.getElementById("bottom-email").value.trim(), this, document.getElementById("bottom-success"));
   });
 
-  // ── SIDEBAR: active section on scroll ──────────────────────────────────────
-  (function () {
-    const links = document.querySelectorAll('.sidenav a');
-    const sections = Array.from(links).map(a => document.getElementById(a.dataset.section)).filter(Boolean);
-
-    function onScroll() {
-      const mid = window.scrollY + window.innerHeight * 0.4;
-      let active = sections[0];
-      for (const s of sections) {
-        if (s.offsetTop <= mid) active = s;
-      }
-      links.forEach(a => a.classList.toggle('active', a.dataset.section === active.id));
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    links.forEach(a => a.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.getElementById(a.dataset.section);
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
-    }));
-  })();
+  // ── SCROLL ARROW ───────────────────────────────────────────────────────────
+  document.getElementById('scroll-down').addEventListener('click', function () {
+    document.getElementById('why').scrollIntoView({ behavior: 'smooth' });
+  });
 </script>
 
 </body>
