@@ -592,6 +592,34 @@
     .how-row { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
   }
 
+  /* ─────────── SOCIAL PROOF ─────────── */
+  .proof { padding-bottom: 80px; border-bottom: 1px solid var(--line-soft); }
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .proof-card {
+    background: var(--bg);
+    padding: 32px 28px;
+    display: flex; flex-direction: column; gap: 20px;
+    transition: background 0.2s;
+  }
+  .proof-card:hover { background: var(--bg-2); }
+  .proof-quote {
+    font-family: var(--serif); font-style: italic; font-weight: 300;
+    font-size: 18px; line-height: 1.55; letter-spacing: -0.01em;
+    color: var(--ink); flex: 1;
+  }
+  .proof-attr { display: flex; flex-direction: column; gap: 3px; }
+  .proof-name { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .proof-role { font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.06em; }
+  @media (max-width: 760px) { .proof-grid { grid-template-columns: 1fr; } }
+
   /* ─────────── FAQ ─────────── */
   .faq { padding-bottom: 80px; border-bottom: 1px solid var(--line-soft); }
   .faq-list { border-top: 1px solid var(--line); }
@@ -824,7 +852,7 @@
         <em>ambition.</em>
       </h1>
       <p class="hero-sub">
-        The AI that doesn't just answer — it acts. Drafts your emails. Tracks your stocks. Finds internships. Texts you what matters. Built for finance, econ, and business students.
+        An advisor that knows your goals, watches the market, and texts you what matters — so you wake up ahead of everyone who had to look it up themselves.
       </p>
       <form class="hero-form" id="hero-form">
         <input type="email" id="hero-email" placeholder="your@email.edu" required autocomplete="email" />
@@ -984,8 +1012,8 @@
           <div class="result"><span class="contrast-x">✕</span> Generic summary with no connection to your watchlist, your goals, or your timeline.</div>
         </div>
         <div class="contrast-item">
-          <div class="trigger">"Find me IB internships in NYC"</div>
-          <div class="result"><span class="contrast-x">✕</span> Here are some job boards where you can search for opportunities...</div>
+          <div class="trigger">"I'm targeting M&amp;A at Lazard and Moelis"</div>
+          <div class="result"><span class="contrast-x">✕</span> Got it! I'll keep that in mind for this conversation.</div>
         </div>
       </div>
 
@@ -1004,8 +1032,8 @@
           <div class="result"><span class="contrast-check">✓</span> Your brief lands at sunrise — markets, news, and what it means for your specific goals.</div>
         </div>
         <div class="contrast-item">
-          <div class="trigger">"Find me IB internships in NYC"</div>
-          <div class="result"><span class="contrast-check">✓</span> Found 3 openings. Cold emails drafted for each. Just say the word.</div>
+          <div class="trigger">"I'm targeting M&amp;A at Lazard and Moelis"</div>
+          <div class="result"><span class="contrast-check">✓</span> Saved. Every brief, every email, every recommendation from here is built around that goal. I won't forget.</div>
         </div>
       </div>
     </div>
@@ -1077,40 +1105,6 @@
   </div>
 </section>
 
-<!-- AUDIENCES -->
-<section id="audiences" class="audiences">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow"><span class="bar"></span>Built for</div>
-      <h2>Built for students who want to <em>get ahead</em>.</h2>
-      <p class="sub">Finance, business, and econ students who care about their career path and want the knowledge to back it up — without doing the legwork themselves.</p>
-    </div>
-
-    <div class="aud-grid">
-      <div class="aud">
-        <div class="label">01 · Finance majors</div>
-        <h4><em>Finance</em> students who want the edge</h4>
-        <p>You're studying it in class — Atlas puts it in the real world. Wake up knowing what moved, why it matters, and what to do about it.</p>
-      </div>
-      <div class="aud">
-        <div class="label">02 · Career-driven students</div>
-        <h4><em>Future bankers,</em> consultants, analysts</h4>
-        <p>Real job openings, cold emails drafted for you, cover letters in 30 seconds. Atlas handles the grind so you can focus on landing the role.</p>
-      </div>
-      <div class="aud">
-        <div class="label">03 · Business majors</div>
-        <h4><em>Business</em> students going places</h4>
-        <p>Markets, global news, and opportunities — delivered every morning without you having to look for them. Stay ahead without the effort.</p>
-      </div>
-      <div class="aud">
-        <div class="label">04 · Aspiring investors</div>
-        <h4><em>Students</em> ready to start investing</h4>
-        <p>Never invested but want to? Atlas tracks the market for you, breaks down what's happening, and tells you what's worth paying attention to.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- HOW IT WORKS -->
 <section id="how">
   <div class="wrap">
@@ -1140,6 +1134,39 @@
         <div>
           <h4>Atlas texts you. You don't check Atlas.</h4>
           <p>Tomorrow morning your brief lands in your messages. When NVDA moves, you get a text. When your deadline is in 2 hours, Atlas reminds you. It works while you live your life.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section id="proof" class="proof">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="bar"></span>From students using Atlas</div>
+      <h2>What they're <em>saying.</em></h2>
+    </div>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <p class="proof-quote">"PLACEHOLDER QUOTE ONE"</p>
+        <div class="proof-attr">
+          <span class="proof-name">Name</span>
+          <span class="proof-role">School · Major</span>
+        </div>
+      </div>
+      <div class="proof-card">
+        <p class="proof-quote">"PLACEHOLDER QUOTE TWO"</p>
+        <div class="proof-attr">
+          <span class="proof-name">Name</span>
+          <span class="proof-role">School · Major</span>
+        </div>
+      </div>
+      <div class="proof-card">
+        <p class="proof-quote">"PLACEHOLDER QUOTE THREE"</p>
+        <div class="proof-attr">
+          <span class="proof-name">Name</span>
+          <span class="proof-role">School · Major</span>
         </div>
       </div>
     </div>
@@ -1179,10 +1206,6 @@
         <summary><span>What does Atlas store about me?</span><span class="plus" aria-hidden="true"></span></summary>
         <div class="a">Your profile (name, school, goals, target firms, interests) and conversation history — used only to make answers sharper over time. Never sold, never shared. Full detail in the <a href="/privacy.html">Privacy Policy</a>.</div>
       </details>
-      <details class="q">
-        <summary><span>Can I use it on my phone?</span><span class="plus" aria-hidden="true"></span></summary>
-        <div class="a">Yes — Telegram is mobile-first, and Atlas is designed for that. Your morning brief lands like a text message.</div>
-      </details>
     </div>
   </div>
 </section>
@@ -1194,7 +1217,7 @@
       <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#atlas-mark"/></svg>
       <span class="word">ΛTLΛS</span>
     </div>
-    <h2>Begin Monday<br/>with <em>an edge.</em></h2>
+    <h2>Begin Monday<br/>with <em>your advisor.</em></h2>
     <p>Free · No credit card · 60 seconds</p>
     <form class="hero-form" id="bottom-form">
       <input type="email" id="bottom-email" placeholder="your@email.edu" required autocomplete="email" />
