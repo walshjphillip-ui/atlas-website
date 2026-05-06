@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ATLAS — AI assistant for ambitious students</title>
-<meta name="description" content="Atlas is a Telegram-based AI for ambitious finance, economics, and business students. Real-time news, market briefs, stock alerts, internship search, cold emails, scheduling — one conversation." />
+<title>ATLAS — AI advisor for ambitious students</title>
+<meta name="description" content="Atlas is a Telegram-based AI advisor for ambitious finance, economics, and business students. Real-time market briefs, stock alerts, interview prep, networking tools — one conversation." />
 <link rel="icon" type="image/svg+xml" href="logo.svg" />
 
-<meta property="og:title" content="ATLAS — AI assistant for ambitious students" />
-<meta property="og:description" content="Real-time news, market briefs, internships, cold emails — all in Telegram." />
+<meta property="og:title" content="ATLAS — AI advisor for ambitious students" />
+<meta property="og:description" content="Real-time market briefs, interview prep, networking tools — all in Telegram." />
 <meta property="og:url" content="https://useatlasai.org" />
 <meta property="og:image" content="https://useatlasai.org/og-image.png" />
 <meta property="og:image:width" content="1200" />
@@ -77,51 +77,28 @@
     -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line-soft);
   }
-
-  /* scrolling marquee */
-  .nav-marquee {
-    overflow: hidden;
-    position: relative;
-    height: 22px;
-    border-left: 1px solid var(--line);
-    border-right: 1px solid var(--line);
-    margin: 0 4px;
-  }
-  .nav-marquee::before, .nav-marquee::after {
-    content: ""; position: absolute; top: 0; bottom: 0; width: 40px;
-    z-index: 2; pointer-events: none;
-  }
-  .nav-marquee::before { left: 0; background: linear-gradient(90deg, rgba(10,6,18,0.95), transparent); }
-  .nav-marquee::after  { right: 0; background: linear-gradient(270deg, rgba(10,6,18,0.95), transparent); }
-  .nav-marquee-track {
-    display: flex; gap: 36px; white-space: nowrap;
-    padding-top: 4px;
-    animation: marquee 40s linear infinite;
-    will-change: transform;
-  }
-  .nav-marquee-track span {
-    font-family: var(--mono); font-size: 11px; color: var(--dim);
-    letter-spacing: 0.14em; text-transform: uppercase;
-    display: inline-flex; align-items: center; gap: 10px;
-  }
-  .nav-marquee-track span::before {
-    content: ""; width: 4px; height: 4px; border-radius: 50%;
-    background: var(--violet-soft);
-  }
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-  @media (max-width: 880px) {
-    nav { grid-template-columns: auto auto; }
-    .nav-marquee { display: none; }
-  }
   .nav-left { display: flex; align-items: center; gap: 12px; }
   .nav-mark { width: 30px; height: 30px; }
   .nav-word {
     font-family: var(--sans); font-weight: 500;
     font-size: 18px; letter-spacing: 0.32em; color: var(--ink);
   }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(18px, 2.5vw, 36px);
+    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    padding: 6px clamp(20px, 3vw, 40px);
+  }
+  .nav-links a {
+    font-size: 13px; font-weight: 500;
+    color: var(--dim); letter-spacing: 0.02em;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--ink); }
   .nav-cta {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 10px 18px;
@@ -133,7 +110,10 @@
   }
   .nav-cta:hover { background: var(--violet-soft); }
   .nav-cta svg { width: 12px; height: 12px; }
-
+  @media (max-width: 880px) {
+    nav { grid-template-columns: auto auto; }
+    .nav-links { display: none; }
+  }
 
   /* ─────────── HERO ─────────── */
   .hero {
@@ -168,9 +148,7 @@
     gap: clamp(40px, 6vw, 80px);
     align-items: center;
   }
-  .hero-eyebrow {
-    margin-bottom: 28px;
-  }
+  .hero-eyebrow { margin-bottom: 28px; }
   .hero-eyebrow .pulse {
     width: 8px; height: 8px; border-radius: 50%;
     background: var(--gain);
@@ -260,12 +238,7 @@
     flex-shrink: 0;
     margin-top: 2px;
   }
-  .tg-why p {
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--ink-2);
-    margin: 0;
-  }
+  .tg-why p { font-size: 13px; line-height: 1.6; color: var(--ink-2); margin: 0; }
   .tg-why strong { color: var(--ink); font-weight: 600; }
 
   #form-success, #bottom-success {
@@ -279,7 +252,7 @@
     border-radius: 2px;
   }
 
-  /* ─────────── DEMO PHONE — multi-screen carousel ─────────── */
+  /* ─────────── DEMO PHONE ─────────── */
   .phone-wrap {
     position: relative;
     display: flex; justify-content: center;
@@ -395,14 +368,16 @@
     color: var(--violet-soft); line-height: 1.4;
     padding: 6px 0;
   }
-  .bubble .smallspark {
-    display: block; margin-top: 8px;
-  }
+  .bubble .smallspark { display: block; margin-top: 8px; }
   .bubble .smallspark svg { width: 100%; height: 36px; }
   .bubble .meta {
     margin-top: 6px;
     font-family: var(--mono); font-size: 10px; color: var(--dim);
     letter-spacing: 0.06em;
+  }
+  .bubble .em {
+    font-family: var(--serif); font-style: italic; font-size: 14px;
+    color: var(--violet-soft); line-height: 1.4;
   }
 
   .typing {
@@ -454,8 +429,6 @@
     display: flex; align-items: center; justify-content: center;
   }
   .tg-input .send svg { width: 14px; height: 14px; color: #fff; }
-
-  /* progress dots inside the phone */
   .phone-dots { display: none; }
 
   @media (max-width: 880px) {
@@ -477,7 +450,6 @@
     color: var(--ink);
     text-wrap: balance;
   }
-  .sec-head h2 em { font-style: italic; color: var(--violet-soft); font-weight: 400; }
   .sec-head .sub {
     margin-top: 18px;
     color: var(--ink-2); font-size: 16px; line-height: 1.6;
@@ -509,7 +481,6 @@
     font-size: 26px; letter-spacing: -0.015em; line-height: 1.15;
     color: var(--ink);
   }
-  .cap h3 em { font-style: italic; color: var(--violet-soft); }
   .cap p { color: var(--ink-2); font-size: 15px; line-height: 1.6; max-width: 480px; text-wrap: pretty; }
   .cap .demo {
     background: linear-gradient(180deg, #150A24, #0F0820);
@@ -535,37 +506,8 @@
     .cap .demo { grid-column: 1 / -1; }
   }
 
-  /* ─────────── AUDIENCES ─────────── */
-  .audiences { padding-bottom: 80px; border-bottom: 1px solid var(--line-soft); }
-  .aud-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    border-top: 1px solid var(--line);
-    border-left: 1px solid var(--line);
-  }
-  .aud {
-    padding: 32px;
-    border-right: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    display: flex; flex-direction: column; gap: 12px;
-    min-height: 200px;
-    transition: background 0.25s;
-  }
-  .aud:hover { background: rgba(124,77,255,0.03); }
-  .aud .label {
-    font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
-    color: var(--dim); text-transform: uppercase;
-  }
-  .aud h4 {
-    font-family: var(--serif); font-weight: 400;
-    font-size: 24px; letter-spacing: -0.015em; line-height: 1.15;
-    color: var(--ink);
-  }
-  .aud h4 em { font-style: italic; color: var(--violet-soft); }
-  .aud p { color: var(--ink-2); font-size: 14px; line-height: 1.55; }
-  @media (max-width: 720px) { .aud-grid { grid-template-columns: 1fr; } }
-
   /* ─────────── HOW ─────────── */
+  .how { padding-bottom: 80px; border-bottom: 1px solid var(--line-soft); }
   .how-list { border-top: 1px solid var(--line); }
   .how-row {
     display: grid;
@@ -590,6 +532,62 @@
   .how-row p { color: var(--ink-2); font-size: 15px; line-height: 1.55; max-width: 600px; }
   @media (max-width: 640px) {
     .how-row { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
+  }
+
+  /* ─────────── DEMO VIDEOS ─────────── */
+  .demo-section { padding-bottom: 80px; border-bottom: 1px solid var(--line-soft); }
+  .demo-videos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .video-slot { display: flex; flex-direction: column; gap: 10px; }
+  .video-container {
+    position: relative;
+    width: 100%;
+    padding-top: 72%;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .video-container video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .video-placeholder {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(160deg, #150A24, #0F0820);
+  }
+  .video-placeholder-icon {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--dim);
+  }
+  .video-placeholder-icon svg { width: 16px; height: 16px; margin-left: 2px; }
+  .video-placeholder-label {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--dim);
+  }
+  .video-caption {
+    font-size: 13px; color: var(--ink-2);
+    font-family: var(--sans); line-height: 1.4;
+  }
+  @media (max-width: 760px) {
+    .demo-videos { grid-template-columns: 1fr; max-width: 400px; }
   }
 
   /* ─────────── SOCIAL PROOF ─────────── */
@@ -667,10 +665,7 @@
     border-radius: 6px;
     overflow: hidden;
   }
-  .contrast-col {
-    background: var(--bg);
-    padding: 0;
-  }
+  .contrast-col { background: var(--bg); padding: 0; }
   .contrast-col-head {
     padding: 18px 28px;
     font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
@@ -688,16 +683,12 @@
     font-family: var(--mono); font-size: 11.5px;
     color: var(--dim); margin-bottom: 10px;
   }
-  .contrast-item .result {
-    font-size: 14px; line-height: 1.55; color: var(--ink-2);
-  }
+  .contrast-item .result { font-size: 14px; line-height: 1.55; color: var(--ink-2); }
   .contrast-col.atlas .result { color: var(--ink); }
   .contrast-col.atlas .contrast-item { background: rgba(124,77,255,0.02); }
   .contrast-check { color: var(--gain); font-weight: 600; margin-right: 4px; }
   .contrast-x { color: var(--loss); font-weight: 600; margin-right: 4px; }
-  @media (max-width: 720px) {
-    .contrast-grid { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 720px) { .contrast-grid { grid-template-columns: 1fr; } }
 
   /* ─────────── END / CTA ─────────── */
   .end {
@@ -758,7 +749,7 @@
   }
   footer .left { display: flex; align-items: center; gap: 12px; }
   footer .left svg { width: 20px; height: 20px; opacity: 0.9; }
-  footer .links { display: flex; gap: 22px; }
+  footer .links { display: flex; gap: 22px; flex-wrap: wrap; }
   footer .links a:hover { color: var(--violet-soft); }
   @media (max-width: 600px) { footer { justify-content: center; text-align: center; } }
 
@@ -808,31 +799,15 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-left" aria-label="Atlas — home">
+  <a href="/" class="nav-left" aria-label="Atlas — home">
     <svg class="nav-mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#atlas-mark" /></svg>
     <span class="nav-word">ΛTLΛS</span>
   </a>
-  <div class="nav-marquee" aria-hidden="true">
-    <div class="nav-marquee-track">
-      <span>Morning briefs</span>
-      <span>Real-time news</span>
-      <span>Stock alerts</span>
-      <span>Macro signals</span>
-      <span>Internship search</span>
-      <span>Cold emails</span>
-      <span>Cover letters</span>
-      <span>Reminders</span>
-      <span>Memory that compounds</span>
-      <span>Morning briefs</span>
-      <span>Real-time news</span>
-      <span>Stock alerts</span>
-      <span>Macro signals</span>
-      <span>Internship search</span>
-      <span>Cold emails</span>
-      <span>Cover letters</span>
-      <span>Reminders</span>
-      <span>Memory that compounds</span>
-    </div>
+  <div class="nav-links">
+    <a href="/#capabilities">Features</a>
+    <a href="/#how">How it works</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/about.html">About</a>
   </div>
   <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener" class="nav-cta">
     Open in Telegram
@@ -915,7 +890,7 @@
               </div>
             </div>
 
-            <!-- Screen 3: Internship + outreach -->
+            <!-- Screen 3: Cold email outreach -->
             <div class="tg-screen" data-screen="2">
               <div class="bubble">
                 <span class="label">3 new IB analyst roles</span>
@@ -931,16 +906,16 @@
               </div>
             </div>
 
-            <!-- Screen 4: Cover letter -->
+            <!-- Screen 4: Interview prep -->
             <div class="tg-screen" data-screen="3">
-              <div class="bubble me">cover letter for this → goldman.com/careers/8821</div>
+              <div class="bubble me">prep me for my Goldman superday Friday</div>
               <div class="typing"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
               <div class="bubble">
-                <span class="label">Cover letter · GS · TMT SA</span>
-                <strong>Drafted in 28 seconds.</strong> Tailored to TMT coverage, references your Bain case study and your AAPL DCF write-up — no buzzwords.
+                <span class="label">Interview Prep · Goldman Sachs · Superday</span>
+                <strong>3 behavioral + 2 technical + 2 GS-specific questions.</strong>
                 <div class="hr"></div>
-                <span class="em">"I followed the GS-led $14B AVGO debt issuance closely…"</span>
-                <div class="meta">PDF + .docx · ready to download</div>
+                <span class="em">"Walk me through a DCF" — GS looks for speed and structure, not perfection.</span>
+                <div class="meta">Based on GS TMT 2025 deal activity →</div>
               </div>
             </div>
 
@@ -950,7 +925,7 @@
                 <span class="label">Reminder · 16:00 today</span>
                 <strong>JPM SA application closes in 4 hours.</strong>
                 <div class="hr"></div>
-                You haven't submitted yet. Résumé v3 + cover letter are ready in drafts.
+                You haven't submitted yet. Résumé v3 is ready in drafts.
               </div>
               <div class="bubble me">remind me again at 3:30</div>
               <div class="bubble">
@@ -970,8 +945,8 @@
         <div class="phone-dots" id="phone-dots">
           <button data-i="0" class="active" aria-label="Morning brief"></button>
           <button data-i="1" aria-label="News and macro"></button>
-          <button data-i="2" aria-label="Internships"></button>
-          <button data-i="3" aria-label="Cover letter"></button>
+          <button data-i="2" aria-label="Cold email"></button>
+          <button data-i="3" aria-label="Interview prep"></button>
           <button data-i="4" aria-label="Scheduling"></button>
         </div>
       </div>
@@ -992,13 +967,13 @@
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow"><span class="bar"></span>Why Atlas</div>
-      <h2>Not a chatbot. <em>An assistant.</em></h2>
-      <p class="sub">ChatGPT answers questions. Atlas takes action. You tell it what you need — it handles the rest.</p>
+      <h2>Not a chatbot. An advisor.</h2>
+      <p class="sub">Other chatbots answer questions. Atlas takes action. You tell it what you need — it handles the rest.</p>
     </div>
 
     <div class="contrast-grid">
       <div class="contrast-col other">
-        <div class="contrast-col-head">Every other AI</div>
+        <div class="contrast-col-head">Other chatbots</div>
         <div class="contrast-item">
           <div class="trigger">"Draft me a cold email to Goldman"</div>
           <div class="result"><span class="contrast-x">✕</span> Here's a template — edit it, copy it, open Gmail, paste it, fill in the blanks...</div>
@@ -1045,7 +1020,7 @@
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow"><span class="bar"></span>What Atlas does for you</div>
-      <h2>It doesn't just answer. <em>It executes.</em></h2>
+      <h2>It doesn't just answer. It executes.</h2>
       <p class="sub">Every feature is an action — something Atlas does for you, not something it tells you to go do yourself.</p>
     </div>
 
@@ -1054,7 +1029,7 @@
       <article class="cap">
         <div class="num">01</div>
         <div class="body">
-          <h3><em>Morning briefs</em> built around you</h3>
+          <h3>Morning briefs built around you</h3>
           <p>Every morning, Atlas texts you a brief — markets, macro, news, and what it all means for your goals specifically. Not a generic summary. Yours.</p>
         </div>
         <div class="demo">
@@ -1066,7 +1041,7 @@
       <article class="cap">
         <div class="num">02</div>
         <div class="body">
-          <h3><em>Real-time news</em> &amp; macro</h3>
+          <h3>Real-time news and macro</h3>
           <p>CPI, FOMC, earnings, geopolitics — the moment it breaks, Atlas explains exactly why it matters for the names on your watchlist and the career you're building.</p>
         </div>
         <div class="demo">
@@ -1079,7 +1054,7 @@
       <article class="cap">
         <div class="num">03</div>
         <div class="body">
-          <h3><em>Cold emails</em> that sound like you</h3>
+          <h3>Cold emails that sound like you</h3>
           <p>Tell Atlas who you're reaching out to. It writes the email — specific, calibrated to your background — and saves it straight to your Gmail drafts. You just hit send.</p>
         </div>
         <div class="demo">
@@ -1092,7 +1067,7 @@
       <article class="cap">
         <div class="num">04</div>
         <div class="body">
-          <h3><em>It knows you</em> — and gets sharper over time</h3>
+          <h3>It knows you — and gets sharper over time</h3>
           <p>Atlas builds a profile on you from day one. Your school, your target firms, your sectors, your voice. Every answer it gives, every email it drafts — shaped around who you are and where you're going.</p>
         </div>
         <div class="demo">
@@ -1106,11 +1081,11 @@
 </section>
 
 <!-- HOW IT WORKS -->
-<section id="how">
+<section id="how" class="how">
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow"><span class="bar"></span>How it works</div>
-      <h2>It runs in the background. <em>You just get texts.</em></h2>
+      <h2>It runs in the background. You just get texts.</h2>
       <p class="sub">Most tools wait for you to show up. Atlas doesn't. Once you're set up, it reaches out to you — briefs, alerts, and updates land like messages from someone who actually has your back.</p>
     </div>
 
@@ -1140,12 +1115,65 @@
   </div>
 </section>
 
+<!-- DEMO VIDEOS -->
+<section id="demo" class="demo-section">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="bar"></span>See it in action</div>
+      <h2>Watch Atlas work.</h2>
+      <p class="sub">Real conversations, not screenshots. See how Atlas handles a morning brief, preps you for an interview, and drafts outreach — all in Telegram.</p>
+    </div>
+    <div class="demo-videos">
+
+      <div class="video-slot">
+        <div class="video-container">
+          <!-- Replace with: <video src="demo-brief.mp4" autoplay muted loop playsinline></video> -->
+          <div class="video-placeholder">
+            <div class="video-placeholder-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-placeholder-label">Morning Brief</div>
+          </div>
+        </div>
+        <div class="video-caption">Your daily brief, personalized to your goals</div>
+      </div>
+
+      <div class="video-slot">
+        <div class="video-container">
+          <!-- Replace with: <video src="demo-interview.mp4" autoplay muted loop playsinline></video> -->
+          <div class="video-placeholder">
+            <div class="video-placeholder-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-placeholder-label">Interview Prep</div>
+          </div>
+        </div>
+        <div class="video-caption">Firm-specific questions pulled from recent deals</div>
+      </div>
+
+      <div class="video-slot">
+        <div class="video-container">
+          <!-- Replace with: <video src="demo-email.mp4" autoplay muted loop playsinline></video> -->
+          <div class="video-placeholder">
+            <div class="video-placeholder-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-placeholder-label">Cold Email</div>
+          </div>
+        </div>
+        <div class="video-caption">Written in your voice, saved straight to drafts</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- SOCIAL PROOF -->
 <section id="proof" class="proof">
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow"><span class="bar"></span>From students using Atlas</div>
-      <h2>What they're <em>saying.</em></h2>
+      <h2>What they're saying.</h2>
     </div>
     <div class="proof-grid">
       <div class="proof-card">
@@ -1178,7 +1206,7 @@
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow"><span class="bar"></span>Common questions</div>
-      <h2>Asked &amp; <em>answered.</em></h2>
+      <h2>Asked and answered.</h2>
     </div>
 
     <div class="faq-list">
@@ -1191,8 +1219,17 @@
         <div class="a">Yes. Atlas runs entirely inside Telegram — no separate app or account beyond Telegram itself. It's available on iPhone, Android, and desktop.</div>
       </details>
       <details class="q">
+        <summary><span>Why does Atlas ask to connect Google?</span><span class="plus" aria-hidden="true"></span></summary>
+        <div class="a">
+          Google is optional — Atlas works fully without it. If you choose to connect, here is exactly what it does and does not do:<br/><br/>
+          <strong>Gmail:</strong> Atlas can save draft emails to your Gmail Drafts folder. It never reads your inbox, never accesses your existing emails, and never sends anything without you opening the draft and clicking send yourself.<br/><br/>
+          <strong>Google Calendar:</strong> Atlas can create calendar events when you ask it to. It reads only what's needed to avoid scheduling conflicts.<br/><br/>
+          You can disconnect at any time from your <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google account settings</a>. Full detail in the <a href="/privacy.html">Privacy Policy</a>.
+        </div>
+      </details>
+      <details class="q">
         <summary><span>How is this different from a general AI chatbot?</span><span class="plus" aria-hidden="true"></span></summary>
-        <div class="a">A general chatbot has no memory of you, no live market data, and no agency to act. Atlas is built for ambitious finance, econ, and business students — it knows your goals, tracks your stocks, runs your morning brief, surfaces real news as it breaks, and takes real actions like sourcing internships and drafting outreach.</div>
+        <div class="a">A general chatbot has no memory of you, no live market data, and no ability to take real actions. Atlas is built for ambitious finance, econ, and business students — it knows your goals, tracks your stocks, sends your morning brief, surfaces real news as it breaks, and does things like draft emails and set calendar reminders. It's the difference between asking for directions and having a driver.</div>
       </details>
       <details class="q">
         <summary><span>What stocks and markets does it cover?</span><span class="plus" aria-hidden="true"></span></summary>
@@ -1234,17 +1271,17 @@
 <footer>
   <div class="left">
     <svg viewBox="0 0 100 100" aria-hidden="true"><use href="#atlas-mark"/></svg>
-    <span>© 2026 ΛTLΛS · For ambitious students</span>
+    <span>© 2026 ΛTLΛS · Built for ambitious students</span>
   </div>
   <div class="links">
+    <a href="/about.html">About</a>
     <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener">Telegram ↗</a>
     <a href="/privacy.html">Privacy</a>
     <a href="/terms.html">Terms</a>
-    <a href="/cdn-cgi/l/email-protection#cea6aba2a2a18ebbbdabafbaa2afbdafa7e0a1bca9">Contact</a>
   </div>
 </footer>
 
-<!-- ATLAS COMPASS-A MARK (matches uploaded logo) -->
+<!-- ATLAS MARK -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <linearGradient id="atlas-arrow-grad" x1="0" y1="0" x2="0" y2="1">
@@ -1260,30 +1297,21 @@
       <stop offset="0%" stop-color="#7C4DFF" stop-opacity="0.5"/>
       <stop offset="100%" stop-color="#7C4DFF" stop-opacity="0"/>
     </radialGradient>
-
     <symbol id="atlas-mark" viewBox="0 0 100 100">
-      <!-- soft halo -->
       <circle cx="50" cy="50" r="46" fill="url(#atlas-glow)"/>
-      <!-- ring -->
       <circle cx="50" cy="50" r="36" fill="none" stroke="#7C4DFF" stroke-width="1.4"/>
-      <!-- side dots (9 and 3 o'clock) -->
       <circle cx="14" cy="50" r="3" fill="#7C4DFF"/>
       <circle cx="86" cy="50" r="3" fill="#7C4DFF"/>
-      <!-- top sparkle (4-pointed star) -->
       <path d="M50,6 L52,16 L62,18 L52,20 L50,30 L48,20 L38,18 L48,16 Z" fill="#B79CFF"/>
-      <!-- compass A: dark right side (shadow), light left side -->
-      <!-- right (shadowed) half -->
       <path d="M50,28 L73,74 L62,74 L57,64 L50,64 Z" fill="url(#atlas-arrow-shadow)"/>
-      <!-- left (lit) half -->
       <path d="M50,28 L27,74 L38,74 L43,64 L50,64 Z" fill="url(#atlas-arrow-grad)"/>
-      <!-- inner spine highlight -->
       <path d="M50,28 L50,64" stroke="#F1ECFA" stroke-width="0.6" opacity="0.55"/>
     </symbol>
   </defs>
 </svg>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // ── DEMO PHONE: auto-cycle screens ─────────────────────────────
+<script>
+  // ── DEMO PHONE: auto-cycle screens ──────────────────────────────
   (function () {
     const screens = document.querySelectorAll('.tg-screen');
     const dots = document.querySelectorAll('#phone-dots button');
@@ -1300,7 +1328,6 @@
       dots.forEach((d, k) => d.classList.toggle('active', k === i));
       if (clock) clock.textContent = clocks[i] || '—';
       idx = i;
-      // reset scroll
       const cur = screens[i];
       if (cur) cur.scrollTop = 0;
     }
@@ -1308,16 +1335,13 @@
     function start() { timer = setInterval(next, 4200); }
     function stop()  { if (timer) clearInterval(timer); }
 
-    // initial
     go(0);
     start();
 
-    // dot interaction
     dots.forEach(d => d.addEventListener('click', () => {
       stop(); go(parseInt(d.dataset.i, 10)); start();
     }));
 
-    // pause on hover
     const phone = document.querySelector('.phone');
     if (phone) {
       phone.addEventListener('mouseenter', stop);
@@ -1325,7 +1349,7 @@
     }
   })();
 
-  // ── form ───────────────────────────────────────────────────────
+  // ── FORM ────────────────────────────────────────────────────────
   const TG_URL = "https://t.me/AtlasAIAdvisorBot";
   async function handleSignup(email, formEl, successEl) {
     try {
@@ -1348,13 +1372,12 @@
     handleSignup(document.getElementById("bottom-email").value.trim(), this, document.getElementById("bottom-success"));
   });
 
-  // ── MARKET STATUS ──────────────────────────────────────────────────────────
+  // ── MARKET STATUS ────────────────────────────────────────────────
   (function () {
     const statusEl = document.getElementById('market-status');
     const pulseEl  = document.getElementById('market-pulse');
 
     function getETDate() {
-      // Use Intl to get current time in ET regardless of user timezone
       const now = new Date();
       const etStr = now.toLocaleString('en-US', { timeZone: 'America/New_York' });
       return new Date(etStr);
@@ -1362,20 +1385,15 @@
 
     function updateMarket() {
       const et = getETDate();
-      const day = et.getDay(); // 0=Sun, 6=Sat
-      const h = et.getHours();
-      const m = et.getMinutes();
-      const mins = h * 60 + m;
-      const open  = 9 * 60 + 30;  // 9:30 AM
-      const close = 16 * 60;       // 4:00 PM
-
-      const isWeekday = day >= 1 && day <= 5;
-      const isOpen    = isWeekday && mins >= open && mins < close;
+      const day = et.getDay();
+      const mins = et.getHours() * 60 + et.getMinutes();
+      const isOpen = day >= 1 && day <= 5 && mins >= 570 && mins < 960;
 
       if (isOpen) {
         statusEl.textContent = 'Live · markets open · 9:30–4:00 ET';
         pulseEl.style.background = 'var(--gain)';
         pulseEl.style.boxShadow  = '0 0 0 0 rgba(111,227,176,0.5)';
+        pulseEl.style.animation  = '';
       } else {
         statusEl.textContent = 'Markets closed · opens Mon–Fri 9:30 ET';
         pulseEl.style.background = 'var(--dim)';
@@ -1385,10 +1403,10 @@
     }
 
     updateMarket();
-    setInterval(updateMarket, 60000); // refresh every minute
+    setInterval(updateMarket, 60000);
   })();
 
-  // ── SCROLL ARROW ───────────────────────────────────────────────────────────
+  // ── SCROLL ARROW ─────────────────────────────────────────────────
   document.getElementById('scroll-down').addEventListener('click', function () {
     document.getElementById('why').scrollIntoView({ behavior: 'smooth' });
   });

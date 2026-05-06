@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>About — ATLAS</title>
+<meta name="description" content="Atlas was built by Phillip Walsh, an economics student at the University of Tampa, out of frustration with tools that didn't actually work for students trying to break into finance." />
+<link rel="icon" type="image/svg+xml" href="logo.svg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg:        #0A0612;
+    --bg-2:      #110A1E;
+    --panel:     #160C26;
+    --line:      #2A1A40;
+    --line-soft: #1A0F2C;
+    --ink:       #F1ECFA;
+    --ink-2:     #C9BFDD;
+    --dim:       #8B7CA6;
+    --dimmer:    #5C4F76;
+    --violet:    #7C4DFF;
+    --violet-soft: #B79CFF;
+    --violet-deep: #4B2DBA;
+    --gain:      #6FE3B0;
+
+    --serif:  "Fraunces", Georgia, serif;
+    --sans:   "Inter Tight", system-ui, sans-serif;
+    --mono:   "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; }
+  ::selection { background: var(--violet); color: #fff; }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+  .wrap-narrow { max-width: 760px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 28px;
+    align-items: center;
+    padding: 14px clamp(20px, 4vw, 48px);
+    background: rgba(10, 6, 18, 0.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav-left { display: flex; align-items: center; gap: 12px; }
+  .nav-mark { width: 30px; height: 30px; }
+  .nav-word {
+    font-family: var(--sans); font-weight: 500;
+    font-size: 18px; letter-spacing: 0.32em; color: var(--ink);
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(18px, 2.5vw, 36px);
+    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    padding: 6px clamp(20px, 3vw, 40px);
+  }
+  .nav-links a {
+    font-size: 13px; font-weight: 500;
+    color: var(--dim); letter-spacing: 0.02em;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px;
+    background: var(--ink); color: #0A0612;
+    font-weight: 600; font-size: 13px;
+    border-radius: 2px;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--violet-soft); }
+  .nav-cta svg { width: 12px; height: 12px; }
+  @media (max-width: 880px) {
+    nav { grid-template-columns: auto auto; }
+    .nav-links { display: none; }
+  }
+
+  /* ─── HERO ─── */
+  .about-hero {
+    padding: clamp(80px, 12vh, 140px) 0 clamp(60px, 8vh, 100px);
+    position: relative;
+  }
+  .about-hero::before {
+    content: "";
+    position: absolute;
+    top: -10%; right: -5%;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(124,77,255,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .about-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--violet-soft);
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 28px;
+  }
+  .about-eyebrow .bar { width: 24px; height: 1px; background: var(--violet-deep); }
+  .about-hero h1 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(40px, 6vw, 80px);
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+    color: var(--ink);
+    text-wrap: balance;
+    max-width: 800px;
+  }
+  .about-hero h1 em {
+    font-style: italic; font-weight: 400;
+    background: linear-gradient(180deg, var(--violet-soft) 0%, var(--violet) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .about-hero .sub {
+    margin-top: 28px;
+    font-size: 18px; line-height: 1.65;
+    color: var(--ink-2);
+    max-width: 620px;
+  }
+
+  /* ─── STORY ─── */
+  .story {
+    padding: 0 0 clamp(80px, 10vh, 120px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 100px);
+    align-items: start;
+  }
+  .story-body { display: flex; flex-direction: column; gap: 24px; }
+  .story-body p {
+    font-size: 16px; line-height: 1.75;
+    color: var(--ink-2);
+  }
+  .story-body p strong { color: var(--ink); font-weight: 600; }
+  .story-aside {
+    padding-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .aside-row {
+    background: var(--bg);
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .aside-label {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--dim);
+  }
+  .aside-value {
+    font-size: 15px; color: var(--ink);
+    font-weight: 500;
+  }
+  @media (max-width: 760px) {
+    .story-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── MISSION ─── */
+  .mission {
+    padding: clamp(80px, 10vh, 120px) 0;
+    border-bottom: 1px solid var(--line-soft);
+    text-align: center;
+  }
+  .mission blockquote {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(26px, 3.5vw, 44px);
+    line-height: 1.2; letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 820px;
+    margin: 0 auto;
+    text-wrap: balance;
+  }
+  .mission cite {
+    display: block;
+    margin-top: 28px;
+    font-family: var(--mono); font-size: 12px;
+    color: var(--dim); letter-spacing: 0.12em; text-transform: uppercase;
+    font-style: normal;
+  }
+
+  /* ─── BUILT WITH ─── */
+  .built-with {
+    padding: clamp(80px, 10vh, 120px) 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .built-with h2 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(30px, 4vw, 48px);
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 48px;
+  }
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .stack-item {
+    background: var(--bg);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: background 0.2s;
+  }
+  .stack-item:hover { background: var(--bg-2); }
+  .stack-name {
+    font-family: var(--mono); font-size: 12px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--violet-soft);
+  }
+  .stack-desc {
+    font-size: 14px; color: var(--ink-2); line-height: 1.55;
+  }
+  @media (max-width: 760px) {
+    .stack-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── CTA ─── */
+  .about-cta {
+    padding: clamp(80px, 12vh, 140px) 0;
+    text-align: center;
+  }
+  .about-cta h2 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(32px, 4.5vw, 56px);
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 32px;
+  }
+  .about-cta h2 em {
+    font-style: italic;
+    background: linear-gradient(180deg, var(--violet-soft) 0%, var(--violet) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 28px;
+    background: var(--ink); color: #0A0612;
+    font-weight: 700; font-size: 15px;
+    border: none; border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--violet-soft); }
+  .btn-primary svg { width: 13px; height: 13px; }
+  .about-cta .note {
+    margin-top: 16px;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--dim); letter-spacing: 0.08em;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 32px clamp(20px, 4vw, 48px);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--dim); letter-spacing: 0.04em;
+    border-top: 1px solid var(--line-soft);
+  }
+  footer .left { display: flex; align-items: center; gap: 12px; }
+  footer .left svg { width: 20px; height: 20px; opacity: 0.9; }
+  footer .links { display: flex; gap: 22px; flex-wrap: wrap; }
+  footer .links a:hover { color: var(--violet-soft); }
+  @media (max-width: 600px) { footer { justify-content: center; text-align: center; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-left" aria-label="Atlas — home">
+    <svg class="nav-mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#atlas-mark" /></svg>
+    <span class="nav-word">ΛTLΛS</span>
+  </a>
+  <div class="nav-links">
+    <a href="/#capabilities">Features</a>
+    <a href="/#how">How it works</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/about.html" class="active">About</a>
+  </div>
+  <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener" class="nav-cta">
+    Open in Telegram
+    <svg viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="about-hero">
+  <div class="wrap-narrow">
+    <div class="about-eyebrow"><span class="bar"></span>About Atlas</div>
+    <h1>Built by a student,<br/>for <em>students.</em></h1>
+    <p class="sub">Atlas started as a personal project — one student's attempt to have the tools that advisors, analysts, and professionals take for granted. It grew into something worth sharing.</p>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story">
+  <div class="wrap">
+    <div class="story-grid">
+      <div class="story-body">
+        <p>
+          <strong>Atlas was built by Phillip Walsh</strong>, an economics student at the University of Tampa. Like most students trying to break into finance and law, Phillip spent hours every week piecing together information that should have just come to him — market moves, recruiting deadlines, networking follow-ups, relevant news.
+        </p>
+        <p>
+          The tools that existed were either too generic (general AI with no memory, no live data) or too professional (Bloomberg, FactSet — built for firms, not students). There was nothing in between. Nothing that knew who you were, watched the things you cared about, and actually did work on your behalf.
+        </p>
+        <p>
+          So he built it. Atlas started as a Telegram bot that sent him a personalized morning brief every day. Then it learned to draft cold emails, set price alerts, prep him for interviews. It grew around the actual problems a student faces when trying to compete with people who have a lot more resources.
+        </p>
+        <p>
+          Atlas is still in beta and still improving. If you have feedback — things that don't work, features you want, anything — reach out directly. This is being built in the open, for the people using it.
+        </p>
+      </div>
+
+      <div class="story-aside">
+        <div class="aside-row">
+          <span class="aside-label">Builder</span>
+          <span class="aside-value">Phillip Walsh</span>
+        </div>
+        <div class="aside-row">
+          <span class="aside-label">School</span>
+          <span class="aside-value">University of Tampa</span>
+        </div>
+        <div class="aside-row">
+          <span class="aside-label">Studying</span>
+          <span class="aside-value">Economics</span>
+        </div>
+        <div class="aside-row">
+          <span class="aside-label">Status</span>
+          <span class="aside-value">Free beta — actively developing</span>
+        </div>
+        <div class="aside-row">
+          <span class="aside-label">Contact</span>
+          <span class="aside-value">Message via Telegram or <a href="mailto:walsh.jphillip@gmail.com" style="color:var(--violet-soft);border-bottom:1px solid var(--violet-deep)">email</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission">
+  <div class="wrap">
+    <blockquote>
+      "Every ambitious student deserves access to the same quality of information and preparation that money usually buys. Atlas is the attempt to close that gap."
+    </blockquote>
+    <cite>— Phillip Walsh, founder</cite>
+  </div>
+</section>
+
+<!-- BUILT WITH -->
+<section class="built-with">
+  <div class="wrap">
+    <h2>How it's built</h2>
+    <div class="stack-grid">
+      <div class="stack-item">
+        <span class="stack-name">Claude (Anthropic)</span>
+        <span class="stack-desc">The AI that powers Atlas. Haiku for fast planning and routing, Sonnet for high-quality outputs like interview prep and email drafts.</span>
+      </div>
+      <div class="stack-item">
+        <span class="stack-name">Telegram</span>
+        <span class="stack-desc">The interface. No app to build, no login to create. Atlas lives where you already are — your messages.</span>
+      </div>
+      <div class="stack-item">
+        <span class="stack-name">Supabase</span>
+        <span class="stack-desc">Secure cloud database storing your profile, conversation history, watchlists, reminders, and application tracker.</span>
+      </div>
+      <div class="stack-item">
+        <span class="stack-name">Railway</span>
+        <span class="stack-desc">The server that keeps Atlas running 24/7, monitoring markets and sending your brief every morning.</span>
+      </div>
+      <div class="stack-item">
+        <span class="stack-name">Google APIs</span>
+        <span class="stack-desc">Optional integration for Gmail drafts and Google Calendar. You authorize exactly what Atlas can access — nothing more.</span>
+      </div>
+      <div class="stack-item">
+        <span class="stack-name">Live market data</span>
+        <span class="stack-desc">Real-time prices, earnings dates, and sector data pulled from financial APIs — not delayed, not cached.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="about-cta">
+  <div class="wrap">
+    <h2>Try it — it takes <em>60 seconds.</em></h2>
+    <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener" class="btn-primary">
+      Open in Telegram
+      <svg viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="square"/></svg>
+    </a>
+    <p class="note">Free · No credit card · No app to download</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="left">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><use href="#atlas-mark"/></svg>
+    <span>© 2026 ΛTLΛS · Built for ambitious students</span>
+  </div>
+  <div class="links">
+    <a href="/about.html">About</a>
+    <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener">Telegram ↗</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+  </div>
+</footer>
+
+<!-- ATLAS MARK -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="atlas-arrow-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#E8DFFF"/>
+      <stop offset="55%"  stop-color="#B79CFF"/>
+      <stop offset="100%" stop-color="#5A33D8"/>
+    </linearGradient>
+    <linearGradient id="atlas-arrow-shadow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#7C4DFF"/>
+      <stop offset="100%" stop-color="#3A1F8A"/>
+    </linearGradient>
+    <radialGradient id="atlas-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#7C4DFF" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#7C4DFF" stop-opacity="0"/>
+    </radialGradient>
+    <symbol id="atlas-mark" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="46" fill="url(#atlas-glow)"/>
+      <circle cx="50" cy="50" r="36" fill="none" stroke="#7C4DFF" stroke-width="1.4"/>
+      <circle cx="14" cy="50" r="3" fill="#7C4DFF"/>
+      <circle cx="86" cy="50" r="3" fill="#7C4DFF"/>
+      <path d="M50,6 L52,16 L62,18 L52,20 L50,30 L48,20 L38,18 L48,16 Z" fill="#B79CFF"/>
+      <path d="M50,28 L73,74 L62,74 L57,64 L50,64 Z" fill="url(#atlas-arrow-shadow)"/>
+      <path d="M50,28 L27,74 L38,74 L43,64 L50,64 Z" fill="url(#atlas-arrow-grad)"/>
+      <path d="M50,28 L50,64" stroke="#F1ECFA" stroke-width="0.6" opacity="0.55"/>
+    </symbol>
+  </defs>
+</svg>
+
+</body>
+</html>
