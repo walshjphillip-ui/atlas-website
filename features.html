@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Features — ATLAS</title>
+<meta name="description" content="Everything Atlas does: morning briefs, live market data, interview prep, cold email drafts, application tracking, networking CRM, reminders, and more." />
+<link rel="icon" type="image/svg+xml" href="logo.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg:          #0A0612;
+  --bg-2:        #110A1E;
+  --panel:       #160C26;
+  --line:        #2A1A40;
+  --line-soft:   #1A0F2C;
+  --ink:         #F1ECFA;
+  --ink-2:       #C9BFDD;
+  --dim:         #8B7CA6;
+  --dimmer:      #5C4F76;
+  --violet:      #7C4DFF;
+  --violet-soft: #B79CFF;
+  --violet-deep: #4B2DBA;
+  --gain:        #6FE3B0;
+  --loss:        #FF7B8A;
+  --serif: "Fraunces", Georgia, serif;
+  --sans:  "Inter Tight", system-ui, sans-serif;
+  --mono:  "JetBrains Mono", ui-monospace, monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; color: inherit; }
+::selection { background: var(--violet); color: #fff; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 50;
+  display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center;
+  padding: 0 clamp(20px, 4vw, 48px); height: 60px;
+  background: rgba(10,6,18,0.88);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line-soft);
+}
+.nav-left { display: flex; align-items: center; gap: 12px; }
+.nav-mark  { width: 28px; height: 28px; }
+.nav-word  { font-family: var(--sans); font-weight: 500; font-size: 17px; letter-spacing: 0.3em; color: var(--ink); }
+.nav-links {
+  display: flex; align-items: center; justify-content: center;
+  gap: clamp(16px, 2.2vw, 32px);
+  border-left: 1px solid var(--line); border-right: 1px solid var(--line);
+  padding: 0 clamp(20px, 3vw, 40px); height: 100%;
+}
+.nav-links a { font-size: 13px; font-weight: 500; color: var(--dim); letter-spacing: 0.02em; transition: color 0.18s; white-space: nowrap; }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a.active { color: var(--ink); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px; background: var(--ink); color: #0A0612;
+  font-weight: 600; font-size: 13px; border-radius: 2px;
+  transition: background 0.18s; white-space: nowrap;
+}
+.nav-cta:hover { background: var(--violet-soft); }
+.nav-cta svg { width: 11px; height: 11px; }
+@media (max-width: 900px) { nav { grid-template-columns: auto auto; } .nav-links { display: none; } }
+
+/* PAGE HEADER */
+.page-header {
+  padding: clamp(72px, 10vh, 110px) 0 clamp(60px, 8vh, 88px);
+  border-bottom: 1px solid var(--line-soft);
+  position: relative; overflow: hidden;
+}
+.page-header::before {
+  content: ""; position: absolute; top: -30%; right: -10%;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(124,77,255,0.12) 0%, transparent 55%);
+  pointer-events: none;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--dim); margin-bottom: 28px;
+}
+.breadcrumb a { color: var(--violet-soft); }
+.breadcrumb .sep { color: var(--dimmer); }
+.page-header h1 {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(40px, 6vw, 76px);
+  letter-spacing: -0.03em; line-height: 0.98;
+  color: var(--ink); text-wrap: balance;
+  position: relative; z-index: 1;
+}
+.page-header h1 em {
+  font-style: italic; font-weight: 400;
+  background: linear-gradient(180deg, var(--violet-soft) 0%, var(--violet) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.page-header .sub {
+  margin-top: 20px; font-size: 17px; line-height: 1.65;
+  color: var(--ink-2); max-width: 600px; text-wrap: pretty;
+  position: relative; z-index: 1;
+}
+
+/* SECTION LABEL */
+.sec-label {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--violet-soft); margin-bottom: 20px;
+}
+.sec-label .bar { width: 24px; height: 1px; background: var(--violet-deep); }
+
+/* FEATURE SECTION */
+.feature-section {
+  padding: clamp(72px, 10vh, 108px) 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.feature-section:last-of-type { border-bottom: none; }
+
+/* FEATURE GRID: big card left + list right */
+.feature-main {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(48px, 6vw, 88px); align-items: start;
+}
+@media (max-width: 760px) { .feature-main { grid-template-columns: 1fr; } }
+
+.feature-card {
+  background: var(--bg-2); border: 1px solid var(--line);
+  border-radius: 8px; overflow: hidden; position: relative;
+}
+.feature-card-header {
+  padding: 28px 32px 22px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(160deg, rgba(124,77,255,0.07) 0%, transparent 60%);
+}
+.feature-icon {
+  font-size: 28px; margin-bottom: 16px; display: block;
+}
+.feature-card-header h2 {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(22px, 3vw, 30px);
+  letter-spacing: -0.02em; line-height: 1.1; color: var(--ink);
+}
+.feature-card-body {
+  padding: 24px 32px;
+  font-size: 15px; line-height: 1.7; color: var(--ink-2);
+}
+.feature-card-body p + p { margin-top: 12px; }
+
+.feature-detail h3 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(18px, 2.5vw, 24px);
+  letter-spacing: -0.018em; color: var(--ink);
+  margin-bottom: 12px;
+}
+.feature-detail > p {
+  font-size: 15px; line-height: 1.7; color: var(--ink-2); margin-bottom: 24px;
+}
+.detail-list {
+  list-style: none; display: flex; flex-direction: column; gap: 14px;
+}
+.detail-list li {
+  display: flex; gap: 14px; align-items: flex-start;
+  font-size: 14px; line-height: 1.6; color: var(--ink-2);
+}
+.detail-list li::before {
+  content: "→"; color: var(--violet-soft);
+  font-family: var(--mono); font-size: 12px;
+  flex-shrink: 0; margin-top: 2px;
+}
+
+/* MOCK MESSAGE */
+.mock-msg {
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: 8px; padding: 20px 24px;
+  font-family: var(--mono); font-size: 12.5px; line-height: 1.75;
+  color: var(--ink-2); margin-top: 24px; position: relative;
+}
+.mock-msg::before {
+  content: "Atlas · 7:02 AM";
+  display: block; font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--violet-soft); margin-bottom: 12px;
+}
+.mock-msg .g { color: var(--gain); }
+.mock-msg .r { color: var(--loss); }
+.mock-msg .w { color: var(--ink); }
+
+/* FEATURES GRID (small cards) */
+.features-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; background: var(--line);
+  border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
+  margin-top: 48px;
+}
+@media (max-width: 760px) { .features-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .features-grid { grid-template-columns: 1fr; } }
+.feat-tile {
+  background: var(--bg); padding: 28px 28px 32px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.feat-tile-icon { font-size: 22px; }
+.feat-tile h4 { font-size: 14px; font-weight: 600; color: var(--ink); }
+.feat-tile p { font-size: 13px; line-height: 1.6; color: var(--dim); }
+
+/* FULL-WIDTH SECTION */
+.fw-section {
+  padding: clamp(72px, 10vh, 108px) 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.fw-section h2 {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: -0.025em; color: var(--ink);
+  text-wrap: balance; margin-bottom: 14px;
+}
+.fw-section > .wrap > p {
+  font-size: 16px; line-height: 1.7; color: var(--ink-2);
+  max-width: 640px; margin-bottom: 44px;
+}
+.action-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 2px; background: var(--line);
+  border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
+}
+@media (max-width: 680px) { .action-grid { grid-template-columns: 1fr; } }
+.action-tile {
+  background: var(--bg); padding: 28px 32px 32px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.action-tile .a-tag {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--violet-soft);
+}
+.action-tile h4 {
+  font-size: 15px; font-weight: 600; color: var(--ink);
+}
+.action-tile p { font-size: 14px; line-height: 1.65; color: var(--ink-2); }
+.action-tile .example {
+  margin-top: 8px; padding: 12px 16px;
+  background: var(--bg-2); border: 1px solid var(--line);
+  border-radius: 4px; font-family: var(--mono); font-size: 11.5px;
+  color: var(--dim); line-height: 1.55;
+}
+.action-tile .example span { color: var(--violet-soft); }
+
+/* END CTA */
+.end {
+  padding: clamp(100px, 13vh, 150px) 0 clamp(80px, 10vh, 120px);
+  text-align: center; position: relative; overflow: hidden;
+  border-top: 1px solid var(--line-soft);
+}
+.end::before {
+  content: ""; position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px; height: 900px;
+  background: radial-gradient(circle, rgba(124,77,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.end h2 {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(32px, 5vw, 56px);
+  letter-spacing: -0.03em; line-height: 1.04;
+  color: var(--ink); text-wrap: balance; position: relative;
+}
+.end h2 em {
+  font-style: italic; font-weight: 400;
+  background: linear-gradient(180deg, var(--violet-soft) 0%, var(--violet) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.end .note { margin-top: 14px; color: var(--dim); font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; position: relative; }
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: 32px; padding: 16px 28px;
+  background: var(--ink); color: #0A0612;
+  font-weight: 700; font-size: 15px; border-radius: 2px;
+  transition: background 0.2s; position: relative;
+}
+.cta-btn:hover { background: var(--violet-soft); }
+.cta-btn svg { width: 13px; height: 13px; }
+
+/* FOOTER */
+footer {
+  padding: 28px clamp(20px, 4vw, 48px);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+  font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.04em;
+  border-top: 1px solid var(--line-soft);
+}
+footer .left { display: flex; align-items: center; gap: 12px; }
+footer .left svg { width: 18px; height: 18px; opacity: 0.8; }
+footer .links { display: flex; gap: 20px; flex-wrap: wrap; }
+footer .links a:hover { color: var(--violet-soft); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-left" aria-label="Atlas home">
+    <svg class="nav-mark" viewBox="0 0 100 100"><use href="#atlas-mark"/></svg>
+    <span class="nav-word">ΛTLΛS</span>
+  </a>
+  <div class="nav-links">
+    <a href="/features.html" class="active">Features</a>
+    <a href="/for-you.html">Who it's for</a>
+    <a href="/how-it-works.html">How it works</a>
+    <a href="/faq.html">FAQ</a>
+    <a href="/about.html">About</a>
+  </div>
+  <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener" class="nav-cta">
+    Open in Telegram
+    <svg viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+  </a>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="/">Atlas</a>
+      <span class="sep">/</span>
+      <span>Features</span>
+    </div>
+    <h1>Everything Atlas<br/>does for <em>you.</em></h1>
+    <p class="sub">Not a chatbot you go to. An advisor that runs in the background and texts you when you need to pay attention.</p>
+  </div>
+</header>
+
+<!-- MORNING BRIEF -->
+<section class="feature-section" id="brief">
+  <div class="wrap">
+    <div class="sec-label"><span class="bar"></span>01 · Daily Intelligence</div>
+    <div class="feature-main">
+      <div>
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <span class="feature-icon">🌅</span>
+            <h2>Morning Brief</h2>
+          </div>
+          <div class="feature-card-body">
+            <p>Every morning before you wake up, Atlas assembles a brief built specifically around you — your watchlist, your applications, your upcoming reminders, and the market moves that matter for your specific goals.</p>
+            <p>It doesn't summarize everything. It summarizes what's relevant to you today.</p>
+          </div>
+        </div>
+        <div class="mock-msg">
+          <span class="w">📅 Tuesday, May 5</span><br/><br/>
+          <span class="w">📈 <strong>Markets</strong></span><br/>
+          SPY: $523.40 (<span class="g">+0.8%</span>) — broad rally, risk-on<br/>
+          GS: $481.20 (<span class="g">+1.2%</span>) — outperforming<br/><br/>
+          <span class="w">📰 <strong>Top Stories</strong></span><br/>
+          — Fed holds rates; Powell signals two cuts in H2<br/>
+          — Goldman upgrades energy sector outlook<br/>
+          — Private equity deal flow up 34% YoY<br/><br/>
+          <span class="w">🎯 <strong>Your Move Today</strong></span><br/>
+          1. Goldman SA round is Thursday — run an IB technicals drill<br/>
+          2. Follow up with Marcus Chen (Blackstone) — overdue 3 days
+        </div>
+      </div>
+      <div class="feature-detail">
+        <h3>What goes into your brief</h3>
+        <p>Atlas pulls live data from multiple sources and filters it through what it knows about you.</p>
+        <ul class="detail-list">
+          <li>Market sectors you care about — with price and percentage move, not just "markets were up"</li>
+          <li>Your personal watchlist tickers with real-time quotes</li>
+          <li>News filtered by your major, career goals, and interests — not generic headlines</li>
+          <li>Active job applications at first-round or superday stage, with relevant context</li>
+          <li>Networking follow-ups that are overdue or due today</li>
+          <li>Reminders due within the next 48 hours surfaced at the top</li>
+          <li>Local business news if you've told Atlas your hometown</li>
+          <li>Specific action items — not "check LinkedIn," but actual tasks tied to your real situation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET INTELLIGENCE -->
+<section class="feature-section" id="markets">
+  <div class="wrap">
+    <div class="sec-label"><span class="bar"></span>02 · Market Intelligence</div>
+    <div class="feature-main">
+      <div>
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <span class="feature-icon">📈</span>
+            <h2>Live Market Data</h2>
+          </div>
+          <div class="feature-card-body">
+            <p>Ask Atlas about any stock, sector, or market index and get live price data — not a generic explanation of what the stock market is.</p>
+            <p>Set price alerts on any ticker. Atlas texts you when the threshold is crossed, day or night.</p>
+          </div>
+        </div>
+      </div>
+      <div class="feature-detail">
+        <h3>What you can ask</h3>
+        <p>Natural language. No commands to memorize.</p>
+        <ul class="detail-list">
+          <li>"What's GS trading at right now?"</li>
+          <li>"How's the tech sector doing today?"</li>
+          <li>"Alert me when NVDA crosses $950"</li>
+          <li>"What's SPY's YTD performance?"</li>
+          <li>"How are energy stocks doing this week?"</li>
+          <li>Add any ticker to your watchlist — it appears in every morning brief</li>
+          <li>Sector summaries: market, tech, AI, energy, financials, crypto</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERVIEW PREP -->
+<section class="feature-section" id="interview">
+  <div class="wrap">
+    <div class="sec-label"><span class="bar"></span>03 · Career Preparation</div>
+    <div class="feature-main">
+      <div>
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <span class="feature-icon">🎯</span>
+            <h2>Interview Prep</h2>
+          </div>
+          <div class="feature-card-body">
+            <p>Atlas runs live interview drills tailored to the specific firm and round you're preparing for. Not generic finance questions — Goldman superday format, Blackstone case style, McKinsey behavioral structure.</p>
+            <p>Ask a question, get a model answer, then get graded on your response. Repeat until it's locked in.</p>
+          </div>
+        </div>
+        <div class="mock-msg">
+          <strong>You:</strong> prep me for my Goldman first round<br/><br/>
+          <span class="w"><strong>Atlas:</strong></span> Got it — Goldman IBD first round. Starting with technicals.<br/><br/>
+          Walk me through a DCF from scratch. What are the three main components and what drives each one?
+        </div>
+      </div>
+      <div class="feature-detail">
+        <h3>Prep that knows the firm</h3>
+        <p>Atlas knows the difference between a Goldman first round and a Blackstone superday. The questions match the format, the firm's reputation, and the level of the round.</p>
+        <ul class="detail-list">
+          <li>Technical questions: DCF, LBO, comps, accounting, valuation concepts</li>
+          <li>Behavioral questions in the STAR format expected by each firm</li>
+          <li>Case questions for consulting and PE interviews</li>
+          <li>Market knowledge questions: sector trends, recent deals, macro conditions</li>
+          <li>Firm-specific: culture questions, "why us," recent news about the firm</li>
+          <li>Model answers for every question you get wrong</li>
+          <li>Session memory — it knows which round you have and what's at stake</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLD EMAIL -->
+<section class="feature-section" id="email">
+  <div class="wrap">
+    <div class="sec-label"><span class="bar"></span>04 · Outreach</div>
+    <div class="feature-main">
+      <div>
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <span class="feature-icon">✉️</span>
+            <h2>Cold Email Drafts</h2>
+          </div>
+          <div class="feature-card-body">
+            <p>Tell Atlas who you want to reach and why. It drafts a cold email personalized to your background and their firm — and saves it directly to your Gmail drafts folder.</p>
+            <p>You review, adjust if needed, and hit send. The draft is already there waiting.</p>
+          </div>
+        </div>
+        <div class="mock-msg">
+          <strong>You:</strong> draft a cold email to a VP at Lazard, I'm interested in their restructuring group<br/><br/>
+          <span class="w"><strong>Atlas:</strong></span> Done — saved to your Gmail drafts. Subject: "Restructuring Interest — [Your Name], University of Tampa Economics."<br/><br/>
+          The email references their recent advisory role on the Enviva restructuring and connects it to your fixed income coursework. Want me to adjust the tone?
+        </div>
+      </div>
+      <div class="feature-detail">
+        <h3>Emails that don't get deleted</h3>
+        <p>Generic cold emails get ignored. Atlas writes around what it knows about you — your school, your goals, your experiences — and references the actual firm.</p>
+        <ul class="detail-list">
+          <li>Drafts go straight to Gmail — you never copy-paste anything</li>
+          <li>Personalized to your background: school, major, interests, career goals</li>
+          <li>References the target firm: recent deals, group focus, relevant news</li>
+          <li>Professional but not robotic — reads like a real person wrote it</li>
+          <li>Ask Atlas to revise the tone, length, or focus instantly</li>
+          <li>Works for networking emails, informational interview requests, follow-ups</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATION TRACKER + NETWORKING CRM -->
+<div class="fw-section" id="tracker">
+  <div class="wrap">
+    <div class="sec-label"><span class="bar"></span>05 · Organization</div>
+    <h2>Application tracker. Networking CRM. Built in.</h2>
+    <p>Atlas keeps a live record of your applications and contacts. No spreadsheet to maintain. Just tell it what happened and it updates automatically.</p>
+    <div class="action-grid">
+      <div class="action-tile">
+        <span class="a-tag">Application Tracker</span>
+        <h4>Every application, every stage</h4>
+        <p>Track applications from saved → applied → first round → superday → offer. Atlas surfaces deadlines in your morning brief and nudges you when a follow-up is overdue.</p>
+        <div class="example">
+          <span>You:</span> add Goldman IBD — applied, deadline May 15th<br/>
+          <span>Atlas:</span> Added. Goldman IBD · Applied · Due May 15 ✓
+        </div>
+      </div>
+      <div class="action-tile">
+        <span class="a-tag">Networking CRM</span>
+        <h4>Your contacts, tracked automatically</h4>
+        <p>Log anyone you've met — career fairs, LinkedIn, referrals. Set follow-up dates. Atlas flags overdue follow-ups in your brief so no relationship slips through the cracks.</p>
+        <div class="example">
+          <span>You:</span> add Marcus Chen, Blackstone Associate, met at career fair, follow up in 2 weeks<br/>
+          <span>Atlas:</span> Saved. Follow-up flagged for May 19 ✓
+        </div>
+      </div>
+      <div class="action-tile">
+        <span class="a-tag">Reminders</span>
+        <h4>Time-sensitive alerts</h4>
+        <p>Set reminders for anything — application deadlines, interview times, networking events. Atlas surfaces them in your morning brief before they're due, not after.</p>
+        <div class="example">
+          <span>You:</span> remind me to submit my Citi app on May 12th<br/>
+          <span>Atlas:</span> Reminder set for May 12 ✓
+        </div>
+      </div>
+      <div class="action-tile">
+        <span class="a-tag">Memory</span>
+        <h4>It remembers what matters</h4>
+        <p>Atlas builds a profile of you over time — your goals, your progress, what you've told it. Every response gets more useful because it actually knows you.</p>
+        <div class="example">
+          <span>You:</span> I just got a first round at Goldman<br/>
+          <span>Atlas:</span> Noted — updated to first round. That's your third IB first round this cycle. Prep for the technicals, they're known to focus on DCF.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EVERYTHING ELSE -->
+<section class="fw-section" id="more">
+  <div class="wrap">
+    <div class="sec-label"><span class="bar"></span>More</div>
+    <h2>The rest of what Atlas does</h2>
+    <div class="features-grid">
+      <div class="feat-tile">
+        <span class="feat-tile-icon">📰</span>
+        <h4>Curated News</h4>
+        <p>Finance, economics, and market news filtered by your career goals and major. Not Bloomberg. Not Twitter. What's relevant to you, today.</p>
+      </div>
+      <div class="feat-tile">
+        <span class="feat-tile-icon">🏙️</span>
+        <h4>Local Market News</h4>
+        <p>Business and economic news from your hometown, if it's relevant to your career. Atlas pulls it automatically and surfaces the stories worth knowing.</p>
+      </div>
+      <div class="feat-tile">
+        <span class="feat-tile-icon">💼</span>
+        <h4>Internship Signals</h4>
+        <p>Atlas can surface relevant internship and job openings based on your goals — finance, IB, consulting, or whatever you're targeting.</p>
+      </div>
+      <div class="feat-tile">
+        <span class="feat-tile-icon">🗓️</span>
+        <h4>Calendar Awareness</h4>
+        <p>Connect Google Calendar and Atlas knows what you have coming up. Relevant events appear in your morning brief — no manual input required.</p>
+      </div>
+      <div class="feat-tile">
+        <span class="feat-tile-icon">📋</span>
+        <h4>Gmail Drafts</h4>
+        <p>Cold emails and follow-ups land directly in your Gmail drafts. Connect once, and every email Atlas writes is waiting for you to review and send.</p>
+      </div>
+      <div class="feat-tile">
+        <span class="feat-tile-icon">⚡</span>
+        <h4>Instant Answers</h4>
+        <p>Ask anything. Market mechanics, valuation concepts, company research, deal structures. Atlas answers conversationally — no Googling required.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- END CTA -->
+<section class="end">
+  <div class="wrap" style="position:relative;">
+    <h2>Start using it<br/>for <em>free today.</em></h2>
+    <p class="note">Beta · No credit card · Opens Telegram</p>
+    <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener" class="cta-btn">
+      Open Atlas in Telegram
+      <svg viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="left">
+    <svg viewBox="0 0 100 100"><use href="#atlas-mark"/></svg>
+    <span>© 2026 ΛTLΛS · Built for ambitious students</span>
+  </div>
+  <div class="links">
+    <a href="/about.html">About</a>
+    <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener">Telegram ↗</a>
+    <a href="/privacy.html">Privacy</a>
+  </div>
+</footer>
+
+<!-- ATLAS MARK -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="atlas-arrow-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8DFFF"/><stop offset="55%" stop-color="#B79CFF"/><stop offset="100%" stop-color="#5A33D8"/>
+    </linearGradient>
+    <linearGradient id="atlas-arrow-shadow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7C4DFF"/><stop offset="100%" stop-color="#3A1F8A"/>
+    </linearGradient>
+    <radialGradient id="atlas-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#7C4DFF" stop-opacity="0.5"/><stop offset="100%" stop-color="#7C4DFF" stop-opacity="0"/>
+    </radialGradient>
+    <symbol id="atlas-mark" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="46" fill="url(#atlas-glow)"/>
+      <circle cx="50" cy="50" r="36" fill="none" stroke="#7C4DFF" stroke-width="1.4"/>
+      <circle cx="14" cy="50" r="3" fill="#7C4DFF"/>
+      <circle cx="86" cy="50" r="3" fill="#7C4DFF"/>
+      <path d="M50,6 L52,16 L62,18 L52,20 L50,30 L48,20 L38,18 L48,16 Z" fill="#B79CFF"/>
+      <path d="M50,28 L73,74 L62,74 L57,64 L50,64 Z" fill="url(#atlas-arrow-shadow)"/>
+      <path d="M50,28 L27,74 L38,74 L43,64 L50,64 Z" fill="url(#atlas-arrow-grad)"/>
+      <path d="M50,28 L50,64" stroke="#F1ECFA" stroke-width="0.6" opacity="0.55"/>
+    </symbol>
+  </defs>
+</svg>
+
+</body>
+</html>

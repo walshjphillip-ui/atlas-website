@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Who It's For — ATLAS</title>
+<meta name="description" content="Atlas is built for finance, economics, and business students competing for serious opportunities — IB, consulting, PE, VC, and beyond." />
+<link rel="icon" type="image/svg+xml" href="logo.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg:          #0A0612;
+  --bg-2:        #110A1E;
+  --panel:       #160C26;
+  --line:        #2A1A40;
+  --line-soft:   #1A0F2C;
+  --ink:         #F1ECFA;
+  --ink-2:       #C9BFDD;
+  --dim:         #8B7CA6;
+  --dimmer:      #5C4F76;
+  --violet:      #7C4DFF;
+  --violet-soft: #B79CFF;
+  --violet-deep: #4B2DBA;
+  --gain:        #6FE3B0;
+  --loss:        #FF7B8A;
+  --serif: "Fraunces", Georgia, serif;
+  --sans:  "Inter Tight", system-ui, sans-serif;
+  --mono:  "JetBrains Mono", ui-monospace, monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--violet); color: #fff; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 50;
+  display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center;
+  padding: 0 clamp(20px, 4vw, 48px); height: 60px;
+  background: rgba(10,6,18,0.88);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line-soft);
+}
+.nav-left { display: flex; align-items: center; gap: 12px; }
+.nav-mark  { width: 28px; height: 28px; }
+.nav-word  { font-family: var(--sans); font-weight: 500; font-size: 17px; letter-spacing: 0.3em; color: var(--ink); }
+.nav-links {
+  display: flex; align-items: center; justify-content: center;
+  gap: clamp(16px, 2.2vw, 32px);
+  border-left: 1px solid var(--line); border-right: 1px solid var(--line);
+  padding: 0 clamp(20px, 3vw, 40px); height: 100%;
+}
+.nav-links a { font-size: 13px; font-weight: 500; color: var(--dim); letter-spacing: 0.02em; transition: color 0.18s; white-space: nowrap; }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a.active { color: var(--ink); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px; background: var(--ink); color: #0A0612;
+  font-weight: 600; font-size: 13px; border-radius: 2px;
+  transition: background 0.18s; white-space: nowrap;
+}
+.nav-cta:hover { background: var(--violet-soft); }
+.nav-cta svg { width: 11px; height: 11px; }
+@media (max-width: 900px) { nav { grid-template-columns: auto auto; } .nav-links { display: none; } }
+
+/* PAGE HEADER */
+.page-header {
+  padding: clamp(72px, 10vh, 110px) 0 clamp(60px, 8vh, 88px);
+  border-bottom: 1px solid var(--line-soft);
+  position: relative; overflow: hidden;
+}
+.page-header::before {
+  content: ""; position: absolute; top: -20%; left: -5%;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(124,77,255,0.10) 0%, transparent 55%);
+  pointer-events: none;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--dim); margin-bottom: 28px;
+}
+.breadcrumb a { color: var(--violet-soft); }
+.breadcrumb .sep { color: var(--dimmer); }
+.page-header h1 {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(40px, 6vw, 76px);
+  letter-spacing: -0.03em; line-height: 0.98;
+  color: var(--ink); text-wrap: balance; position: relative; z-index: 1;
+}
+.page-header h1 em {
+  font-style: italic; font-weight: 400;
+  background: linear-gradient(180deg, var(--violet-soft) 0%, var(--violet) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.page-header .sub {
+  margin-top: 20px; font-size: 17px; line-height: 1.65;
+  color: var(--ink-2); max-width: 600px; text-wrap: pretty;
+  position: relative; z-index: 1;
+}
+
+/* SECTION LABEL */
+.sec-label {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--violet-soft); margin-bottom: 20px;
+}
+.sec-label .bar { width: 24px; height: 1px; background: var(--violet-deep); }
+
+/* PERSONAS */
+.personas {
+  padding: clamp(72px, 10vh, 108px) 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.personas h2 {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: -0.025em; color: var(--ink);
+  margin-bottom: 48px; text-wrap: balance;
+}
+.persona-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 2px; background: var(--line);
+  border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
+}
+@media (max-width: 680px) { .persona-grid { grid-template-columns: 1fr; } }
+.persona-card {
+  background: var(--bg); padding: clamp(32px, 4vw, 48px);
+  display: flex; flex-direction: column; gap: 20px;
+}
+.persona-label {
+  display: flex; align-items: center; gap: 14px;
+}
+.persona-emoji { font-size: 26px; }
+.persona-role {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--violet-soft);
+}
+.persona-card h3 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(20px, 2.5vw, 26px);
+  letter-spacing: -0.018em; color: var(--ink);
+}
+.persona-card p {
+  font-size: 14.5px; line-height: 1.7; color: var(--ink-2);
+}
+.persona-uses {
+  list-style: none; display: flex; flex-direction: column; gap: 10px;
+  padding-top: 4px; border-top: 1px solid var(--line-soft);
+}
+.persona-uses li {
+  display: flex; gap: 12px; align-items: flex-start;
+  font-size: 13.5px; line-height: 1.55; color: var(--ink-2);
+}
+.persona-uses li::before {
+  content: "→"; color: var(--gain); font-family: var(--mono);
+  font-size: 12px; flex-shrink: 0; margin-top: 1px;
+}
+
+/* NOT FOR */
+.not-for {
+  padding: clamp(72px, 10vh, 108px) 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.not-for-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(48px, 7vw, 88px); align-items: start;
+}
+@media (max-width: 680px) { .not-for-grid { grid-template-columns: 1fr; } }
+.not-for h2 {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: -0.025em; color: var(--ink);
+  text-wrap: balance; margin-bottom: 16px;
+}
+.not-for .lead {
+  font-size: 16px; line-height: 1.7; color: var(--ink-2); margin-bottom: 32px;
+}
+.check-list {
+  list-style: none; display: flex; flex-direction: column; gap: 14px;
+}
+.check-list li {
+  display: flex; gap: 14px; font-size: 15px;
+  line-height: 1.6; color: var(--ink-2); align-items: flex-start;
+}
+.check-list li .icon { flex-shrink: 0; margin-top: 1px; }
+.check-list li .icon.yes { color: var(--gain); }
+.check-list li .icon.no { color: var(--loss); }
+
+/* QUOTE */
+.quote-section {
+  padding: clamp(72px, 10vh, 108px) 0;
+  border-bottom: 1px solid var(--line-soft);
+  text-align: center;
+}
+.pull-quote {
+  max-width: 780px; margin: 0 auto;
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(22px, 3.5vw, 36px);
+  letter-spacing: -0.02em; line-height: 1.25;
+  color: var(--ink); text-wrap: balance;
+}
+.pull-quote em {
+  font-style: italic;
+  background: linear-gradient(180deg, var(--violet-soft) 0%, var(--violet) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.quote-attr {
+  margin-top: 20px; font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--dim);
+}
+
+/* END CTA */
+.end {
+  padding: clamp(100px, 13vh, 150px) 0 clamp(80px, 10vh, 120px);
+  text-align: center; position: relative; overflow: hidden;
+}
+.end::before {
+  content: ""; position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px; height: 900px;
+  background: radial-gradient(circle, rgba(124,77,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.end h2 {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(32px, 5vw, 56px);
+  letter-spacing: -0.03em; line-height: 1.04;
+  color: var(--ink); text-wrap: balance; position: relative;
+}
+.end h2 em {
+  font-style: italic; font-weight: 400;
+  background: linear-gradient(180deg, var(--violet-soft) 0%, var(--violet) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.end .note { margin-top: 14px; color: var(--dim); font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; position: relative; }
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: 32px; padding: 16px 28px;
+  background: var(--ink); color: #0A0612;
+  font-weight: 700; font-size: 15px; border-radius: 2px;
+  transition: background 0.2s; position: relative;
+}
+.cta-btn:hover { background: var(--violet-soft); }
+.cta-btn svg { width: 13px; height: 13px; }
+
+/* FOOTER */
+footer {
+  padding: 28px clamp(20px, 4vw, 48px);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+  font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.04em;
+  border-top: 1px solid var(--line-soft);
+}
+footer .left { display: flex; align-items: center; gap: 12px; }
+footer .left svg { width: 18px; height: 18px; opacity: 0.8; }
+footer .links { display: flex; gap: 20px; flex-wrap: wrap; }
+footer .links a:hover { color: var(--violet-soft); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-left" aria-label="Atlas home">
+    <svg class="nav-mark" viewBox="0 0 100 100"><use href="#atlas-mark"/></svg>
+    <span class="nav-word">ΛTLΛS</span>
+  </a>
+  <div class="nav-links">
+    <a href="/features.html">Features</a>
+    <a href="/for-you.html" class="active">Who it's for</a>
+    <a href="/how-it-works.html">How it works</a>
+    <a href="/faq.html">FAQ</a>
+    <a href="/about.html">About</a>
+  </div>
+  <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener" class="nav-cta">
+    Open in Telegram
+    <svg viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+  </a>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="/">Atlas</a>
+      <span class="sep">/</span>
+      <span>Who it's for</span>
+    </div>
+    <h1>Built for one<br/>type of <em>student.</em></h1>
+    <p class="sub">Atlas isn't trying to help everyone. It was designed around students competing for finance, consulting, and business roles at the highest level. If that's you, read on.</p>
+  </div>
+</header>
+
+<!-- STUDENT PROFILES -->
+<section class="personas" id="profiles">
+  <div class="wrap">
+    <div class="sec-label"><span class="bar"></span>Student Profiles</div>
+    <h2>The students Atlas is built around</h2>
+    <div class="persona-grid">
+
+      <div class="persona-card">
+        <div class="persona-label">
+          <span class="persona-emoji">📊</span>
+          <span class="persona-role">Finance / IB Track</span>
+        </div>
+        <h3>Gunning for investment banking</h3>
+        <p>Sophomore or junior. Summer analyst recruiting cycle. You're tracking multiple applications, prepping technicals, and trying to stay current on the market — all while taking 18 credits.</p>
+        <ul class="persona-uses">
+          <li>Morning brief covers your watchlist tickers and sector moves before 8 AM</li>
+          <li>Interview prep drills you on Goldman/JPM/Lazard formats specifically</li>
+          <li>Application tracker shows your pipeline by stage — who's at first round, who's at superday</li>
+          <li>Cold email drafts go to your Gmail before you've had coffee</li>
+        </ul>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-label">
+          <span class="persona-emoji">📈</span>
+          <span class="persona-role">Economics Major</span>
+        </div>
+        <h3>Economics student, market-obsessed</h3>
+        <p>You're tracking macro developments, following Fed policy, and trying to build knowledge that makes you stand out in interviews and classroom discussions.</p>
+        <ul class="persona-uses">
+          <li>Daily brief synthesizes Fed news, macro moves, and economic data into one read</li>
+          <li>Ask Atlas about any economic concept — it explains, doesn't just link</li>
+          <li>Market alerts for key levels in equities, rates, or commodities</li>
+          <li>News filtered by your interests — not a generic financial feed</li>
+        </ul>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-label">
+          <span class="persona-emoji">🏢</span>
+          <span class="persona-role">Business / Management</span>
+        </div>
+        <h3>Business student targeting consulting or corporate</h3>
+        <p>You're recruiting broadly — consulting, corporate finance, rotational programs. You need to stay current, prep for case interviews, and manage a wide funnel of applications.</p>
+        <ul class="persona-uses">
+          <li>Case prep tailored to McKinsey, Bain, BCG, or firm-specific formats</li>
+          <li>Application tracker manages 15+ opportunities without a spreadsheet</li>
+          <li>Networking CRM tracks every contact from career fairs and LinkedIn</li>
+          <li>Atlas flags follow-ups you've forgotten about before they go cold</li>
+        </ul>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-label">
+          <span class="persona-emoji">⚖️</span>
+          <span class="persona-role">Pre-Law / Policy</span>
+        </div>
+        <h3>Pre-law or policy track with finance exposure</h3>
+        <p>You're tracking economic and regulatory developments. You need market awareness for law school applications, policy work, or finance-adjacent roles.</p>
+        <ul class="persona-uses">
+          <li>Morning brief covers regulatory news, SEC, Fed, and legislative developments</li>
+          <li>Behavioral interview prep for law firm and government positions</li>
+          <li>Atlas knows your goals and frames market news around policy implications</li>
+          <li>Application tracker works for law school apps and summer associate recruiting</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- IS THIS FOR YOU -->
+<section class="not-for" id="fit">
+  <div class="wrap">
+    <div class="not-for-grid">
+      <div>
+        <div class="sec-label"><span class="bar"></span>Is this for me?</div>
+        <h2>You'll get the most out of Atlas if…</h2>
+        <p class="lead">Atlas is specialized, not general-purpose. It's at its best when you're actively recruiting, tracking opportunities, and trying to stay ahead of your peers.</p>
+        <ul class="check-list">
+          <li><span class="icon yes">✓</span> You're in undergrad and actively recruiting for finance, IB, consulting, or business roles</li>
+          <li><span class="icon yes">✓</span> You care about market movements and want to understand them — not just track a portfolio</li>
+          <li><span class="icon yes">✓</span> You have multiple applications open at different stages and struggle to track them</li>
+          <li><span class="icon yes">✓</span> You meet people at career fairs and networking events and want to actually follow up</li>
+          <li><span class="icon yes">✓</span> You want to prep for specific firm interviews, not just generic "tell me about yourself" practice</li>
+          <li><span class="icon yes">✓</span> You hate opening a new app just to check something — you want it in your messages</li>
+        </ul>
+      </div>
+      <div>
+        <h2 style="margin-bottom:16px;">Probably not the right fit if…</h2>
+        <p class="lead" style="margin-bottom:32px;">Atlas is focused. That's intentional — but it means it's not trying to be your general homework assistant.</p>
+        <ul class="check-list">
+          <li><span class="icon no">✗</span> You want help with essays, research papers, or general coursework</li>
+          <li><span class="icon no">✗</span> You're looking for a general-purpose AI assistant — use ChatGPT for that</li>
+          <li><span class="icon no">✗</span> You have no interest in finance, markets, or professional recruiting</li>
+          <li><span class="icon no">✗</span> You want a social app or community — Atlas is one-on-one</li>
+          <li><span class="icon no">✗</span> You're not on Telegram and won't be — the whole experience lives there</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <div class="wrap">
+    <p class="pull-quote">
+      "The students who get the offer aren't smarter. They're <em>more prepared, more consistent,</em> and more informed. Atlas is the infrastructure for that."
+    </p>
+    <p class="quote-attr">— Phillip Walsh, builder of Atlas</p>
+  </div>
+</section>
+
+<!-- END CTA -->
+<section class="end">
+  <div class="wrap" style="position:relative;">
+    <h2>Sounds like you?<br/><em>Start for free.</em></h2>
+    <p class="note">Beta · No credit card · Takes 60 seconds</p>
+    <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener" class="cta-btn">
+      Open Atlas in Telegram
+      <svg viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="left">
+    <svg viewBox="0 0 100 100"><use href="#atlas-mark"/></svg>
+    <span>© 2026 ΛTLΛS · Built for ambitious students</span>
+  </div>
+  <div class="links">
+    <a href="/about.html">About</a>
+    <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener">Telegram ↗</a>
+    <a href="/privacy.html">Privacy</a>
+  </div>
+</footer>
+
+<!-- ATLAS MARK -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="atlas-arrow-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8DFFF"/><stop offset="55%" stop-color="#B79CFF"/><stop offset="100%" stop-color="#5A33D8"/>
+    </linearGradient>
+    <linearGradient id="atlas-arrow-shadow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7C4DFF"/><stop offset="100%" stop-color="#3A1F8A"/>
+    </linearGradient>
+    <radialGradient id="atlas-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#7C4DFF" stop-opacity="0.5"/><stop offset="100%" stop-color="#7C4DFF" stop-opacity="0"/>
+    </radialGradient>
+    <symbol id="atlas-mark" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="46" fill="url(#atlas-glow)"/>
+      <circle cx="50" cy="50" r="36" fill="none" stroke="#7C4DFF" stroke-width="1.4"/>
+      <circle cx="14" cy="50" r="3" fill="#7C4DFF"/>
+      <circle cx="86" cy="50" r="3" fill="#7C4DFF"/>
+      <path d="M50,6 L52,16 L62,18 L52,20 L50,30 L48,20 L38,18 L48,16 Z" fill="#B79CFF"/>
+      <path d="M50,28 L73,74 L62,74 L57,64 L50,64 Z" fill="url(#atlas-arrow-shadow)"/>
+      <path d="M50,28 L27,74 L38,74 L43,64 L50,64 Z" fill="url(#atlas-arrow-grad)"/>
+      <path d="M50,28 L50,64" stroke="#F1ECFA" stroke-width="0.6" opacity="0.55"/>
+    </symbol>
+  </defs>
+</svg>
+
+</body>
+</html>
