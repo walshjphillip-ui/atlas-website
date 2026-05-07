@@ -51,50 +51,32 @@
   /* ─── NAV ─── */
   nav {
     position: sticky; top: 0; z-index: 50;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 28px;
-    align-items: center;
-    padding: 14px clamp(20px, 4vw, 48px);
-    background: rgba(10, 6, 18, 0.82);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center;
+    padding: 0 clamp(20px, 4vw, 48px); height: 60px;
+    background: rgba(10,6,18,0.88);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--line-soft);
   }
   .nav-left { display: flex; align-items: center; gap: 12px; }
-  .nav-mark { width: 30px; height: 30px; }
-  .nav-word {
-    font-family: var(--sans); font-weight: 500;
-    font-size: 18px; letter-spacing: 0.32em; color: var(--ink);
-  }
+  .nav-mark { width: 28px; height: 28px; }
+  .nav-word { font-family: var(--sans); font-weight: 500; font-size: 17px; letter-spacing: 0.3em; color: var(--ink); }
   .nav-links {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: clamp(18px, 2.5vw, 36px);
-    border-left: 1px solid var(--line);
-    border-right: 1px solid var(--line);
-    padding: 6px clamp(20px, 3vw, 40px);
+    display: flex; align-items: center; justify-content: center;
+    gap: clamp(16px, 2.2vw, 32px);
+    border-left: 1px solid var(--line); border-right: 1px solid var(--line);
+    padding: 0 clamp(20px, 3vw, 40px); height: 100%;
   }
-  .nav-links a {
-    font-size: 13px; font-weight: 500;
-    color: var(--dim); letter-spacing: 0.02em;
-    transition: color 0.2s;
-    white-space: nowrap;
-  }
+  .nav-links a { font-size: 13px; font-weight: 500; color: var(--dim); letter-spacing: 0.02em; transition: color 0.18s; white-space: nowrap; }
   .nav-links a:hover, .nav-links a.active { color: var(--ink); }
   .nav-cta {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 10px 18px;
-    background: var(--ink); color: #0A0612;
-    font-weight: 600; font-size: 13px;
-    border-radius: 2px;
-    transition: background 0.2s;
-    white-space: nowrap;
+    padding: 9px 16px; background: var(--ink); color: #0A0612;
+    font-weight: 600; font-size: 13px; border-radius: 2px;
+    transition: background 0.18s; white-space: nowrap;
   }
   .nav-cta:hover { background: var(--violet-soft); }
-  .nav-cta svg { width: 12px; height: 12px; }
-  @media (max-width: 880px) {
+  .nav-cta svg { width: 11px; height: 11px; }
+  @media (max-width: 900px) {
     nav { grid-template-columns: auto auto; }
     .nav-links { display: none; }
   }
@@ -291,6 +273,32 @@
     color: var(--dim); letter-spacing: 0.08em;
   }
 
+  /* ─── SIDEBAR LAYOUT ─── */
+  .page-layout {
+    display: grid; grid-template-columns: 220px 1fr;
+    min-height: calc(100vh - 60px); align-items: start;
+  }
+  .page-sidebar {
+    position: sticky; top: 60px; height: calc(100vh - 60px);
+    overflow-y: auto; border-right: 1px solid var(--line-soft);
+    padding: 36px 0 36px clamp(16px, 2.5vw, 32px);
+    display: flex; flex-direction: column; gap: 32px;
+    scrollbar-width: none;
+  }
+  .page-sidebar::-webkit-scrollbar { display: none; }
+  .sidebar-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .sidebar-logo svg { width: 22px; height: 22px; }
+  .sidebar-logo span { font-size: 13px; font-weight: 500; letter-spacing: 0.28em; color: var(--ink); }
+  .sidebar-divider { width: 28px; height: 1px; background: var(--line); }
+  .sidebar-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dimmer); margin-bottom: 12px; }
+  .sidebar-links { list-style: none; display: flex; flex-direction: column; gap: 3px; }
+  .sidebar-links li a { display: block; font-size: 13px; font-weight: 400; color: var(--dim); padding: 5px 0; line-height: 1.4; transition: color 0.15s; text-decoration: none; }
+  .sidebar-links li a:hover { color: var(--ink-2); }
+  .sidebar-links li a.active { color: var(--ink); font-weight: 500; }
+  .sidebar-links li a.active::before { content: "→ "; color: var(--violet-soft); font-family: var(--mono); font-size: 11px; }
+  .page-content { min-width: 0; }
+  @media (max-width: 1080px) { .page-layout { grid-template-columns: 1fr; } .page-sidebar { display: none; } }
+
   /* ─── FOOTER ─── */
   footer {
     padding: 32px clamp(20px, 4vw, 48px);
@@ -328,8 +336,26 @@
   </a>
 </nav>
 
+<div class="page-layout">
+<aside class="page-sidebar">
+  <a href="/" class="sidebar-logo">
+    <svg viewBox="0 0 100 100"><use href="#atlas-mark"/></svg>
+    <span>ΛTLΛS</span>
+  </a>
+  <div><div class="sidebar-divider"></div></div>
+  <nav>
+    <div class="sidebar-label">About</div>
+    <ul class="sidebar-links">
+      <li><a href="#story" class="sidebar-link">The story</a></li>
+      <li><a href="#mission" class="sidebar-link">Mission</a></li>
+      <li><a href="#built" class="sidebar-link">How it's built</a></li>
+    </ul>
+  </nav>
+</aside>
+<div class="page-content">
+
 <!-- HERO -->
-<section class="about-hero">
+<section class="about-hero" id="hero">
   <div class="wrap-narrow">
     <div class="about-eyebrow"><span class="bar"></span>About Atlas</div>
     <h1>Built by a student,<br/>for <em>students.</em></h1>
@@ -338,12 +364,12 @@
 </section>
 
 <!-- STORY -->
-<section class="story">
+<section class="story" id="story">
   <div class="wrap">
     <div class="story-grid">
       <div class="story-body">
         <p>
-          <strong>Atlas was built by Phillip Walsh</strong>, an economics student at the University of Tampa. Like most students trying to break into finance and law, Phillip spent hours every week piecing together information that should have just come to him — market moves, recruiting deadlines, networking follow-ups, relevant news.
+          <strong>Atlas was built by Phillip Walsh</strong>, an economics student at the University of Tampa. Like most students trying to break into finance, Phillip spent hours every week piecing together information that should have just come to him — market moves, recruiting deadlines, networking follow-ups, relevant news.
         </p>
         <p>
           The tools that existed were either too generic (general AI with no memory, no live data) or too professional (Bloomberg, FactSet — built for firms, not students). There was nothing in between. Nothing that knew who you were, watched the things you cared about, and actually did work on your behalf.
@@ -383,7 +409,7 @@
 </section>
 
 <!-- MISSION -->
-<section class="mission">
+<section class="mission" id="mission">
   <div class="wrap">
     <blockquote>
       "Every ambitious student deserves access to the same quality of information and preparation that money usually buys. Atlas is the attempt to close that gap."
@@ -393,7 +419,7 @@
 </section>
 
 <!-- BUILT WITH -->
-<section class="built-with">
+<section class="built-with" id="built">
   <div class="wrap">
     <h2>How it's built</h2>
     <div class="stack-grid">
@@ -436,6 +462,9 @@
     <p class="note">Free · No credit card · No app to download</p>
   </div>
 </section>
+
+</div><!-- end page-content -->
+</div><!-- end page-layout -->
 
 <!-- FOOTER -->
 <footer>
@@ -480,5 +509,19 @@
   </defs>
 </svg>
 
+<script>
+const sidebarLinks = document.querySelectorAll('.sidebar-link');
+const sections = document.querySelectorAll('[id]');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      sidebarLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`.sidebar-link[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
 </body>
 </html>

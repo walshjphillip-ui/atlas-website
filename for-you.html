@@ -78,6 +78,12 @@ nav {
   background: radial-gradient(circle, rgba(124,77,255,0.10) 0%, transparent 55%);
   pointer-events: none;
 }
+.page-header-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(48px, 7vw, 100px); align-items: center;
+  position: relative; z-index: 1;
+}
+@media (max-width: 760px) { .page-header-grid { grid-template-columns: 1fr; } }
 .breadcrumb {
   display: flex; align-items: center; gap: 8px;
   font-family: var(--mono); font-size: 11px;
@@ -90,7 +96,7 @@ nav {
   font-family: var(--serif); font-weight: 300;
   font-size: clamp(40px, 6vw, 76px);
   letter-spacing: -0.03em; line-height: 0.98;
-  color: var(--ink); text-wrap: balance; position: relative; z-index: 1;
+  color: var(--ink); text-wrap: balance;
 }
 .page-header h1 em {
   font-style: italic; font-weight: 400;
@@ -99,8 +105,30 @@ nav {
 }
 .page-header .sub {
   margin-top: 20px; font-size: 17px; line-height: 1.65;
-  color: var(--ink-2); max-width: 600px; text-wrap: pretty;
-  position: relative; z-index: 1;
+  color: var(--ink-2); max-width: 560px; text-wrap: pretty;
+}
+.header-quote-block {
+  background: var(--bg-2); border: 1px solid var(--line);
+  border-radius: 8px; padding: clamp(28px, 4vw, 44px);
+  display: flex; flex-direction: column; gap: 20px;
+}
+.header-quote-block .hq-bar {
+  width: 28px; height: 2px; background: var(--violet-deep);
+}
+.header-quote-block blockquote {
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: clamp(18px, 2.2vw, 24px);
+  letter-spacing: -0.01em; line-height: 1.4;
+  color: var(--ink); text-wrap: pretty;
+}
+.header-quote-block blockquote em {
+  font-style: italic;
+  background: linear-gradient(180deg, var(--violet-soft) 0%, var(--violet) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.header-quote-block cite {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--dim); font-style: normal;
 }
 
 /* SEC LABEL */
@@ -123,11 +151,12 @@ nav {
   margin-bottom: 48px; text-wrap: balance;
 }
 .persona-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr);
+  display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 2px; background: var(--line);
   border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
 }
-@media (max-width: 680px) { .persona-grid { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .persona-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .persona-grid { grid-template-columns: 1fr; } }
 .persona-card {
   background: var(--bg); padding: clamp(32px, 4vw, 48px);
   display: flex; flex-direction: column; gap: 18px;
@@ -209,6 +238,32 @@ nav {
   text-transform: uppercase; color: var(--dim);
 }
 
+/* SIDEBAR LAYOUT */
+.page-layout {
+  display: grid; grid-template-columns: 220px 1fr;
+  min-height: calc(100vh - 60px); align-items: start;
+}
+.page-sidebar {
+  position: sticky; top: 60px; height: calc(100vh - 60px);
+  overflow-y: auto; border-right: 1px solid var(--line-soft);
+  padding: 36px 0 36px clamp(16px, 2.5vw, 32px);
+  display: flex; flex-direction: column; gap: 32px;
+  scrollbar-width: none;
+}
+.page-sidebar::-webkit-scrollbar { display: none; }
+.sidebar-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.sidebar-logo svg { width: 22px; height: 22px; }
+.sidebar-logo span { font-size: 13px; font-weight: 500; letter-spacing: 0.28em; color: var(--ink); }
+.sidebar-divider { width: 28px; height: 1px; background: var(--line); }
+.sidebar-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dimmer); margin-bottom: 12px; }
+.sidebar-links { list-style: none; display: flex; flex-direction: column; gap: 3px; }
+.sidebar-links li a { display: block; font-size: 13px; font-weight: 400; color: var(--dim); padding: 5px 0; line-height: 1.4; transition: color 0.15s; text-decoration: none; }
+.sidebar-links li a:hover { color: var(--ink-2); }
+.sidebar-links li a.active { color: var(--ink); font-weight: 500; }
+.sidebar-links li a.active::before { content: "→ "; color: var(--violet-soft); font-family: var(--mono); font-size: 11px; }
+.page-content { min-width: 0; }
+@media (max-width: 1080px) { .page-layout { grid-template-columns: 1fr; } .page-sidebar { display: none; } }
+
 /* END CTA */
 .end {
   padding: clamp(100px, 13vh, 150px) 0 clamp(80px, 10vh, 120px);
@@ -278,16 +333,42 @@ footer .links a:hover { color: var(--violet-soft); }
   </a>
 </nav>
 
+<div class="page-layout">
+<aside class="page-sidebar">
+  <a href="/" class="sidebar-logo">
+    <svg viewBox="0 0 100 100"><use href="#atlas-mark"/></svg>
+    <span>ΛTLΛS</span>
+  </a>
+  <div><div class="sidebar-divider"></div></div>
+  <nav>
+    <div class="sidebar-label">Who it's for</div>
+    <ul class="sidebar-links">
+      <li><a href="#profiles" class="sidebar-link">Student profiles</a></li>
+      <li><a href="#fit" class="sidebar-link">Is this for you?</a></li>
+    </ul>
+  </nav>
+</aside>
+<div class="page-content">
+
 <!-- PAGE HEADER -->
 <header class="page-header">
   <div class="wrap">
-    <div class="breadcrumb">
-      <a href="/">Atlas</a>
-      <span class="sep">/</span>
-      <span>Who it's for</span>
+    <div class="page-header-grid">
+      <div>
+        <div class="breadcrumb">
+          <a href="/">Atlas</a>
+          <span class="sep">/</span>
+          <span>Who it's for</span>
+        </div>
+        <h1>Made for students<br/>competing for the<br/><em>top spots.</em></h1>
+        <p class="sub">Atlas isn't a general tool. It was built around the specific needs of students in finance, economics, and business who are serious about what comes after graduation.</p>
+      </div>
+      <div class="header-quote-block">
+        <div class="hq-bar"></div>
+        <blockquote>"The top 1% of students don't have more talent. They have <em>better information, better habits,</em> and something working for them every single day."</blockquote>
+        <cite>Phillip Walsh · Builder of Atlas</cite>
+      </div>
     </div>
-    <h1>Made for students<br/>competing for the<br/><em>top spots.</em></h1>
-    <p class="sub">Atlas isn't a general tool. It was built around the specific needs of students in finance, economics, and business who are serious about what comes after graduation.</p>
   </div>
 </header>
 
@@ -295,7 +376,7 @@ footer .links a:hover { color: var(--violet-soft); }
 <section class="personas" id="profiles">
   <div class="wrap">
     <div class="sec-label"><span class="bar"></span>Who gets real value from this</div>
-    <h2>Four types of students. One advisor.</h2>
+    <h2>Three types of students. One advisor.</h2>
     <div class="persona-grid">
 
       <div class="persona-card">
@@ -334,17 +415,6 @@ footer .links a:hover { color: var(--violet-soft); }
         </ul>
       </div>
 
-      <div class="persona-card">
-        <span class="persona-track">Pre-Law / Policy</span>
-        <h3>Tracking regulatory and economic developments</h3>
-        <p>You're building market and policy awareness for law school applications, government work, or finance-adjacent roles. You need current context, not just case briefs.</p>
-        <ul class="persona-uses">
-          <li>Brief covers regulatory news, SEC, Fed, and legislative developments</li>
-          <li>Behavioral interview prep for law firm and government positions</li>
-          <li>Atlas frames market news through policy and legal implications</li>
-          <li>Application tracker works for law school apps and summer programs</li>
-        </ul>
-      </div>
 
     </div>
   </div>
@@ -379,15 +449,8 @@ footer .links a:hover { color: var(--violet-soft); }
   </div>
 </section>
 
-<!-- QUOTE -->
-<section class="quote-section">
-  <div class="wrap">
-    <p class="pull-quote">
-      "The students who get the offer aren't smarter. They're <em>more prepared, more consistent,</em> and more informed."
-    </p>
-    <p class="quote-attr">Phillip Walsh, builder of Atlas</p>
-  </div>
-</section>
+</div><!-- end page-content -->
+</div><!-- end page-layout -->
 
 <!-- FOOTER -->
 <footer>
@@ -427,5 +490,19 @@ footer .links a:hover { color: var(--violet-soft); }
   </defs>
 </svg>
 
+<script>
+const sidebarLinks = document.querySelectorAll('.sidebar-link');
+const sections = document.querySelectorAll('[id]');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      sidebarLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`.sidebar-link[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
 </body>
 </html>

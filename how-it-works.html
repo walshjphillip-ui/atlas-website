@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>How It WorksATLAS</title>
+<title>How It Works — ATLAS</title>
 <meta name="description" content="Set up Atlas in 60 seconds on Telegram. Answer 8 questions about your goals. Your first morning brief arrives tomorrow. Nothing to maintain." />
 <link rel="icon" type="image/svg+xml" href="logo.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -295,6 +295,32 @@ nav {
 .cta-btn:hover { background: var(--violet-soft); }
 .cta-btn svg { width: 13px; height: 13px; }
 
+/* SIDEBAR LAYOUT */
+.page-layout {
+  display: grid; grid-template-columns: 220px 1fr;
+  min-height: calc(100vh - 60px); align-items: start;
+}
+.page-sidebar {
+  position: sticky; top: 60px; height: calc(100vh - 60px);
+  overflow-y: auto; border-right: 1px solid var(--line-soft);
+  padding: 36px 0 36px clamp(16px, 2.5vw, 32px);
+  display: flex; flex-direction: column; gap: 32px;
+  scrollbar-width: none;
+}
+.page-sidebar::-webkit-scrollbar { display: none; }
+.sidebar-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.sidebar-logo svg { width: 22px; height: 22px; }
+.sidebar-logo span { font-size: 13px; font-weight: 500; letter-spacing: 0.28em; color: var(--ink); }
+.sidebar-divider { width: 28px; height: 1px; background: var(--line); }
+.sidebar-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dimmer); margin-bottom: 12px; }
+.sidebar-links { list-style: none; display: flex; flex-direction: column; gap: 3px; }
+.sidebar-links li a { display: block; font-size: 13px; font-weight: 400; color: var(--dim); padding: 5px 0; line-height: 1.4; transition: color 0.15s; text-decoration: none; }
+.sidebar-links li a:hover { color: var(--ink-2); }
+.sidebar-links li a.active { color: var(--ink); font-weight: 500; }
+.sidebar-links li a.active::before { content: "→ "; color: var(--violet-soft); font-family: var(--mono); font-size: 11px; }
+.page-content { min-width: 0; }
+@media (max-width: 1080px) { .page-layout { grid-template-columns: 1fr; } .page-sidebar { display: none; } }
+
 /* FOOTER */
 footer {
   padding: 28px clamp(20px, 4vw, 48px);
@@ -330,6 +356,24 @@ footer .links a:hover { color: var(--violet-soft); }
   </a>
 </nav>
 
+<div class="page-layout">
+<aside class="page-sidebar">
+  <a href="/" class="sidebar-logo">
+    <svg viewBox="0 0 100 100"><use href="#atlas-mark"/></svg>
+    <span>ΛTLΛS</span>
+  </a>
+  <div><div class="sidebar-divider"></div></div>
+  <nav>
+    <div class="sidebar-label">How it works</div>
+    <ul class="sidebar-links">
+      <li><a href="#setup" class="sidebar-link">Setup steps</a></li>
+      <li><a href="#questions" class="sidebar-link">The 9 questions</a></li>
+      <li><a href="#integrations" class="sidebar-link">Optional integrations</a></li>
+    </ul>
+  </nav>
+</aside>
+<div class="page-content">
+
 <!-- PAGE HEADER -->
 <header class="page-header">
   <div class="wrap">
@@ -339,7 +383,7 @@ footer .links a:hover { color: var(--violet-soft); }
       <span>How it works</span>
     </div>
     <h1>Set up in 60 seconds.<br/><em>Then just wait</em> for the text.</h1>
-    <p class="sub">No configuration to maintain, no dashboard to check. You answer 8 questions once. Atlas handles everything after that.</p>
+    <p class="sub">No configuration to maintain, no dashboard to check. You answer 9 questions once. Atlas handles everything after that.</p>
   </div>
 </header>
 
@@ -375,8 +419,8 @@ footer .links a:hover { color: var(--violet-soft); }
       <div class="step">
         <div class="step-num-col"><span class="step-num">03</span></div>
         <div class="step-body">
-          <h3>Answer 8 onboarding questions</h3>
-          <p>Atlas asks for your name, school, major, career goal, interests, hometown, market sectors, and watchlist tickers. These are how Atlas personalizes your brief, interview prep, and news. Takes 3 to 4 minutes. You can update anything later by just telling Atlas.</p>
+          <h3>Answer 9 onboarding questions</h3>
+          <p>Atlas asks about your name, school, target employers, major, career goal, interests, hometown, market sectors, watchlist, and trading style. These are how Atlas personalizes your brief, interview prep, and news. Takes 3 to 4 minutes. You can update anything later by just telling Atlas.</p>
         </div>
       </div>
 
@@ -407,21 +451,21 @@ footer .links a:hover { color: var(--violet-soft); }
 <section class="questions-section" id="questions">
   <div class="wrap">
     <div class="sec-label"><span class="bar"></span>Onboarding</div>
-    <h2>The 8 questions Atlas asks you</h2>
+    <h2>The 9 questions Atlas asks you</h2>
     <p>These are the only questions. They take 3–4 minutes. Everything after that is automatic.</p>
     <div class="q-grid">
       <div class="q-tile">
         <span class="q-num">1</span>
         <div class="q-body">
           <div class="q-text">What's your name?</div>
-          <div class="q-why">So Atlas addresses you by namenot "user" or "student."</div>
+          <div class="q-why">So Atlas addresses you by name — not "user" or "student."</div>
         </div>
       </div>
       <div class="q-tile">
         <span class="q-num">2</span>
         <div class="q-body">
-          <div class="q-text">Where do you go to school?</div>
-          <div class="q-why">Context for everythingfirm fit, interview prep framing, cold emails.</div>
+          <div class="q-text">Where do you go to school — and where are you targeting?</div>
+          <div class="q-why">School context plus target city or firm so Atlas tailors recruiting deadlines, firm intel, and cold email framing.</div>
         </div>
       </div>
       <div class="q-tile">
@@ -435,28 +479,28 @@ footer .links a:hover { color: var(--violet-soft); }
         <span class="q-num">4</span>
         <div class="q-body">
           <div class="q-text">What's your career goal?</div>
-          <div class="q-why">The most important one. IB, consulting, PE, VC, tradingthis shapes everything.</div>
+          <div class="q-why">The most important one. IB, consulting, PE, VC, trading — this shapes everything.</div>
         </div>
       </div>
       <div class="q-tile">
         <span class="q-num">5</span>
         <div class="q-body">
           <div class="q-text">What are your interests?</div>
-          <div class="q-why">Finance, energy, tech, healthcareAtlas uses this to pick the right news and angles.</div>
+          <div class="q-why">Finance, energy, tech, healthcare — Atlas uses this to pick the right news and angles.</div>
         </div>
       </div>
       <div class="q-tile">
         <span class="q-num">6</span>
         <div class="q-body">
           <div class="q-text">What's your hometown?</div>
-          <div class="q-why">Optional. Lets Atlas pull local business news that might be relevant to where you grew up or plan to work.</div>
+          <div class="q-why">Optional. Lets Atlas pull local business news relevant to where you grew up or plan to work.</div>
         </div>
       </div>
       <div class="q-tile">
         <span class="q-num">7</span>
         <div class="q-body">
           <div class="q-text">Which market sectors do you follow?</div>
-          <div class="q-why">Drives the Markets section of your brief. Market, tech, AI, energy, financials, cryptopick what you watch.</div>
+          <div class="q-why">Drives the Markets section of your brief. Tech, AI, energy, financials, crypto — pick what you watch.</div>
         </div>
       </div>
       <div class="q-tile">
@@ -464,6 +508,13 @@ footer .links a:hover { color: var(--violet-soft); }
         <div class="q-body">
           <div class="q-text">Any tickers to add to your watchlist?</div>
           <div class="q-why">Individual stocks you want tracked. Price + percent move appears in your brief every morning.</div>
+        </div>
+      </div>
+      <div class="q-tile">
+        <span class="q-num">9</span>
+        <div class="q-body">
+          <div class="q-text">Are you focused on any trading style?</div>
+          <div class="q-why">Day trading, swing trading, options, long-term holds — this shapes your alerts, price levels, and reminder cadence.</div>
         </div>
       </div>
     </div>
@@ -507,6 +558,9 @@ footer .links a:hover { color: var(--violet-soft); }
   </div>
 </section>
 
+</div><!-- end page-content -->
+</div><!-- end page-layout -->
+
 <!-- FOOTER -->
 <footer>
   <div class="left">
@@ -545,5 +599,19 @@ footer .links a:hover { color: var(--violet-soft); }
   </defs>
 </svg>
 
+<script>
+const sidebarLinks = document.querySelectorAll('.sidebar-link');
+const sections = document.querySelectorAll('[id]');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      sidebarLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`.sidebar-link[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
 </body>
 </html>
