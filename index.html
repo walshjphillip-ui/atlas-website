@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ATLAS — AI advisor for ambitious students</title>
-<meta name="description" content="Atlas is a personal AI advisor for ambitious finance, economics, and business students. Real-time market briefs, interview prep, networking tools — delivered straight to your phone." />
+<title>ATLAS — AI finance recruiting advisor</title>
+<meta name="description" content="Atlas is a Telegram bot that sends finance students a personalized morning brief every day — markets, recruiting deadlines, networking reminders, and interview prep." />
 <link rel="icon" type="image/svg+xml" href="logo.svg" />
-<meta property="og:title" content="ATLAS — AI advisor for ambitious students" />
-<meta property="og:description" content="An advisor that knows your goals, watches the market, and texts you what matters." />
+<meta property="og:title" content="ATLAS — AI finance recruiting advisor" />
+<meta property="og:description" content="A Telegram bot that sends you markets, recruiting deadlines, and networking reminders every morning." />
 <meta property="og:url" content="https://useatlasai.org" />
 <meta property="og:image" content="https://useatlasai.org/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -122,10 +122,30 @@ h1.display em {
   background: linear-gradient(180deg, var(--violet-soft) 0%, var(--violet) 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-.hero-sub {
-  margin-top: 24px; font-size: 17px; line-height: 1.65;
-  color: var(--ink-2); max-width: 520px; text-wrap: pretty;
+.hero-def {
+  margin-top: 24px; font-size: 16px; line-height: 1.7;
+  color: var(--ink-2); max-width: 500px; text-wrap: pretty;
 }
+.hero-def strong { color: var(--ink); font-weight: 500; }
+.hero-cta-wrap {
+  margin-top: 32px; display: flex; flex-direction: column;
+  align-items: flex-start; gap: 12px;
+}
+.btn-primary {
+  padding: 14px 22px; background: var(--ink); color: #0A0612;
+  font-weight: 700; font-size: 14px; border: none; border-radius: 2px;
+  cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+  transition: background 0.2s, transform 0.12s; white-space: nowrap;
+  text-decoration: none;
+}
+.btn-primary:hover { background: var(--violet-soft); }
+.btn-primary:active { transform: translateY(1px); }
+.btn-primary svg { width: 12px; height: 12px; }
+.cta-note {
+  font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.04em;
+}
+
+/* HERO FORM (bottom CTA only) */
 .hero-form {
   margin-top: 32px; display: flex; gap: 8px; flex-wrap: wrap; max-width: 460px;
 }
@@ -138,17 +158,7 @@ h1.display em {
 }
 .hero-form input:focus { border-color: var(--violet); background: #160B22; }
 .hero-form input::placeholder { color: var(--dimmer); }
-.btn-primary {
-  padding: 14px 22px; background: var(--ink); color: #0A0612;
-  font-weight: 700; font-size: 14px; border: none; border-radius: 2px;
-  cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
-  transition: background 0.2s, transform 0.12s; white-space: nowrap;
-}
-.btn-primary:hover { background: var(--violet-soft); }
-.btn-primary:active { transform: translateY(1px); }
-.btn-primary svg { width: 12px; height: 12px; }
-.form-note { margin-top: 12px; font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.04em; }
-#form-success, #bottom-success {
+#bottom-success {
   display: none; margin-top: 14px; max-width: 460px; padding: 12px 16px;
   border: 1px solid var(--violet-deep); background: rgba(124,77,255,0.08);
   color: var(--violet-soft); font-family: var(--mono); font-size: 12px; border-radius: 2px;
@@ -199,11 +209,11 @@ h1.display em {
 .brief-news-line { padding: 3px 0; color: var(--ink-2); font-size: 12px; }
 .brief-news-line::before { content: "/ "; color: var(--dimmer); }
 .brief-divider { border: none; border-top: 1px solid var(--line-soft); margin: 18px 0 14px; }
-.brief-action {
-  color: var(--ink); font-size: 12.5px; line-height: 1.65;
-}
+.brief-action { color: var(--ink); font-size: 12.5px; line-height: 1.65; }
 .brief-action + .brief-action { margin-top: 8px; }
 .brief-action::before { content: "→ "; color: var(--violet-soft); }
+.brief-warn { color: var(--loss); font-size: 12.5px; line-height: 1.65; margin-top: 8px; }
+.brief-warn::before { content: "→ "; color: var(--loss); }
 
 /* SECTION LABEL */
 .sec-label {
@@ -212,6 +222,45 @@ h1.display em {
   text-transform: uppercase; color: var(--violet-soft); margin-bottom: 20px;
 }
 .sec-label .bar { width: 24px; height: 1px; background: var(--violet-deep); }
+
+/* PAIN SECTION */
+.pain {
+  padding: clamp(80px, 11vh, 120px) 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.pain-head {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 72px); align-items: start;
+  margin-bottom: clamp(40px, 6vh, 56px);
+}
+@media (max-width: 700px) { .pain-head { grid-template-columns: 1fr; } }
+.pain h2 {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(28px, 3.6vw, 44px);
+  letter-spacing: -0.02em; line-height: 1.05; color: var(--ink);
+}
+.pain-intro {
+  font-size: 15px; line-height: 1.7; color: var(--ink-2); padding-top: 6px;
+}
+.pain-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--line);
+  border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+}
+@media (max-width: 680px) { .pain-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 420px) { .pain-grid { grid-template-columns: 1fr; } }
+.pain-item {
+  background: var(--bg);
+  padding: clamp(22px, 3vw, 32px);
+  border-top: 2px solid var(--loss);
+}
+.pain-item p { font-size: 14px; line-height: 1.6; color: var(--ink-2); }
+.pain-resolve {
+  margin-top: clamp(28px, 4vh, 44px);
+  font-size: 14px; color: var(--dim);
+  font-family: var(--mono); letter-spacing: 0.04em;
+}
+.pain-resolve em { color: var(--violet-soft); font-style: normal; }
 
 /* EXPLORE CARDS */
 .explore {
@@ -249,8 +298,8 @@ h1.display em {
 }
 .explore-card h3 {
   font-family: var(--serif); font-weight: 300;
-  font-size: clamp(22px, 2.8vw, 32px);
-  letter-spacing: -0.02em; line-height: 1.1;
+  font-size: clamp(20px, 2.4vw, 28px);
+  letter-spacing: -0.02em; line-height: 1.15;
   color: var(--ink); text-wrap: balance; flex: 1;
 }
 .explore-card p { font-size: 14px; line-height: 1.6; color: var(--ink-2); max-width: 360px; }
@@ -262,19 +311,29 @@ h1.display em {
 }
 @media (max-width: 680px) { .explore-grid { grid-template-columns: 1fr; } .explore-card { min-height: auto; } }
 
-/* TELEGRAM NOTE */
+/* TELEGRAM SECTION */
 .tg-note {
-  padding: clamp(40px, 6vh, 60px) 0;
+  padding: clamp(56px, 8vh, 80px) 0;
   border-bottom: 1px solid var(--line-soft);
 }
 .tg-note-inner {
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 24px; flex-wrap: wrap;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: clamp(40px, 6vw, 100px); align-items: center;
+}
+@media (max-width: 640px) { .tg-note-inner { grid-template-columns: 1fr; } }
+.tg-note-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--violet-soft); margin-bottom: 14px;
+}
+.tg-note-heading {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(20px, 2.4vw, 28px);
+  letter-spacing: -0.02em; color: var(--ink); margin-bottom: 16px; line-height: 1.1;
 }
 .tg-note-text {
-  font-size: 14px; color: var(--ink-2); max-width: 560px; line-height: 1.65;
+  font-size: 14px; color: var(--ink-2); line-height: 1.7; max-width: 580px;
 }
-.tg-note-text strong { color: var(--ink); }
+.tg-note-text + .tg-note-text { margin-top: 10px; }
 .tg-note-link {
   display: inline-flex; align-items: center; gap: 8px;
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
@@ -380,29 +439,27 @@ footer .links a:hover { color: var(--violet-soft); }
   <div class="wrap">
     <div class="hero-grid">
 
-      <!-- Left: headline + form -->
+      <!-- Left: headline + CTA -->
       <div>
         <div class="hero-eyebrow">
           <span class="pulse" id="market-pulse"></span>
           <span id="market-status">Live · markets open · 9:30–4:00 ET</span>
         </div>
         <h1 class="display">
-          The advisor<br/>
-          built for your<br/>
-          <em>ambition.</em>
+          An AI advisor<br/>
+          for <em>finance</em><br/>
+          recruiting.
         </h1>
-        <p class="hero-sub">
-          Knows your goals. Watches the market. Texts you what matters before you even have to ask.
+        <p class="hero-def">
+          Atlas is a <strong>Telegram bot</strong> that sends you a personalized morning brief every day — markets, recruiting deadlines, networking reminders, and what to prep next. Set up in 60 seconds. Nothing to maintain.
         </p>
-        <form class="hero-form" id="hero-form">
-          <input type="email" id="hero-email" placeholder="your@email.edu" required autocomplete="email" />
-          <button type="submit" class="btn-primary">
-            Get started free
+        <div class="hero-cta-wrap">
+          <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener" class="btn-primary">
+            Open Atlas in Telegram
             <svg viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="square"/></svg>
-          </button>
-        </form>
-        <p class="form-note">Free in beta · No credit card · Opens Telegram</p>
-        <div id="form-success">You're in. Opening Atlas now...</div>
+          </a>
+          <span class="cta-note">Free in beta · No credit card · No app to download</span>
+        </div>
       </div>
 
       <!-- Right: Atlas brief mockup -->
@@ -435,15 +492,15 @@ footer .links a:hover { color: var(--violet-soft); }
           </div>
 
           <span class="brief-section-label">Top Stories</span>
-          <div class="brief-news-line">Fed holds; two cuts signaled for H2</div>
+          <div class="brief-news-line">Fed holds rates; two cuts projected for Q3</div>
           <div class="brief-news-line">Goldman upgrades energy to overweight</div>
-          <div class="brief-news-line">PE deal flow up 34% year over year</div>
+          <div class="brief-news-line">OCR opens Monday — 8 firms participating</div>
 
           <hr class="brief-divider" />
 
-          <span class="brief-section-label">Your Move Today</span>
-          <div class="brief-action">Goldman first round is tomorrow. Run a DCF drill tonight.</div>
-          <div class="brief-action">Marcus Chen at Blackstone — follow-up is 3 days overdue.</div>
+          <span class="brief-section-label">Action Items</span>
+          <div class="brief-action">GS first round in 3 days. DCF drill still unscheduled.</div>
+          <div class="brief-warn">Sarah Kim (JPM) — no reply in 8 days. You said you'd follow up.</div>
         </div>
       </div>
 
@@ -457,6 +514,28 @@ footer .links a:hover { color: var(--violet-soft); }
   </div>
 </section>
 
+<!-- PAIN SECTION -->
+<section class="pain" id="pain">
+  <div class="wrap">
+    <div class="pain-head">
+      <div>
+        <div class="sec-label"><span class="bar"></span>Why it exists</div>
+        <h2>Finance recruiting punishes the unprepared.</h2>
+      </div>
+      <p class="pain-intro">Not because you're not smart. Because these things slip when you're stretched thin — and in recruiting, slipping once is usually enough.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-item"><p>You followed up 10 days late. They'd already moved on.</p></div>
+      <div class="pain-item"><p>Markets moved overnight. You found out in the interview.</p></div>
+      <div class="pain-item"><p>OCR opened Monday. You heard Wednesday.</p></div>
+      <div class="pain-item"><p>You prepped for M&amp;A coverage. They asked about rates.</p></div>
+      <div class="pain-item"><p>Your networking list hasn't been opened since September.</p></div>
+      <div class="pain-item"><p>The coffee chat was 3 weeks ago. Still no thank-you sent.</p></div>
+    </div>
+    <p class="pain-resolve">Atlas tracks these. Reminds you before they cost you. <em>Every morning, without fail.</em></p>
+  </div>
+</section>
+
 <!-- EXPLORE SECTIONS -->
 <section class="explore" id="explore">
   <div class="wrap">
@@ -467,32 +546,32 @@ footer .links a:hover { color: var(--violet-soft); }
       <a href="/features.html" class="explore-card">
         <span class="explore-num">01</span>
         <span class="explore-tag">Features</span>
-        <h3>What Atlas actually does for you</h3>
-        <p>Morning briefs, live market data, interview prep, cold email drafts, application tracking — and it runs on autopilot.</p>
+        <h3>Morning briefs. Market data. Interview prep. Networking reminders.</h3>
+        <p>Every tool Atlas has, explained clearly. No vague bullet points.</p>
         <span class="explore-arrow">See all features <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span>
       </a>
 
       <a href="/for-you.html" class="explore-card">
         <span class="explore-num">02</span>
         <span class="explore-tag">Who it's for</span>
-        <h3>Made for students competing for the top spots</h3>
-        <p>Finance, economics, pre-law, business. If you're serious about what comes next, this was designed around your specific situation.</p>
+        <h3>Built for finance recruiting. Not for everyone.</h3>
+        <p>If you're going for IB, trading, PE, or consulting — this is for you. If not, it probably isn't.</p>
         <span class="explore-arrow">Is this for me? <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span>
       </a>
 
       <a href="/how-it-works.html" class="explore-card">
         <span class="explore-num">03</span>
         <span class="explore-tag">How it works</span>
-        <h3>Set up in 60 seconds. Then just wait for the text.</h3>
-        <p>Open Telegram, answer 8 questions about your goals, and your first brief arrives tomorrow morning. Nothing to maintain.</p>
+        <h3>Open Telegram. Answer 8 questions. First brief tomorrow.</h3>
+        <p>That's the full setup. No integrations required. Gmail and Calendar are optional add-ons.</p>
         <span class="explore-arrow">See how it works <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span>
       </a>
 
       <a href="/faq.html" class="explore-card">
         <span class="explore-num">04</span>
         <span class="explore-tag">FAQ</span>
-        <h3>Every question worth asking before you trust it</h3>
-        <p>What does it do with your Gmail? What does it store? Straight answers, no vague reassurances.</p>
+        <h3>What it reads, stores, and how personalization actually works.</h3>
+        <p>Straight answers to the questions worth asking before you connect your accounts.</p>
         <span class="explore-arrow">Read the FAQ <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span>
       </a>
 
@@ -500,11 +579,16 @@ footer .links a:hover { color: var(--violet-soft); }
   </div>
 </section>
 
-<!-- TELEGRAM NOTE -->
+<!-- TELEGRAM SECTION -->
 <div class="tg-note">
   <div class="wrap">
     <div class="tg-note-inner">
-      <p class="tg-note-text"><strong>New to Telegram?</strong> It's a free messaging app used by 900 million people — not owned by Meta or Google, no ads. Atlas lives inside it like a contact. Download free from the App Store or Google Play, takes 60 seconds.</p>
+      <div>
+        <p class="tg-note-label">Why Telegram</p>
+        <p class="tg-note-heading">It lives in your phone like a contact.</p>
+        <p class="tg-note-text">No dashboard to log into. No app to remember to check. Atlas messages you every morning at the time you set — you reply when you need something. That's the entire interface.</p>
+        <p class="tg-note-text">Telegram is free, has no ads, and isn't owned by Meta or Google. If you don't already have it, setup takes 60 seconds.</p>
+      </div>
       <a href="/how-it-works.html" class="tg-note-link">Full setup guide <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></a>
     </div>
   </div>
@@ -517,8 +601,8 @@ footer .links a:hover { color: var(--violet-soft); }
       <svg class="mark" viewBox="0 0 100 100"><use href="#atlas-mark"/></svg>
       <span class="word">ΛTLΛS</span>
     </div>
-    <h2>Begin Monday<br/>with <em>your advisor.</em></h2>
-    <p class="note">Free · No credit card · 60 seconds</p>
+    <h2>Set up in 60 seconds.<br/><em>First brief tomorrow morning.</em></h2>
+    <p class="note">Free · No credit card · Opens in Telegram</p>
     <form class="hero-form" id="bottom-form">
       <input type="email" id="bottom-email" placeholder="your@email.edu" required autocomplete="email" />
       <button type="submit" class="btn-primary">
@@ -576,10 +660,6 @@ footer .links a:hover { color: var(--violet-soft); }
     successEl.style.display = "block";
     window.location.href = TG_URL;
   }
-  document.getElementById("hero-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-    handleSignup(document.getElementById("hero-email").value.trim(), this, document.getElementById("form-success"));
-  });
   document.getElementById("bottom-form").addEventListener("submit", function(e) {
     e.preventDefault();
     handleSignup(document.getElementById("bottom-email").value.trim(), this, document.getElementById("bottom-success"));
@@ -601,7 +681,7 @@ footer .links a:hover { color: var(--violet-soft); }
   })();
 
   // Scroll arrow
-  document.getElementById('scroll-down').addEventListener('click', () => document.getElementById('explore').scrollIntoView({behavior:'smooth'}));
+  document.getElementById('scroll-down').addEventListener('click', () => document.getElementById('pain').scrollIntoView({behavior:'smooth'}));
   window.addEventListener('scroll', () => document.getElementById('arrow-wrap').classList.toggle('gone', scrollY > 80), {passive:true});
 </script>
 </body>
