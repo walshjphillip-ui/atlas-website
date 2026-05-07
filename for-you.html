@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Who It's For — ATLAS</title>
-<meta name="description" content="Atlas is built for finance, economics, and business students competing for serious opportunities — IB, consulting, PE, VC, and beyond." />
+<meta name="description" content="Atlas is built for finance, economics, and business students competing for serious opportunities. Current market intelligence and future career preparation." />
 <link rel="icon" type="image/svg+xml" href="logo.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -55,8 +55,7 @@ nav {
   padding: 0 clamp(20px, 3vw, 40px); height: 100%;
 }
 .nav-links a { font-size: 13px; font-weight: 500; color: var(--dim); letter-spacing: 0.02em; transition: color 0.18s; white-space: nowrap; }
-.nav-links a:hover { color: var(--ink); }
-.nav-links a.active { color: var(--ink); }
+.nav-links a:hover, .nav-links a.active { color: var(--ink); }
 .nav-cta {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 9px 16px; background: var(--ink); color: #0A0612;
@@ -104,7 +103,7 @@ nav {
   position: relative; z-index: 1;
 }
 
-/* SECTION LABEL */
+/* SEC LABEL */
 .sec-label {
   display: inline-flex; align-items: center; gap: 10px;
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em;
@@ -131,13 +130,9 @@ nav {
 @media (max-width: 680px) { .persona-grid { grid-template-columns: 1fr; } }
 .persona-card {
   background: var(--bg); padding: clamp(32px, 4vw, 48px);
-  display: flex; flex-direction: column; gap: 20px;
+  display: flex; flex-direction: column; gap: 18px;
 }
-.persona-label {
-  display: flex; align-items: center; gap: 14px;
-}
-.persona-emoji { font-size: 26px; }
-.persona-role {
+.persona-track {
   font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--violet-soft);
 }
@@ -145,6 +140,7 @@ nav {
   font-family: var(--serif); font-weight: 400;
   font-size: clamp(20px, 2.5vw, 26px);
   letter-spacing: -0.018em; color: var(--ink);
+  line-height: 1.15;
 }
 .persona-card p {
   font-size: 14.5px; line-height: 1.7; color: var(--ink-2);
@@ -155,42 +151,39 @@ nav {
 }
 .persona-uses li {
   display: flex; gap: 12px; align-items: flex-start;
-  font-size: 13.5px; line-height: 1.55; color: var(--ink-2);
+  font-size: 14px; line-height: 1.5; color: var(--ink-2);
 }
 .persona-uses li::before {
   content: "→"; color: var(--gain); font-family: var(--mono);
   font-size: 12px; flex-shrink: 0; margin-top: 1px;
 }
 
-/* NOT FOR */
-.not-for {
+/* FIT SECTION */
+.fit {
   padding: clamp(72px, 10vh, 108px) 0;
   border-bottom: 1px solid var(--line-soft);
 }
-.not-for-grid {
+.fit-grid {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: clamp(48px, 7vw, 88px); align-items: start;
 }
-@media (max-width: 680px) { .not-for-grid { grid-template-columns: 1fr; } }
-.not-for h2 {
+@media (max-width: 680px) { .fit-grid { grid-template-columns: 1fr; } }
+.fit h2 {
   font-family: var(--serif); font-weight: 300;
-  font-size: clamp(28px, 4vw, 44px);
-  letter-spacing: -0.025em; color: var(--ink);
-  text-wrap: balance; margin-bottom: 16px;
-}
-.not-for .lead {
-  font-size: 16px; line-height: 1.7; color: var(--ink-2); margin-bottom: 32px;
+  font-size: clamp(26px, 3.6vw, 38px);
+  letter-spacing: -0.022em; color: var(--ink);
+  text-wrap: balance; margin-bottom: 28px;
 }
 .check-list {
   list-style: none; display: flex; flex-direction: column; gap: 14px;
 }
 .check-list li {
   display: flex; gap: 14px; font-size: 15px;
-  line-height: 1.6; color: var(--ink-2); align-items: flex-start;
+  line-height: 1.55; color: var(--ink-2); align-items: flex-start;
 }
-.check-list li .icon { flex-shrink: 0; margin-top: 1px; }
+.check-list li .icon { flex-shrink: 0; margin-top: 1px; font-style: normal; }
 .check-list li .icon.yes { color: var(--gain); }
-.check-list li .icon.no { color: var(--loss); }
+.check-list li .icon.no  { color: var(--loss); }
 
 /* QUOTE */
 .quote-section {
@@ -293,75 +286,63 @@ footer .links a:hover { color: var(--violet-soft); }
       <span class="sep">/</span>
       <span>Who it's for</span>
     </div>
-    <h1>Built for one<br/>type of <em>student.</em></h1>
-    <p class="sub">Atlas isn't trying to help everyone. It was designed around students competing for finance, consulting, and business roles at the highest level. If that's you, read on.</p>
+    <h1>Made for students<br/>competing for the<br/><em>top spots.</em></h1>
+    <p class="sub">Atlas isn't a general tool. It was built around the specific needs of students in finance, economics, and business who are serious about what comes after graduation.</p>
   </div>
 </header>
 
 <!-- STUDENT PROFILES -->
 <section class="personas" id="profiles">
   <div class="wrap">
-    <div class="sec-label"><span class="bar"></span>Student Profiles</div>
-    <h2>The students Atlas is built around</h2>
+    <div class="sec-label"><span class="bar"></span>Who gets real value from this</div>
+    <h2>Four types of students. One advisor.</h2>
     <div class="persona-grid">
 
       <div class="persona-card">
-        <div class="persona-label">
-          <span class="persona-emoji">📊</span>
-          <span class="persona-role">Finance / IB Track</span>
-        </div>
-        <h3>Gunning for investment banking</h3>
-        <p>Sophomore or junior. Summer analyst recruiting cycle. You're tracking multiple applications, prepping technicals, and trying to stay current on the market — all while taking 18 credits.</p>
+        <span class="persona-track">Finance / IB Track</span>
+        <h3>Targeting investment banking or finance roles</h3>
+        <p>Sophomore or junior. Recruiting cycle active. Tracking multiple applications while staying current on the market and prepping for technical interviews.</p>
         <ul class="persona-uses">
-          <li>Morning brief covers your watchlist tickers and sector moves before 8 AM</li>
-          <li>Interview prep drills you on Goldman/JPM/Lazard formats specifically</li>
-          <li>Application tracker shows your pipeline by stage — who's at first round, who's at superday</li>
-          <li>Cold email drafts go to your Gmail before you've had coffee</li>
+          <li>Morning brief covers your watchlist and sector moves before 8 AM</li>
+          <li>Interview drills in Goldman, JPMorgan, and Lazard formats</li>
+          <li>Cold email drafts that reference the firm's actual recent work</li>
+          <li>Application pipeline tracked by stage without a spreadsheet</li>
         </ul>
       </div>
 
       <div class="persona-card">
-        <div class="persona-label">
-          <span class="persona-emoji">📈</span>
-          <span class="persona-role">Economics Major</span>
-        </div>
-        <h3>Economics student, market-obsessed</h3>
-        <p>You're tracking macro developments, following Fed policy, and trying to build knowledge that makes you stand out in interviews and classroom discussions.</p>
+        <span class="persona-track">Economics Major</span>
+        <h3>Market-aware, building real fluency fast</h3>
+        <p>You follow macro developments and Fed policy. You want to understand what's happening in markets, not just hear that "stocks were up."</p>
         <ul class="persona-uses">
-          <li>Daily brief synthesizes Fed news, macro moves, and economic data into one read</li>
-          <li>Ask Atlas about any economic concept — it explains, doesn't just link</li>
-          <li>Market alerts for key levels in equities, rates, or commodities</li>
-          <li>News filtered by your interests — not a generic financial feed</li>
+          <li>Daily brief synthesizes macro news and market moves for your goals</li>
+          <li>Ask Atlas about any economic concept in plain language</li>
+          <li>News filtered by your interests, not a generic financial feed</li>
+          <li>Price alerts for the levels you're watching</li>
         </ul>
       </div>
 
       <div class="persona-card">
-        <div class="persona-label">
-          <span class="persona-emoji">🏢</span>
-          <span class="persona-role">Business / Management</span>
-        </div>
-        <h3>Business student targeting consulting or corporate</h3>
-        <p>You're recruiting broadly — consulting, corporate finance, rotational programs. You need to stay current, prep for case interviews, and manage a wide funnel of applications.</p>
+        <span class="persona-track">Business / Consulting Track</span>
+        <h3>Recruiting broadly across consulting and corporate</h3>
+        <p>You have a wide funnel: consulting, rotational programs, corporate finance. You need case prep, market awareness, and a way to manage 15+ applications at once.</p>
         <ul class="persona-uses">
-          <li>Case prep tailored to McKinsey, Bain, BCG, or firm-specific formats</li>
-          <li>Application tracker manages 15+ opportunities without a spreadsheet</li>
-          <li>Networking CRM tracks every contact from career fairs and LinkedIn</li>
-          <li>Atlas flags follow-ups you've forgotten about before they go cold</li>
+          <li>Case prep in McKinsey, Bain, and BCG formats</li>
+          <li>Application tracker handles a broad pipeline without losing anything</li>
+          <li>Contact log with follow-up dates so no relationship goes cold</li>
+          <li>Brief surfaces deadlines and overdue follow-ups every morning</li>
         </ul>
       </div>
 
       <div class="persona-card">
-        <div class="persona-label">
-          <span class="persona-emoji">⚖️</span>
-          <span class="persona-role">Pre-Law / Policy</span>
-        </div>
-        <h3>Pre-law or policy track with finance exposure</h3>
-        <p>You're tracking economic and regulatory developments. You need market awareness for law school applications, policy work, or finance-adjacent roles.</p>
+        <span class="persona-track">Pre-Law / Policy</span>
+        <h3>Tracking regulatory and economic developments</h3>
+        <p>You're building market and policy awareness for law school applications, government work, or finance-adjacent roles. You need current context, not just case briefs.</p>
         <ul class="persona-uses">
-          <li>Morning brief covers regulatory news, SEC, Fed, and legislative developments</li>
+          <li>Brief covers regulatory news, SEC, Fed, and legislative developments</li>
           <li>Behavioral interview prep for law firm and government positions</li>
-          <li>Atlas knows your goals and frames market news around policy implications</li>
-          <li>Application tracker works for law school apps and summer associate recruiting</li>
+          <li>Atlas frames market news through policy and legal implications</li>
+          <li>Application tracker works for law school apps and summer programs</li>
         </ul>
       </div>
 
@@ -369,32 +350,29 @@ footer .links a:hover { color: var(--violet-soft); }
   </div>
 </section>
 
-<!-- IS THIS FOR YOU -->
-<section class="not-for" id="fit">
+<!-- FIT CHECK -->
+<section class="fit" id="fit">
   <div class="wrap">
-    <div class="not-for-grid">
+    <div class="fit-grid">
       <div>
-        <div class="sec-label"><span class="bar"></span>Is this for me?</div>
-        <h2>You'll get the most out of Atlas if…</h2>
-        <p class="lead">Atlas is specialized, not general-purpose. It's at its best when you're actively recruiting, tracking opportunities, and trying to stay ahead of your peers.</p>
+        <div class="sec-label"><span class="bar"></span>You'll get the most out of Atlas if</div>
+        <h2>This is for you.</h2>
         <ul class="check-list">
-          <li><span class="icon yes">✓</span> You're in undergrad and actively recruiting for finance, IB, consulting, or business roles</li>
-          <li><span class="icon yes">✓</span> You care about market movements and want to understand them — not just track a portfolio</li>
-          <li><span class="icon yes">✓</span> You have multiple applications open at different stages and struggle to track them</li>
-          <li><span class="icon yes">✓</span> You meet people at career fairs and networking events and want to actually follow up</li>
-          <li><span class="icon yes">✓</span> You want to prep for specific firm interviews, not just generic "tell me about yourself" practice</li>
-          <li><span class="icon yes">✓</span> You hate opening a new app just to check something — you want it in your messages</li>
+          <li><i class="icon yes">✓</i> You're actively recruiting for finance, IB, consulting, or business roles</li>
+          <li><i class="icon yes">✓</i> You want to understand market moves, not just track a portfolio</li>
+          <li><i class="icon yes">✓</i> You have multiple applications open and struggle to track them all</li>
+          <li><i class="icon yes">✓</i> You want to prep for specific firm interviews, not generic "tell me about yourself" practice</li>
+          <li><i class="icon yes">✓</i> You hate opening a new app to check something — you want it in your messages</li>
         </ul>
       </div>
       <div>
-        <h2 style="margin-bottom:16px;">Probably not the right fit if…</h2>
-        <p class="lead" style="margin-bottom:32px;">Atlas is focused. That's intentional — but it means it's not trying to be your general homework assistant.</p>
+        <div class="sec-label"><span class="bar"></span>Probably not the right fit if</div>
+        <h2>This is not for you.</h2>
         <ul class="check-list">
-          <li><span class="icon no">✗</span> You want help with essays, research papers, or general coursework</li>
-          <li><span class="icon no">✗</span> You're looking for a general-purpose AI assistant — use ChatGPT for that</li>
-          <li><span class="icon no">✗</span> You have no interest in finance, markets, or professional recruiting</li>
-          <li><span class="icon no">✗</span> You want a social app or community — Atlas is one-on-one</li>
-          <li><span class="icon no">✗</span> You're not on Telegram and won't be — the whole experience lives there</li>
+          <li><i class="icon no">✗</i> You want help with essays, research papers, or homework</li>
+          <li><i class="icon no">✗</i> You're looking for a general-purpose AI assistant</li>
+          <li><i class="icon no">✗</i> You have no interest in finance, markets, or professional recruiting</li>
+          <li><i class="icon no">✗</i> You're not on Telegram and won't be</li>
         </ul>
       </div>
     </div>
@@ -405,9 +383,9 @@ footer .links a:hover { color: var(--violet-soft); }
 <section class="quote-section">
   <div class="wrap">
     <p class="pull-quote">
-      "The students who get the offer aren't smarter. They're <em>more prepared, more consistent,</em> and more informed. Atlas is the infrastructure for that."
+      "The students who get the offer aren't smarter. They're <em>more prepared, more consistent,</em> and more informed."
     </p>
-    <p class="quote-attr">— Phillip Walsh, builder of Atlas</p>
+    <p class="quote-attr">Phillip Walsh, builder of Atlas</p>
   </div>
 </section>
 
@@ -415,7 +393,7 @@ footer .links a:hover { color: var(--violet-soft); }
 <section class="end">
   <div class="wrap" style="position:relative;">
     <h2>Sounds like you?<br/><em>Start for free.</em></h2>
-    <p class="note">Beta · No credit card · Takes 60 seconds</p>
+    <p class="note">Beta · No credit card · 60 seconds</p>
     <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener" class="cta-btn">
       Open Atlas in Telegram
       <svg viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
@@ -431,7 +409,7 @@ footer .links a:hover { color: var(--violet-soft); }
   </div>
   <div class="links">
     <a href="/about.html">About</a>
-    <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener">Telegram ↗</a>
+    <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener">Telegram</a>
     <a href="/privacy.html">Privacy</a>
   </div>
 </footer>

@@ -55,8 +55,7 @@ nav {
   padding: 0 clamp(20px, 3vw, 40px); height: 100%;
 }
 .nav-links a { font-size: 13px; font-weight: 500; color: var(--dim); letter-spacing: 0.02em; transition: color 0.18s; white-space: nowrap; }
-.nav-links a:hover { color: var(--ink); }
-.nav-links a.active { color: var(--ink); }
+.nav-links a:hover, .nav-links a.active { color: var(--ink); }
 .nav-cta {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 9px 16px; background: var(--ink); color: #0A0612;
@@ -104,19 +103,11 @@ nav {
   position: relative; z-index: 1;
 }
 
-/* SECTION LABEL */
-.sec-label {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--violet-soft); margin-bottom: 20px;
-}
-.sec-label .bar { width: 24px; height: 1px; background: var(--violet-deep); }
-
 /* FAQ LAYOUT */
 .faq-layout {
-  display: grid; grid-template-columns: 220px 1fr;
+  display: grid; grid-template-columns: 200px 1fr;
   gap: clamp(40px, 6vw, 80px); align-items: start;
-  padding: clamp(72px, 10vh, 108px) 0;
+  padding: clamp(72px, 10vh, 108px) 0 clamp(80px, 10vh, 120px);
 }
 @media (max-width: 840px) { .faq-layout { grid-template-columns: 1fr; } .faq-nav { display: none; } }
 
@@ -138,22 +129,18 @@ nav {
 .faq-nav a:hover { color: var(--ink); }
 
 /* FAQ GROUPS */
-.faq-groups {
-  display: flex; flex-direction: column; gap: 60px;
-}
+.faq-groups { display: flex; flex-direction: column; gap: 56px; }
 .faq-group-title {
   font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
   text-transform: uppercase; color: var(--violet-soft);
-  margin-bottom: 28px; padding-bottom: 16px;
+  margin-bottom: 24px; padding-bottom: 14px;
   border-bottom: 1px solid var(--line);
 }
 .faq-list {
   display: flex; flex-direction: column; gap: 0;
   border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
 }
-.faq-item {
-  border-bottom: 1px solid var(--line);
-}
+.faq-item { border-bottom: 1px solid var(--line); }
 .faq-item:last-child { border-bottom: none; }
 .faq-q {
   display: flex; justify-content: space-between; align-items: flex-start;
@@ -162,9 +149,7 @@ nav {
 }
 .faq-q:hover { background: var(--bg-2); }
 .faq-q::-webkit-details-marker { display: none; }
-.faq-q-text {
-  font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.4;
-}
+.faq-q-text { font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.4; }
 .faq-chevron {
   flex-shrink: 0; width: 18px; height: 18px; margin-top: 2px;
   color: var(--dimmer); transition: transform 0.22s, color 0.18s;
@@ -177,15 +162,13 @@ details[open] .faq-chevron { transform: rotate(180deg); color: var(--violet-soft
   border-top: 1px solid var(--line-soft);
 }
 .faq-a p { padding-top: 18px; }
-.faq-a p + p { margin-top: 12px; }
+.faq-a p + p { margin-top: 10px; }
 .faq-a a { color: var(--violet-soft); border-bottom: 1px solid var(--violet-deep); }
 .faq-a ul, .faq-a ol {
-  padding-top: 16px; padding-left: 0; list-style: none;
-  display: flex; flex-direction: column; gap: 10px;
+  padding-top: 14px; list-style: none;
+  display: flex; flex-direction: column; gap: 9px;
 }
-.faq-a ul li, .faq-a ol li {
-  display: flex; gap: 12px; align-items: flex-start;
-}
+.faq-a ul li, .faq-a ol li { display: flex; gap: 12px; align-items: flex-start; }
 .faq-a ul li::before {
   content: "→"; color: var(--violet-soft); font-family: var(--mono);
   font-size: 12px; flex-shrink: 0; margin-top: 2px;
@@ -200,39 +183,35 @@ details[open] .faq-chevron { transform: rotate(180deg); color: var(--violet-soft
 
 /* TRUST BOX */
 .trust-box {
-  margin-top: 60px; padding: clamp(32px, 4vw, 48px);
+  margin-top: 56px; padding: clamp(28px, 4vw, 44px);
   background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px;
 }
 .trust-box h3 {
   font-family: var(--serif); font-weight: 300;
   font-size: clamp(20px, 2.8vw, 28px);
-  letter-spacing: -0.02em; color: var(--ink); margin-bottom: 16px;
+  letter-spacing: -0.02em; color: var(--ink); margin-bottom: 12px;
 }
-.trust-box p {
-  font-size: 15px; line-height: 1.7; color: var(--ink-2); margin-bottom: 20px;
-}
+.trust-box p { font-size: 15px; line-height: 1.7; color: var(--ink-2); }
 .trust-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 16px; margin-top: 24px;
+  gap: 14px; margin-top: 22px;
 }
 @media (max-width: 640px) { .trust-grid { grid-template-columns: 1fr; } }
 .trust-item {
-  padding: 16px 20px;
+  padding: 14px 18px;
   background: var(--bg); border: 1px solid var(--line); border-radius: 4px;
 }
 .trust-item .t-label {
   font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em;
-  text-transform: uppercase; color: var(--dim); margin-bottom: 8px;
+  text-transform: uppercase; color: var(--dim); margin-bottom: 7px;
 }
-.trust-item .t-val {
-  font-size: 13.5px; line-height: 1.55; color: var(--ink-2);
-}
+.trust-item .t-val { font-size: 13.5px; line-height: 1.55; color: var(--ink-2); }
 .trust-item .t-val .good { color: var(--gain); font-weight: 600; }
 .trust-item .t-val .bad { color: var(--loss); }
 
 /* END CTA */
 .end {
-  padding: clamp(100px, 13vh, 150px) 0 clamp(80px, 10vh, 120px);
+  padding: clamp(80px, 11vh, 120px) 0 clamp(80px, 10vh, 120px);
   text-align: center; position: relative; overflow: hidden;
   border-top: 1px solid var(--line-soft);
 }
@@ -271,6 +250,7 @@ footer {
   display: flex; justify-content: space-between; align-items: center;
   flex-wrap: wrap; gap: 16px;
   font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.04em;
+  border-top: 1px solid var(--line-soft);
 }
 footer .left { display: flex; align-items: center; gap: 12px; }
 footer .left svg { width: 18px; height: 18px; opacity: 0.8; }
@@ -307,8 +287,8 @@ footer .links a:hover { color: var(--violet-soft); }
       <span class="sep">/</span>
       <span>FAQ</span>
     </div>
-    <h1>Every question you'd ask<br/>before <em>trusting it.</em></h1>
-    <p class="sub">Straight answers. No vague reassurances. If something isn't clear, it belongs here.</p>
+    <h1>Every question worth asking<br/>before <em>trusting it.</em></h1>
+    <p class="sub">Straight answers. No vague reassurances.</p>
   </div>
 </header>
 
@@ -316,18 +296,16 @@ footer .links a:hover { color: var(--violet-soft); }
 <div class="wrap">
   <div class="faq-layout">
 
-    <!-- Sidebar nav -->
+    <!-- Sidebar -->
     <nav class="faq-nav" aria-label="FAQ sections">
       <div class="faq-nav-label">Sections</div>
       <a href="#general">General</a>
       <a href="#telegram">Telegram</a>
-      <a href="#gmail">Gmail & Google</a>
-      <a href="#privacy">Privacy & Data</a>
+      <a href="#gmail">Gmail</a>
+      <a href="#privacy">Privacy</a>
       <a href="#features">Features</a>
-      <a href="#account">Account</a>
     </nav>
 
-    <!-- FAQ groups -->
     <div class="faq-groups">
 
       <!-- GENERAL -->
@@ -337,29 +315,17 @@ footer .links a:hover { color: var(--violet-soft); }
 
           <details class="faq-item">
             <summary class="faq-q">
-              <span class="faq-q-text">What is Atlas?</span>
+              <span class="faq-q-text">How is Atlas different from ChatGPT?</span>
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </summary>
             <div class="faq-a">
-              <p>Atlas is a personal AI advisor for ambitious students — primarily those in finance, economics, and business. It lives in Telegram and texts you proactively: a personalized morning brief, market alerts, deadline reminders, and follow-up nudges.</p>
-              <p>It's also a tool you can talk to: ask market questions, prep for interviews, draft cold emails, track applications, and log networking contacts. Unlike general AI tools, Atlas builds a profile of you over time and tailors everything around your actual goals.</p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-q">
-              <span class="faq-q-text">How is Atlas different from just using ChatGPT?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
-            </summary>
-            <div class="faq-a">
-              <p>ChatGPT and similar tools are general-purpose: they wait for you to ask something and answer without any knowledge of who you are or what you're working toward.</p>
-              <p>Atlas is different in three ways:</p>
+              <p>ChatGPT waits for you to ask something and answers without knowing who you are. Atlas is different in three ways:</p>
               <ul>
-                <li>It knows you — your school, major, career goals, applications, contacts, and watchlist are all part of how it responds</li>
-                <li>It texts you first — morning briefs, alerts, and reminders are pushed to you, not waiting for you to log in</li>
-                <li>It takes actions — saves Gmail drafts, tracks applications, logs contacts, sets reminders, watches stock prices</li>
+                <li>It knows you. Your school, major, career goals, applications, and watchlist all shape how it responds.</li>
+                <li>It texts you first. Morning briefs, alerts, and reminders come to you — you don't have to ask.</li>
+                <li>It takes actions. Saves Gmail drafts, tracks applications, sets reminders, watches stock prices.</li>
               </ul>
-              <p>Use ChatGPT for homework, essays, and general questions. Use Atlas for everything career and market related.</p>
+              <p>Use ChatGPT for homework and general questions. Use Atlas for everything career and market related.</p>
             </div>
           </details>
 
@@ -369,19 +335,17 @@ footer .links a:hover { color: var(--violet-soft); }
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </summary>
             <div class="faq-a">
-              <p>Atlas is completely free during the beta. No credit card required. No trial period that auto-converts to paid.</p>
-              <p>It's in beta now, which means features are still being added and some things may change. The goal is to keep it free or low-cost for students long-term. If that ever changes, existing users will get advance notice.</p>
+              <p>Completely free during beta. No credit card, no trial that converts to paid. The goal is to keep it free or very low-cost for students. If that ever changes, existing users get advance notice.</p>
             </div>
           </details>
 
           <details class="faq-item">
             <summary class="faq-q">
-              <span class="faq-q-text">What does "beta" mean in practice?</span>
+              <span class="faq-q-text">What does "beta" mean?</span>
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </summary>
             <div class="faq-a">
-              <p>It means Atlas is functional and being used by real students, but it's still being actively developed. New features are added regularly. Occasionally something may not work perfectly — if you hit a bug, just tell Atlas directly and it gets flagged.</p>
-              <p>Being in beta also means your feedback actually shapes the product. If something is annoying or a feature is missing, say so.</p>
+              <p>Atlas is functional and used by real students, but still actively being developed. New features ship regularly. If something doesn't work right, tell Atlas directly — it gets flagged. Your feedback shapes what gets built next.</p>
             </div>
           </details>
 
@@ -395,12 +359,12 @@ footer .links a:hover { color: var(--violet-soft); }
 
           <details class="faq-item">
             <summary class="faq-q">
-              <span class="faq-q-text">Why does Atlas use Telegram instead of its own app?</span>
+              <span class="faq-q-text">Why does Atlas use Telegram?</span>
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </summary>
             <div class="faq-a">
-              <p>Two reasons. First, you already check your messages. Atlas goes where you already are — you don't have to remember to open a separate app.</p>
-              <p>Second, Atlas is built to text you proactively. Morning briefs, market alerts, and reminders are push notifications that arrive in your messages — the same way a text from a real person does. That wouldn't work in a web app or ChatGPT-style interface.</p>
+              <p>You already check your messages. Atlas goes where you already are — no separate app to remember to open.</p>
+              <p>And because Atlas texts you proactively (morning briefs, alerts, reminders), it needs to live somewhere with push notifications. That works in a messaging app. It doesn't work in a web app or ChatGPT-style interface.</p>
             </div>
           </details>
 
@@ -410,18 +374,8 @@ footer .links a:hover { color: var(--violet-soft); }
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </summary>
             <div class="faq-a">
-              <p>Telegram is a messaging app used by over 900 million people worldwide. Think WhatsApp or iMessage — except it's not owned by Meta or Google, and it doesn't run ads or sell your data to advertisers.</p>
-              <p>All messages are encrypted in transit. Telegram doesn't read your messages or share them with third parties for advertising. Your Telegram account is private — Atlas only sees messages you send directly to it.</p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-q">
-              <span class="faq-q-text">Does Atlas have access to my other Telegram conversations?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
-            </summary>
-            <div class="faq-a">
-              <p>No. Atlas is a Telegram bot — it can only see messages sent directly to it in your conversation with Atlas. It has no access to your other chats, groups, contacts, or any other data on your Telegram account. Telegram's bot API is designed this way.</p>
+              <p>Telegram is a free messaging app used by 900 million people worldwide. It's not owned by Meta or Google, runs no ads, and doesn't sell your data. All messages are encrypted in transit.</p>
+              <p>Atlas only sees messages you send directly to it. It has no access to your other Telegram conversations, contacts, or anything else on the app.</p>
             </div>
           </details>
 
@@ -431,7 +385,7 @@ footer .links a:hover { color: var(--violet-soft); }
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </summary>
             <div class="faq-a">
-              <p>Download it free from the <a href="https://apps.apple.com/app/telegram-messenger/id686449807" target="_blank" rel="noopener">App Store</a> or <a href="https://play.google.com/store/apps/details?id=org.telegram.messenger" target="_blank" rel="noopener">Google Play</a>. Sign up with your phone number — same process as WhatsApp. It takes about 60 seconds. Then tap the "Open in Telegram" button above and you're in.</p>
+              <p>Download it free from the <a href="https://apps.apple.com/app/telegram-messenger/id686449807" target="_blank" rel="noopener">App Store</a> or <a href="https://play.google.com/store/apps/details?id=org.telegram.messenger" target="_blank" rel="noopener">Google Play</a>. Sign up with your phone number, same as WhatsApp. Takes about 60 seconds. Then tap "Open in Telegram" above.</p>
             </div>
           </details>
 
@@ -440,7 +394,7 @@ footer .links a:hover { color: var(--violet-soft); }
 
       <!-- GMAIL -->
       <div id="gmail">
-        <div class="faq-group-title">Gmail & Google</div>
+        <div class="faq-group-title">Gmail</div>
         <div class="faq-list">
 
           <details class="faq-item">
@@ -449,37 +403,27 @@ footer .links a:hover { color: var(--violet-soft); }
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </summary>
             <div class="faq-a">
-              <p><strong>No.</strong> Atlas only has permission to create drafts. It cannot read, access, or interact with any emails in your inbox, sent folder, or anywhere else in your Gmail account.</p>
-              <p>When you connect Gmail, you go through Google's standard OAuth flow and grant only the specific permission needed: <code>gmail.compose</code>. That permission lets Atlas write a draft and save it. Nothing else.</p>
+              <p><strong>No.</strong> Atlas only has permission to create drafts. It cannot read, access, or interact with anything in your inbox. When you connect Gmail, you authorize one specific scope — <code>gmail.compose</code> — which only allows writing drafts. Nothing else.</p>
             </div>
           </details>
 
           <details class="faq-item">
             <summary class="faq-q">
-              <span class="faq-q-text">Can Atlas send emails on my behalf?</span>
+              <span class="faq-q-text">Can Atlas send emails for me?</span>
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </summary>
             <div class="faq-a">
-              <p>No. Atlas saves drafts. You review the draft, decide if you want to send it, and hit send yourself. Atlas never sends mail without your explicit action. This is a deliberate design choice — every email that goes out is reviewed by you first.</p>
+              <p>No. Atlas saves a draft. You read it, adjust if needed, and hit send yourself. Every email that goes out is reviewed by you first.</p>
             </div>
           </details>
 
           <details class="faq-item">
             <summary class="faq-q">
-              <span class="faq-q-text">What exactly does Gmail access allow?</span>
+              <span class="faq-q-text">Is Gmail required?</span>
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </summary>
             <div class="faq-a">
-              <p>The only Gmail permission Atlas requests is <code>gmail.compose</code>, which is the most restricted Gmail scope available. Here's exactly what it does and doesn't allow:</p>
-              <ul>
-                <li>✓ Create drafts in your Gmail drafts folder</li>
-                <li>✗ Cannot read any existing emails</li>
-                <li>✗ Cannot send emails</li>
-                <li>✗ Cannot delete emails</li>
-                <li>✗ Cannot access your contacts</li>
-                <li>✗ Cannot access Google Drive, Calendar, or any other Google service</li>
-              </ul>
-              <p>You can verify this yourself by going to <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a> after connecting — it shows exactly what permissions any connected app has.</p>
+              <p>No. Gmail is entirely optional. Every feature (briefs, interview prep, application tracking, market data, reminders) works without it. Connecting Gmail just adds the ability to save cold email drafts directly to your inbox so you don't have to copy and paste.</p>
             </div>
           </details>
 
@@ -489,17 +433,7 @@ footer .links a:hover { color: var(--violet-soft); }
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </summary>
             <div class="faq-a">
-              <p>Two ways. Either tell Atlas "disconnect my Gmail" and it handles it, or go directly to <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a> and revoke access there. Either method immediately removes Atlas's ability to create drafts.</p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-q">
-              <span class="faq-q-text">Is Gmail connection required to use Atlas?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
-            </summary>
-            <div class="faq-a">
-              <p>No. Gmail is entirely optional. Every feature — morning briefs, interview prep, application tracking, market data, reminders — works without it. Connecting Gmail just adds the ability to save cold email drafts directly to your inbox instead of copying and pasting them yourself.</p>
+              <p>Tell Atlas "disconnect my Gmail" or go to <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a> and revoke access there. Either method removes access immediately.</p>
             </div>
           </details>
 
@@ -508,7 +442,7 @@ footer .links a:hover { color: var(--violet-soft); }
 
       <!-- PRIVACY -->
       <div id="privacy">
-        <div class="faq-group-title">Privacy & Data</div>
+        <div class="faq-group-title">Privacy and Data</div>
         <div class="faq-list">
 
           <details class="faq-item">
@@ -517,8 +451,8 @@ footer .links a:hover { color: var(--violet-soft); }
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </summary>
             <div class="faq-a">
-              <p>Atlas stores what you tell it: your name, school, major, career goal, interests, hometown, watchlist, market sector preferences, applications, contacts, and reminders. It also stores notes from your conversations that are relevant to your profile — things like "told me they have a Goldman first round" or "interested in restructuring."</p>
-              <p>It does not store your Telegram messages verbatim. It stores the profile information and structured data (applications, contacts, reminders) that you explicitly provide.</p>
+              <p>Atlas stores what you tell it: your name, school, major, career goal, interests, hometown, watchlist, market preferences, applications, contacts, and reminders. It also saves relevant notes from your conversations that help personalize future responses.</p>
+              <p>It does not store your Telegram messages verbatim or any data from your Gmail inbox.</p>
             </div>
           </details>
 
@@ -528,28 +462,17 @@ footer .links a:hover { color: var(--violet-soft); }
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </summary>
             <div class="faq-a">
-              <p>No. Your data is never sold, shared with advertisers, or used to target you with ads. Atlas is a tool — your data exists to make Atlas more useful to you, not to be monetized.</p>
+              <p>No. Your data is never sold, shared with advertisers, or used to target you with ads. It exists to make Atlas more useful to you.</p>
             </div>
           </details>
 
           <details class="faq-item">
             <summary class="faq-q">
-              <span class="faq-q-text">How do I delete my data?</span>
+              <span class="faq-q-text">How do I delete my account and data?</span>
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </summary>
             <div class="faq-a">
-              <p>Tell Atlas "delete my account and all my data" — it will remove your profile, applications, contacts, reminders, and memory notes from the database entirely. If you want confirmation or have trouble, you can also email the address in the privacy policy.</p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-q">
-              <span class="faq-q-text">Who built Atlas and who has access to my data?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
-            </summary>
-            <div class="faq-a">
-              <p>Atlas was built by Phillip Walsh, an Economics student at the University of Tampa. It's an independent project. User data is stored in a secured database (Supabase) with row-level security enabled. No one else has access to your individual data.</p>
-              <p>See the <a href="/about.html">About page</a> for more on who built it and why, and the <a href="/privacy.html">Privacy Policy</a> for the full technical breakdown.</p>
+              <p>Tell Atlas "delete my account and all my data." It removes your profile, applications, contacts, reminders, and memory notes from the database entirely. You can also email the address in the <a href="/privacy.html">privacy policy</a> for confirmation.</p>
             </div>
           </details>
 
@@ -567,7 +490,7 @@ footer .links a:hover { color: var(--violet-soft); }
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </summary>
             <div class="faq-a">
-              <p>The brief is sent in the early morning — typically before 8 AM. The exact timing may vary slightly. You can also request it manually at any time by typing /brief.</p>
+              <p>Before 8 AM. You can also request it manually at any time by typing /brief.</p>
             </div>
           </details>
 
@@ -577,76 +500,27 @@ footer .links a:hover { color: var(--violet-soft); }
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </summary>
             <div class="faq-a">
-              <p>Yes. Just tell Atlas. "Change my career goal to private equity," "add AAPL to my watchlist," "update my major to Finance" — it handles natural language updates and saves them immediately.</p>
+              <p>Yes. Just tell Atlas. "Change my career goal to private equity," "add AAPL to my watchlist," "update my major to Finance." Natural language updates save immediately.</p>
             </div>
           </details>
 
           <details class="faq-item">
             <summary class="faq-q">
-              <span class="faq-q-text">How does the interview prep work?</span>
+              <span class="faq-q-text">How does interview prep work?</span>
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </summary>
             <div class="faq-a">
-              <p>Tell Atlas which firm and round you're prepping for: "prep me for my Goldman first round" or "practice Blackstone case questions." It will ask you questions in the format expected by that firm, evaluate your answers, and give model responses for anything you get wrong.</p>
-              <p>It covers technicals (DCF, LBO, accounting), behavioral questions, market knowledge, and firm-specific questions. The format changes based on whether it's a first round, superday, or case interview.</p>
+              <p>Tell Atlas which firm and round you're prepping for: "prep me for my Goldman first round" or "practice Blackstone case questions." It asks questions in the format expected for that firm, evaluates your answers, and gives model responses for anything you get wrong.</p>
             </div>
           </details>
 
           <details class="faq-item">
             <summary class="faq-q">
-              <span class="faq-q-text">Does Atlas track my applications across sessions?</span>
+              <span class="faq-q-text">Does Atlas track applications across conversations?</span>
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </summary>
             <div class="faq-a">
-              <p>Yes. Applications are stored in your profile, not just in the conversation. If you say "I got a first round at Goldman," Atlas saves it. The next day it appears in your morning brief. You can view your full tracker anytime by saying "show my applications."</p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-q">
-              <span class="faq-q-text">Can Atlas set reminders?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
-            </summary>
-            <div class="faq-a">
-              <p>Yes. Tell it "remind me to submit my Citi application on May 12th" or "remind me about my Goldman prep session tomorrow at 3 PM." The reminder fires at the specified time as a Telegram message. Upcoming reminders are also surfaced in your morning brief.</p>
-            </div>
-          </details>
-
-        </div>
-      </div>
-
-      <!-- ACCOUNT -->
-      <div id="account">
-        <div class="faq-group-title">Account</div>
-        <div class="faq-list">
-
-          <details class="faq-item">
-            <summary class="faq-q">
-              <span class="faq-q-text">Do I need to create an account?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
-            </summary>
-            <div class="faq-a">
-              <p>No. Your Telegram account is your identity. When you open Atlas and answer the onboarding questions, your profile is created automatically. No email signup, no password, no separate account to manage.</p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-q">
-              <span class="faq-q-text">What happens if I lose access to my Telegram account?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
-            </summary>
-            <div class="faq-a">
-              <p>Your Atlas profile is linked to your Telegram user ID. If you recover your Telegram account (same phone number), Atlas will recognize you. If you get a new phone number, your profile won't carry over automatically — contact via the privacy policy email to sort it out manually.</p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-q">
-              <span class="faq-q-text">How do I stop receiving messages from Atlas?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
-            </summary>
-            <div class="faq-a">
-              <p>You can mute notifications for the Atlas conversation in Telegram settings without losing your profile, or you can type "stop sending briefs" to pause the morning brief specifically. To stop everything and delete your data, say "delete my account."</p>
+              <p>Yes. Applications are stored in your profile, not just in the conversation history. Say "I got a first round at Goldman," and Atlas saves it. It shows up in your morning brief the next day. Type "show my applications" anytime to see the full tracker.</p>
             </div>
           </details>
 
@@ -656,18 +530,18 @@ footer .links a:hover { color: var(--violet-soft); }
       <!-- TRUST BOX -->
       <div class="trust-box">
         <h3>Still have questions?</h3>
-        <p>Atlas is built by one person, not a company with a 5-day support queue. If something isn't clear or something isn't working, you can ask Atlas directly in the chat — or reach out via the contact listed in the <a href="/privacy.html">privacy policy</a>.</p>
+        <p>Atlas is built by one person, not a company with a support queue. If something is unclear or not working, ask Atlas directly in the chat or reach out via the contact in the <a href="/privacy.html">privacy policy</a>.</p>
         <div class="trust-grid">
           <div class="trust-item">
             <div class="t-label">Built by</div>
-            <div class="t-val">Phillip Walsh<br/>University of Tampa, Economics</div>
+            <div class="t-val">Phillip Walsh, University of Tampa Economics</div>
           </div>
           <div class="trust-item">
-            <div class="t-label">Data hosting</div>
-            <div class="t-val"><span class="good">Supabase</span> — row-level security, no public access</div>
+            <div class="t-label">Data</div>
+            <div class="t-val"><span class="good">Secured</span> with row-level access controls. Not public.</div>
           </div>
           <div class="trust-item">
-            <div class="t-label">Ads / data selling</div>
+            <div class="t-label">Ads</div>
             <div class="t-val"><span class="bad">Never.</span> Your data is not a product.</div>
           </div>
         </div>
@@ -697,7 +571,7 @@ footer .links a:hover { color: var(--violet-soft); }
   </div>
   <div class="links">
     <a href="/about.html">About</a>
-    <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener">Telegram ↗</a>
+    <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener">Telegram</a>
     <a href="/privacy.html">Privacy</a>
   </div>
 </footer>

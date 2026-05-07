@@ -43,7 +43,7 @@ button, input { font: inherit; color: inherit; }
 ::selection { background: var(--violet); color: #fff; }
 .wrap { max-width: 1180px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
 
-/* ── NAV ── */
+/* NAV */
 nav {
   position: sticky; top: 0; z-index: 50;
   display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center;
@@ -74,7 +74,7 @@ nav {
 .nav-cta svg { width: 11px; height: 11px; }
 @media (max-width: 900px) { nav { grid-template-columns: auto auto; } .nav-links { display: none; } }
 
-/* ── HERO ── */
+/* HERO */
 .hero {
   padding: clamp(80px, 12vh, 140px) 0 clamp(80px, 10vh, 120px);
   position: relative; overflow: hidden;
@@ -82,13 +82,13 @@ nav {
 .hero::before {
   content: ""; position: absolute; top: -20%; right: -5%;
   width: 800px; height: 800px;
-  background: radial-gradient(circle, rgba(124,77,255,0.15) 0%, transparent 55%);
+  background: radial-gradient(circle, rgba(124,77,255,0.14) 0%, transparent 55%);
   pointer-events: none;
 }
 .hero::after {
   content: ""; position: absolute; bottom: -20%; left: -5%;
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(75,45,186,0.10) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(75,45,186,0.09) 0%, transparent 60%);
   pointer-events: none;
 }
 .hero-grid {
@@ -96,6 +96,7 @@ nav {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: clamp(48px, 7vw, 100px); align-items: center;
 }
+@media (max-width: 840px) { .hero-grid { grid-template-columns: 1fr; } .brief-mock { display: none; } }
 .hero-eyebrow {
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--violet-soft); display: inline-flex; align-items: center; gap: 10px;
@@ -153,85 +154,66 @@ h1.display em {
   color: var(--violet-soft); font-family: var(--mono); font-size: 12px; border-radius: 2px;
 }
 
-/* ── COMPARISON TABLE ── */
-.compare-panel {
-  background: linear-gradient(160deg, #160B26, #0E0720);
-  border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+/* BRIEF MOCK */
+.brief-mock {
+  background: var(--bg-2); border: 1px solid var(--line);
+  border-radius: 10px; overflow: hidden; font-family: var(--mono);
 }
-.compare-head {
-  display: grid; grid-template-columns: 1fr 80px 80px;
-  padding: 14px 20px; border-bottom: 1px solid var(--line);
+.brief-mock-top {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: center;
   background: rgba(124,77,255,0.04);
 }
-.compare-label {
-  font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
-  text-transform: uppercase; text-align: center;
+.brief-sender {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 500; color: var(--ink); letter-spacing: 0.04em;
 }
-.compare-label.other { color: var(--dim); }
-.compare-label.atlas { color: var(--violet-soft); }
-.compare-row {
-  display: grid; grid-template-columns: 1fr 80px 80px;
-  padding: 13px 20px; border-bottom: 1px solid rgba(42,26,64,0.6);
-  align-items: center; transition: background 0.15s;
+.brief-sender-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--gain);
 }
-.compare-row:last-child { border-bottom: none; }
-.compare-row:hover { background: rgba(124,77,255,0.03); }
-.compare-feature { font-size: 13.5px; color: var(--ink-2); }
-.compare-no  { text-align: center; color: var(--loss); font-size: 15px; font-weight: 600; }
-.compare-yes { text-align: center; color: var(--gain); font-size: 15px; font-weight: 600; }
-.compare-atlas-col { background: rgba(124,77,255,0.04); }
+.brief-time {
+  font-size: 10px; color: var(--dimmer); letter-spacing: 0.1em;
+}
+.brief-body {
+  padding: 22px 22px 26px;
+  font-size: 12.5px; line-height: 1.8; color: var(--ink-2);
+}
+.brief-greeting {
+  font-size: 13px; color: var(--ink); font-weight: 500; margin-bottom: 18px;
+}
+.brief-section-label {
+  font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--violet-soft); margin-bottom: 8px; margin-top: 18px;
+  display: block;
+}
+.brief-section-label:first-of-type { margin-top: 0; }
+.brief-market-row {
+  display: grid; grid-template-columns: 50px 1fr auto;
+  gap: 10px; padding: 4px 0; align-items: baseline;
+}
+.brief-ticker { color: var(--ink); font-size: 12px; font-weight: 500; }
+.brief-price  { color: var(--ink-2); font-size: 12px; }
+.brief-up     { color: var(--gain); font-size: 12px; font-weight: 500; }
+.brief-dn     { color: var(--loss); font-size: 12px; font-weight: 500; }
+.brief-news-line { padding: 3px 0; color: var(--ink-2); font-size: 12px; }
+.brief-news-line::before { content: "/ "; color: var(--dimmer); }
+.brief-divider { border: none; border-top: 1px solid var(--line-soft); margin: 18px 0 14px; }
+.brief-action {
+  color: var(--ink); font-size: 12.5px; line-height: 1.65;
+}
+.brief-action + .brief-action { margin-top: 8px; }
+.brief-action::before { content: "→ "; color: var(--violet-soft); }
 
-/* ── DIVIDER ── */
-.section-divider { border: none; border-top: 1px solid var(--line-soft); margin: 0; }
-
-/* ── SECTION LABEL ── */
+/* SECTION LABEL */
 .sec-label {
   display: inline-flex; align-items: center; gap: 10px;
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--violet-soft);
-  margin-bottom: 20px;
+  text-transform: uppercase; color: var(--violet-soft); margin-bottom: 20px;
 }
 .sec-label .bar { width: 24px; height: 1px; background: var(--violet-deep); }
 
-/* ── WHY TELEGRAM ── */
-.why-tg {
-  padding: clamp(80px, 11vh, 120px) 0;
-  border-bottom: 1px solid var(--line-soft);
-}
-.why-tg-grid {
-  display: grid; grid-template-columns: 1.1fr 0.9fr;
-  gap: clamp(48px, 7vw, 100px); align-items: start;
-}
-.why-tg h2 {
-  font-family: var(--serif); font-weight: 300;
-  font-size: clamp(32px, 4.2vw, 52px);
-  letter-spacing: -0.025em; line-height: 1.06;
-  color: var(--ink); text-wrap: balance; margin-bottom: 32px;
-}
-.why-tg-body { display: flex; flex-direction: column; gap: 28px; }
-.why-tg-point h4 {
-  font-size: 15px; font-weight: 600; color: var(--ink);
-  margin-bottom: 8px;
-}
-.why-tg-point p { font-size: 15px; line-height: 1.65; color: var(--ink-2); }
-.why-tg-point p a { color: var(--violet-soft); border-bottom: 1px solid var(--violet-deep); }
-.why-tg-facts {
-  background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
-}
-.why-tg-fact {
-  padding: 20px 24px; border-bottom: 1px solid var(--line);
-  display: flex; flex-direction: column; gap: 5px;
-}
-.why-tg-fact:last-child { border-bottom: none; }
-.fact-label {
-  font-family: var(--mono); font-size: 10px;
-  letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim);
-}
-.fact-value { font-size: 14px; color: var(--ink); line-height: 1.5; }
-.fact-value .good { color: var(--gain); font-weight: 600; }
-@media (max-width: 800px) { .why-tg-grid { grid-template-columns: 1fr; } }
-
-/* ── EXPLORE CARDS ── */
+/* EXPLORE CARDS */
 .explore {
   padding: clamp(80px, 11vh, 120px) 0;
   border-bottom: 1px solid var(--line-soft);
@@ -254,7 +236,6 @@ h1.display em {
   gap: 16px; min-height: 280px;
   text-decoration: none; color: inherit;
   transition: background 0.22s;
-  position: relative;
 }
 .explore-card:hover { background: var(--bg-2); }
 .explore-card:hover .explore-arrow { color: var(--violet-soft); transform: translateX(4px); }
@@ -281,7 +262,29 @@ h1.display em {
 }
 @media (max-width: 680px) { .explore-grid { grid-template-columns: 1fr; } .explore-card { min-height: auto; } }
 
-/* ── END CTA ── */
+/* TELEGRAM NOTE */
+.tg-note {
+  padding: clamp(40px, 6vh, 60px) 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.tg-note-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 24px; flex-wrap: wrap;
+}
+.tg-note-text {
+  font-size: 14px; color: var(--ink-2); max-width: 560px; line-height: 1.65;
+}
+.tg-note-text strong { color: var(--ink); }
+.tg-note-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--violet-soft);
+  white-space: nowrap; flex-shrink: 0;
+  transition: color 0.18s;
+}
+.tg-note-link:hover { color: var(--ink); }
+
+/* END CTA */
 .end {
   padding: clamp(100px, 14vh, 160px) 0 clamp(80px, 10vh, 120px);
   text-align: center; position: relative; overflow: hidden;
@@ -319,7 +322,7 @@ h1.display em {
 .end .hero-form { margin: 28px auto 0; justify-content: center; position: relative; }
 .end #bottom-success { margin: 16px auto 0; }
 
-/* ── FOOTER ── */
+/* FOOTER */
 footer {
   padding: 28px clamp(20px, 4vw, 48px);
   display: flex; justify-content: space-between; align-items: center;
@@ -332,7 +335,7 @@ footer .links { display: flex; gap: 20px; flex-wrap: wrap; }
 footer .links a:hover { color: var(--violet-soft); }
 @media (max-width: 560px) { footer { justify-content: center; text-align: center; } }
 
-/* ── SCROLL ARROW ── */
+/* SCROLL ARROW */
 .scroll-arrow-wrap {
   position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
   z-index: 45; transition: opacity 0.4s, visibility 0.4s;
@@ -384,12 +387,12 @@ footer .links a:hover { color: var(--violet-soft); }
           <span id="market-status">Live · markets open · 9:30–4:00 ET</span>
         </div>
         <h1 class="display">
-          The economic advisor<br/>
+          The advisor<br/>
           built for your<br/>
           <em>ambition.</em>
         </h1>
         <p class="hero-sub">
-          An advisor that knows your goals, watches the market, and texts you what matters — so you wake up ahead of everyone who had to look it up themselves.
+          Knows your goals. Watches the market. Texts you what matters before you even have to ask.
         </p>
         <form class="hero-form" id="hero-form">
           <input type="email" id="hero-email" placeholder="your@email.edu" required autocomplete="email" />
@@ -399,55 +402,48 @@ footer .links a:hover { color: var(--violet-soft); }
           </button>
         </form>
         <p class="form-note">Free in beta · No credit card · Opens Telegram</p>
-        <div id="form-success">✓ You're in. Opening Atlas now…</div>
+        <div id="form-success">You're in. Opening Atlas now...</div>
       </div>
 
-      <!-- Right: comparison table -->
-      <div class="compare-panel">
-        <div class="compare-head">
-          <span></span>
-          <span class="compare-label other">Other AI</span>
-          <span class="compare-label atlas">Atlas</span>
+      <!-- Right: Atlas brief mockup -->
+      <div class="brief-mock">
+        <div class="brief-mock-top">
+          <div class="brief-sender">
+            <span class="brief-sender-dot"></span>
+            Atlas
+          </div>
+          <span class="brief-time">THU · 7:04 AM</span>
         </div>
-        <div class="compare-row">
-          <span class="compare-feature">Knows who you are</span>
-          <span class="compare-no">✗</span>
-          <span class="compare-yes compare-atlas-col">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="compare-feature">Live market data</span>
-          <span class="compare-no">✗</span>
-          <span class="compare-yes compare-atlas-col">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="compare-feature">Texts you first</span>
-          <span class="compare-no">✗</span>
-          <span class="compare-yes compare-atlas-col">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="compare-feature">Memory across sessions</span>
-          <span class="compare-no">✗</span>
-          <span class="compare-yes compare-atlas-col">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="compare-feature">Takes real actions</span>
-          <span class="compare-no">✗</span>
-          <span class="compare-yes compare-atlas-col">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="compare-feature">Interview prep for specific firms</span>
-          <span class="compare-no">✗</span>
-          <span class="compare-yes compare-atlas-col">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="compare-feature">Saves drafts to Gmail</span>
-          <span class="compare-no">✗</span>
-          <span class="compare-yes compare-atlas-col">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="compare-feature">Free to use</span>
-          <span class="compare-no" style="color:var(--dim);font-size:13px">varies</span>
-          <span class="compare-yes compare-atlas-col">✓</span>
+        <div class="brief-body">
+          <div class="brief-greeting">Good morning, Phillip.</div>
+
+          <span class="brief-section-label">Markets</span>
+          <div class="brief-market-row">
+            <span class="brief-ticker">SPY</span>
+            <span class="brief-price">523.40</span>
+            <span class="brief-up">+0.8%</span>
+          </div>
+          <div class="brief-market-row">
+            <span class="brief-ticker">GS</span>
+            <span class="brief-price">481.20</span>
+            <span class="brief-up">+1.2%</span>
+          </div>
+          <div class="brief-market-row">
+            <span class="brief-ticker">NVDA</span>
+            <span class="brief-price">905.60</span>
+            <span class="brief-dn">-0.4%</span>
+          </div>
+
+          <span class="brief-section-label">Top Stories</span>
+          <div class="brief-news-line">Fed holds; two cuts signaled for H2</div>
+          <div class="brief-news-line">Goldman upgrades energy to overweight</div>
+          <div class="brief-news-line">PE deal flow up 34% year over year</div>
+
+          <hr class="brief-divider" />
+
+          <span class="brief-section-label">Your Move Today</span>
+          <div class="brief-action">Goldman first round is tomorrow. Run a DCF drill tonight.</div>
+          <div class="brief-action">Marcus Chen at Blackstone — follow-up is 3 days overdue.</div>
         </div>
       </div>
 
@@ -458,63 +454,6 @@ footer .links a:hover { color: var(--violet-soft); }
     <button class="scroll-arrow" id="scroll-down" aria-label="Scroll down">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </button>
-  </div>
-</section>
-
-<!-- WHY TELEGRAM -->
-<section class="why-tg" id="why-tg">
-  <div class="wrap">
-    <div class="why-tg-grid">
-      <div>
-        <div class="sec-label"><span class="bar"></span>Why Telegram</div>
-        <h2>Why does Atlas run on Telegram instead of its own app?</h2>
-        <div class="why-tg-body">
-          <div class="why-tg-point">
-            <h4>Atlas texts you — you don't check Atlas</h4>
-            <p>Every other AI tool waits for you to show up. Atlas flips that. Your morning brief arrives before you wake up. When NVDA crosses your alert price, you get a text. When a deadline is in two hours, Atlas reaches out. Most tools make you do the work. Atlas does the work and reports back.</p>
-          </div>
-          <div class="why-tg-point">
-            <h4>What is Telegram, exactly?</h4>
-            <p>Telegram is a messaging app used by over 900 million people — think WhatsApp or iMessage, but built with stronger privacy and not owned by Meta or Google. It's free, available on iPhone and Android, and takes 60 seconds to set up with your phone number. Atlas lives inside it the same way a contact does — it's just a conversation.</p>
-          </div>
-          <div class="why-tg-point">
-            <h4>Is it secure?</h4>
-            <p>Yes. Messages are transmitted over encrypted connections. Telegram doesn't read your messages or show you ads. Atlas only sees the messages you send directly to it — it has no access to your other Telegram conversations, your contacts, or anything else on your phone. Your Telegram account is entirely separate from your Atlas profile.</p>
-          </div>
-          <div class="why-tg-point">
-            <h4>Don't have Telegram yet?</h4>
-            <p>Download it free from the <a href="https://apps.apple.com/app/telegram-messenger/id686449807" target="_blank" rel="noopener">App Store</a> or <a href="https://play.google.com/store/apps/details?id=org.telegram.messenger" target="_blank" rel="noopener">Google Play</a>. Sign up with your phone number — same process as WhatsApp. Then tap the link above to open Atlas.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="why-tg-facts">
-        <div class="why-tg-fact">
-          <span class="fact-label">Platform</span>
-          <span class="fact-value">Telegram — <span class="good">900M+ users</span> worldwide</span>
-        </div>
-        <div class="why-tg-fact">
-          <span class="fact-label">Ownership</span>
-          <span class="fact-value">Not owned by Meta, Google, or any ad company</span>
-        </div>
-        <div class="why-tg-fact">
-          <span class="fact-label">Encryption</span>
-          <span class="fact-value">All messages encrypted in transit</span>
-        </div>
-        <div class="why-tg-fact">
-          <span class="fact-label">What Atlas sees</span>
-          <span class="fact-value">Only messages you send directly to Atlas — nothing else on your Telegram</span>
-        </div>
-        <div class="why-tg-fact">
-          <span class="fact-label">App required?</span>
-          <span class="fact-value">Telegram only. Free on iPhone and Android. Takes 60 seconds.</span>
-        </div>
-        <div class="why-tg-fact">
-          <span class="fact-label">Why not a standalone app?</span>
-          <span class="fact-value">You already check your messages. Atlas goes where you already are — no new app to remember to open.</span>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -529,15 +468,15 @@ footer .links a:hover { color: var(--violet-soft); }
         <span class="explore-num">01</span>
         <span class="explore-tag">Features</span>
         <h3>What Atlas actually does for you</h3>
-        <p>Morning briefs, live market intelligence, interview prep, cold emails, application tracking, networking CRM — and it all runs on autopilot.</p>
+        <p>Morning briefs, live market data, interview prep, cold email drafts, application tracking — and it runs on autopilot.</p>
         <span class="explore-arrow">See all features <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span>
       </a>
 
       <a href="/for-you.html" class="explore-card">
         <span class="explore-num">02</span>
         <span class="explore-tag">Who it's for</span>
-        <h3>Built for one type of student</h3>
-        <p>Finance, economics, pre-law, business — if you're competing for serious opportunities, this was designed around your specific needs.</p>
+        <h3>Made for students competing for the top spots</h3>
+        <p>Finance, economics, pre-law, business. If you're serious about what comes next, this was designed around your specific situation.</p>
         <span class="explore-arrow">Is this for me? <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span>
       </a>
 
@@ -545,21 +484,31 @@ footer .links a:hover { color: var(--violet-soft); }
         <span class="explore-num">03</span>
         <span class="explore-tag">How it works</span>
         <h3>Set up in 60 seconds. Then just wait for the text.</h3>
-        <p>Open Telegram, answer 8 questions about your goals, and your first brief arrives tomorrow morning. Nothing to maintain, nothing to configure.</p>
+        <p>Open Telegram, answer 8 questions about your goals, and your first brief arrives tomorrow morning. Nothing to maintain.</p>
         <span class="explore-arrow">See how it works <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span>
       </a>
 
       <a href="/faq.html" class="explore-card">
         <span class="explore-num">04</span>
         <span class="explore-tag">FAQ</span>
-        <h3>Every question you'd ask before trusting it</h3>
-        <p>What does it actually do with my Gmail? Does it read my emails? What does it store about me? Straight answers, no vague reassurances.</p>
+        <h3>Every question worth asking before you trust it</h3>
+        <p>What does it do with your Gmail? What does it store? Straight answers, no vague reassurances.</p>
         <span class="explore-arrow">Read the FAQ <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span>
       </a>
 
     </div>
   </div>
 </section>
+
+<!-- TELEGRAM NOTE -->
+<div class="tg-note">
+  <div class="wrap">
+    <div class="tg-note-inner">
+      <p class="tg-note-text"><strong>New to Telegram?</strong> It's a free messaging app used by 900 million people — not owned by Meta or Google, no ads. Atlas lives inside it like a contact. Download free from the App Store or Google Play, takes 60 seconds.</p>
+      <a href="/how-it-works.html" class="tg-note-link">Full setup guide <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></a>
+    </div>
+  </div>
+</div>
 
 <!-- END CTA -->
 <section class="end">
@@ -577,7 +526,7 @@ footer .links a:hover { color: var(--violet-soft); }
         <svg viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="square"/></svg>
       </button>
     </form>
-    <div id="bottom-success">✓ You're in. Opening Atlas now…</div>
+    <div id="bottom-success">You're in. Opening Atlas now...</div>
   </div>
 </section>
 
@@ -589,7 +538,7 @@ footer .links a:hover { color: var(--violet-soft); }
   </div>
   <div class="links">
     <a href="/about.html">About</a>
-    <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener">Telegram ↗</a>
+    <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener">Telegram</a>
     <a href="/privacy.html">Privacy</a>
   </div>
 </footer>
@@ -652,7 +601,7 @@ footer .links a:hover { color: var(--violet-soft); }
   })();
 
   // Scroll arrow
-  document.getElementById('scroll-down').addEventListener('click', () => document.getElementById('why-tg').scrollIntoView({behavior:'smooth'}));
+  document.getElementById('scroll-down').addEventListener('click', () => document.getElementById('explore').scrollIntoView({behavior:'smooth'}));
   window.addEventListener('scroll', () => document.getElementById('arrow-wrap').classList.toggle('gone', scrollY > 80), {passive:true});
 </script>
 </body>
