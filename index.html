@@ -163,36 +163,18 @@ h1.display em {
   letter-spacing: 0.2em; text-transform: uppercase; color: var(--dimmer);
 }
 .hero-compare-row {
-  display: grid; grid-template-columns: 1fr auto auto;
+  display: grid; grid-template-columns: auto 1fr;
   gap: 14px; align-items: center;
   padding: 14px 22px; border-bottom: 1px solid var(--line-soft);
 }
 .hero-compare-row:last-child { border-bottom: none; }
 .hero-compare-feat {
-  font-size: 13.5px; color: var(--ink-2); line-height: 1.4;
+  font-size: 13.5px; color: var(--ink-2); line-height: 1.45;
 }
 .hero-compare-yes {
-  font-family: var(--mono); font-size: 12px; font-weight: 600;
-  color: var(--gain); display: flex; align-items: center; gap: 6px;
-  min-width: 70px; justify-content: center;
+  font-family: var(--mono); font-size: 13px; font-weight: 600;
+  color: var(--gain); flex-shrink: 0;
 }
-.hero-compare-no {
-  font-family: var(--mono); font-size: 12px;
-  color: var(--dimmer); display: flex; align-items: center; gap: 6px;
-  min-width: 70px; justify-content: center;
-}
-.hero-compare-foot {
-  padding: 12px 22px; background: rgba(10,6,18,0.6);
-  border-top: 1px solid var(--line);
-  display: grid; grid-template-columns: 1fr auto auto; gap: 14px;
-}
-.hero-compare-foot span {
-  font-family: var(--mono); font-size: 9.5px;
-  letter-spacing: 0.18em; text-transform: uppercase;
-}
-.hero-compare-foot .lab { color: var(--dimmer); }
-.hero-compare-foot .h-atlas { color: var(--violet-soft); min-width: 70px; text-align: center; }
-.hero-compare-foot .h-other { color: var(--dimmer); min-width: 70px; text-align: center; }
 
 /* SECTION LABEL */
 .sec-label {
@@ -243,11 +225,20 @@ h1.display em {
 }
 @media (max-width: 680px) { .explore-grid { grid-template-columns: 1fr; } .explore-card { min-height: auto; } }
 
-/* TELEGRAM TRANSITION — soft gradient fade dark→cream */
+/* TELEGRAM TRANSITION — smooth gradient fade dark→cream */
 .tg-transition {
-  height: clamp(80px, 12vh, 140px);
-  background: linear-gradient(180deg, var(--bg) 0%, #1F1A28 35%, #6E5F50 75%, #F2EDE4 100%);
-  border-top: 1px solid var(--line-soft);
+  height: clamp(160px, 22vh, 240px);
+  background: linear-gradient(
+    180deg,
+    var(--bg) 0%,
+    #100B1A 18%,
+    #1C1424 36%,
+    #2F2530 52%,
+    #54473F 68%,
+    #87766A 82%,
+    #BAA897 92%,
+    #F2EDE4 100%
+  );
 }
 
 /* TELEGRAM NOTE — cream section */
@@ -449,41 +440,35 @@ footer .links a:hover { color: var(--violet-soft); }
         </div>
       </div>
 
-      <!-- Right: Compact comparison panel -->
+      <!-- Right: What you get panel -->
       <div class="hero-compare">
         <div class="hero-compare-top">
-          <span class="hero-compare-title">What you get with Atlas</span>
-          <span class="hero-compare-tag">vs. doing it yourself</span>
+          <span class="hero-compare-title">What Atlas does for you</span>
+          <span class="hero-compare-tag">every day, on autopilot</span>
         </div>
         <div class="hero-compare-row">
-          <span class="hero-compare-feat">Personalized morning brief, every day</span>
           <span class="hero-compare-yes">✓</span>
-          <span class="hero-compare-no">—</span>
+          <span class="hero-compare-feat">Personalized morning brief, every day before 8 AM</span>
         </div>
         <div class="hero-compare-row">
-          <span class="hero-compare-feat">Live market data on your watchlist</span>
           <span class="hero-compare-yes">✓</span>
-          <span class="hero-compare-no">—</span>
+          <span class="hero-compare-feat">Live market data on your watchlist, plus alerts</span>
         </div>
         <div class="hero-compare-row">
-          <span class="hero-compare-feat">Interview prep specific to the firm</span>
           <span class="hero-compare-yes">✓</span>
-          <span class="hero-compare-no">—</span>
+          <span class="hero-compare-feat">Interview prep specific to the firm and round</span>
         </div>
         <div class="hero-compare-row">
-          <span class="hero-compare-feat">Cold emails written in your voice</span>
           <span class="hero-compare-yes">✓</span>
-          <span class="hero-compare-no">—</span>
+          <span class="hero-compare-feat">Cold emails in your voice, saved to Gmail drafts</span>
         </div>
         <div class="hero-compare-row">
-          <span class="hero-compare-feat">Reminds you when follow-ups go cold</span>
           <span class="hero-compare-yes">✓</span>
-          <span class="hero-compare-no">—</span>
+          <span class="hero-compare-feat">Tracks applications and surfaces overdue follow-ups</span>
         </div>
-        <div class="hero-compare-foot">
-          <span class="lab">Feature</span>
-          <span class="h-atlas">Atlas</span>
-          <span class="h-other">Generic</span>
+        <div class="hero-compare-row">
+          <span class="hero-compare-yes">✓</span>
+          <span class="hero-compare-feat">Remembers your goals across every conversation</span>
         </div>
       </div>
 

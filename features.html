@@ -282,9 +282,38 @@ nav {
 }
 .demo-dot.active { background: var(--violet-soft); transform: scale(1.3); }
 
+/* ALSO */
+.also-section {
+  padding: clamp(72px, 10vh, 108px) 0;
+}
+.also-section h2 {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(28px, 3.8vw, 44px);
+  letter-spacing: -0.025em; color: var(--ink);
+  text-wrap: balance; margin-bottom: 12px;
+}
+.also-section > .wrap > p {
+  font-size: 16px; color: var(--ink-2); max-width: 580px;
+  line-height: 1.7; margin-bottom: clamp(40px, 6vh, 56px);
+}
+.also-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; background: var(--line);
+  border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
+}
+@media (max-width: 760px) { .also-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .also-grid { grid-template-columns: 1fr; } }
+.also-tile {
+  background: var(--bg); padding: 28px 28px 32px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.also-tile h4 { font-size: 15px; font-weight: 600; color: var(--ink); }
+.also-tile p { font-size: 14px; line-height: 1.6; color: var(--dim); }
+
 /* DUAL TRACK */
 .dual-track {
   padding: clamp(72px, 10vh, 108px) 0;
+  border-bottom: 1px solid var(--line-soft);
 }
 .dual-track h2 {
   font-family: var(--serif); font-weight: 300;
@@ -371,13 +400,14 @@ footer .links a:hover { color: var(--violet-soft); }
 <aside class="page-sidebar">
   <div class="sidebar-label">Features</div>
   <ul class="sidebar-links">
+    <li><a href="#balance" class="sidebar-link">Markets &amp; recruiting</a></li>
     <li><a href="#brief" class="sidebar-link">Morning brief</a></li>
     <li><a href="#markets" class="sidebar-link">Market data</a></li>
     <li><a href="#interview" class="sidebar-link">Interview prep</a></li>
     <li><a href="#email" class="sidebar-link">Cold email drafts</a></li>
     <li><a href="#tools" class="sidebar-link">Tracking &amp; reminders</a></li>
     <li><a href="#demos" class="sidebar-link">Watch it work</a></li>
-    <li><a href="#balance" class="sidebar-link">Two tracks</a></li>
+    <li><a href="#also" class="sidebar-link">Also</a></li>
   </ul>
 </aside>
 
@@ -395,6 +425,69 @@ footer .links a:hover { color: var(--violet-soft); }
     <p class="sub">A senior analyst, a recruiting mentor, a market watcher, an accountability partner — Atlas does what each of them does, every day, through a single Telegram conversation.</p>
   </div>
 </header>
+
+<!-- DUAL TRACK -->
+<section class="dual-track" id="balance">
+  <div class="wrap">
+    <div class="sec-label"><span class="bar"></span>The big picture</div>
+    <h2>Markets and recruiting. Both, every day.</h2>
+    <p>Some students care more about staying sharp on markets. Others are deep in recruiting. Most are doing both. Atlas handles both tracks equally, every day.</p>
+    <div class="dual-grid">
+      <div class="dual-col">
+        <div class="dual-col-header">
+          <span class="dual-col-eyebrow">Market Track</span>
+          <span class="dual-col-title">Stay sharp on what's moving</span>
+        </div>
+        <div class="dual-item">
+          <div class="di-label">Daily market brief</div>
+          <div class="di-desc">Your watchlist, sector moves, macro shifts — before 8 AM every day.</div>
+        </div>
+        <div class="dual-item">
+          <div class="di-label">Real-time price data</div>
+          <div class="di-desc">Ask about any stock or sector, any time. Live data, not cached.</div>
+        </div>
+        <div class="dual-item">
+          <div class="di-label">Price alerts</div>
+          <div class="di-desc">Set a level. Atlas texts you when it crosses. Works for any ticker.</div>
+        </div>
+        <div class="dual-item">
+          <div class="di-label">Trading-style aware</div>
+          <div class="di-desc">Day trading, swing, or long-term — alert cadence adjusts to how you trade.</div>
+        </div>
+        <div class="dual-item">
+          <div class="di-label">Breaking news in context</div>
+          <div class="di-desc">CPI, FOMC, earnings — what it means for your positions and goals.</div>
+        </div>
+      </div>
+      <div class="dual-col">
+        <div class="dual-col-header">
+          <span class="dual-col-eyebrow">Career Track</span>
+          <span class="dual-col-title">Win the process</span>
+        </div>
+        <div class="dual-item">
+          <div class="di-label">Interview prep by firm</div>
+          <div class="di-desc">Goldman, Blackstone, McKinsey, Bain — format and focus tailored to each.</div>
+        </div>
+        <div class="dual-item">
+          <div class="di-label">Cold email drafts</div>
+          <div class="di-desc">Tell Atlas who. It writes the email. Saved to Gmail. You hit send.</div>
+        </div>
+        <div class="dual-item">
+          <div class="di-label">Application tracker</div>
+          <div class="di-desc">Every firm, every stage, every deadline — no spreadsheet required.</div>
+        </div>
+        <div class="dual-item">
+          <div class="di-label">Contact log and follow-ups</div>
+          <div class="di-desc">Log contacts, set follow-up dates, get reminded when they go cold.</div>
+        </div>
+        <div class="dual-item">
+          <div class="di-label">Recruiting deadlines in your brief</div>
+          <div class="di-desc">OCR opens, superday schedules, application cutoffs — surfaced every morning.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- FEATURE 1: MORNING BRIEF -->
 <section class="feature-section" id="brief">
@@ -647,64 +740,48 @@ footer .links a:hover { color: var(--violet-soft); }
   </div>
 </section>
 
-<!-- DUAL TRACK -->
-<section class="dual-track" id="balance">
+<!-- ALSO -->
+<section class="also-section" id="also">
   <div class="wrap">
-    <div class="sec-label"><span class="bar"></span>Two tracks. One advisor.</div>
-    <h2>Whether you're watching the market or chasing the offer.</h2>
-    <p>Some students care more about staying sharp on markets. Others are deep in recruiting. Most are doing both. Atlas handles both tracks equally, every day.</p>
-    <div class="dual-grid">
-      <div class="dual-col">
-        <div class="dual-col-header">
-          <span class="dual-col-eyebrow">Market Track</span>
-          <span class="dual-col-title">Stay sharp on what's moving</span>
-        </div>
-        <div class="dual-item">
-          <div class="di-label">Daily market brief</div>
-          <div class="di-desc">Your watchlist, sector moves, macro shifts — before 8 AM every day.</div>
-        </div>
-        <div class="dual-item">
-          <div class="di-label">Real-time price data</div>
-          <div class="di-desc">Ask about any stock or sector, any time. Live data, not cached.</div>
-        </div>
-        <div class="dual-item">
-          <div class="di-label">Price alerts</div>
-          <div class="di-desc">Set a level. Atlas texts you when it crosses. Works for any ticker.</div>
-        </div>
-        <div class="dual-item">
-          <div class="di-label">Trading-style aware</div>
-          <div class="di-desc">Day trading, swing, or long-term — alert cadence adjusts to how you trade.</div>
-        </div>
-        <div class="dual-item">
-          <div class="di-label">Breaking news in context</div>
-          <div class="di-desc">CPI, FOMC, earnings — what it means for your positions and goals.</div>
-        </div>
+    <div class="sec-label"><span class="bar"></span>Also</div>
+    <h2>Smaller things you'll notice quickly.</h2>
+    <p>Quieter capabilities that show up when you need them — woven into your daily brief, your watchlist, and your conversations with Atlas.</p>
+    <div class="also-grid">
+      <div class="also-tile">
+        <h4>Curated News Feed</h4>
+        <p>Finance and market news filtered by your career track and interests. Not a generic wire — what's actually relevant to your goals.</p>
       </div>
-      <div class="dual-col">
-        <div class="dual-col-header">
-          <span class="dual-col-eyebrow">Career Track</span>
-          <span class="dual-col-title">Win the process</span>
-        </div>
-        <div class="dual-item">
-          <div class="di-label">Interview prep by firm</div>
-          <div class="di-desc">Goldman, Blackstone, McKinsey, Bain — format and focus tailored to each.</div>
-        </div>
-        <div class="dual-item">
-          <div class="di-label">Cold email drafts</div>
-          <div class="di-desc">Tell Atlas who. It writes the email. Saved to Gmail. You hit send.</div>
-        </div>
-        <div class="dual-item">
-          <div class="di-label">Application tracker</div>
-          <div class="di-desc">Every firm, every stage, every deadline — no spreadsheet required.</div>
-        </div>
-        <div class="dual-item">
-          <div class="di-label">Contact log and follow-ups</div>
-          <div class="di-desc">Log contacts, set follow-up dates, get reminded when they go cold.</div>
-        </div>
-        <div class="dual-item">
-          <div class="di-label">Recruiting deadlines in your brief</div>
-          <div class="di-desc">OCR opens, superday schedules, application cutoffs — surfaced every morning.</div>
-        </div>
+      <div class="also-tile">
+        <h4>Local Business News</h4>
+        <p>News from your hometown, surfaced when it's relevant for cold emails, networking, or interview small talk.</p>
+      </div>
+      <div class="also-tile">
+        <h4>Calendar Awareness</h4>
+        <p>Connect Google Calendar and upcoming events surface in your brief automatically — no manual input required.</p>
+      </div>
+      <div class="also-tile">
+        <h4>Memory That Builds</h4>
+        <p>Atlas remembers your goals, firms, and preferences across every conversation. Every response gets sharper because it knows you.</p>
+      </div>
+      <div class="also-tile">
+        <h4>Instant Concept Answers</h4>
+        <p>DCF, LBO, convexity, carry trade, basis points — ask in plain language, get a clear answer in seconds.</p>
+      </div>
+      <div class="also-tile">
+        <h4>Internship Signals</h4>
+        <p>Atlas surfaces relevant openings based on your goals, school, and current recruiting cycle.</p>
+      </div>
+      <div class="also-tile">
+        <h4>Earnings Awareness</h4>
+        <p>Atlas knows when your watchlist tickers report. You get a heads-up the morning of, plus the result and reaction afterward.</p>
+      </div>
+      <div class="also-tile">
+        <h4>Macro Context on Demand</h4>
+        <p>Ask about CPI, jobs reports, FOMC meetings, yield curves — Atlas explains what it is and why it matters right now.</p>
+      </div>
+      <div class="also-tile">
+        <h4>Career Fair Recall</h4>
+        <p>Tell Atlas who you met at a career fair. It logs them with notes, surfaces follow-up reminders, and primes your cold email.</p>
       </div>
     </div>
   </div>
