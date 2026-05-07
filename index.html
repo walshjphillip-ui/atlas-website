@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ATLAS — AI finance recruiting advisor</title>
-<meta name="description" content="Atlas is a Telegram bot that sends finance students a personalized morning brief every day — markets, recruiting deadlines, networking reminders, and interview prep." />
+<title>ATLAS — AI advisor for finance students</title>
+<meta name="description" content="Atlas is a Telegram bot that keeps finance and economics students on top of markets, prepared for interviews, and on track with recruiting. Every morning. In your phone like a contact." />
 <link rel="icon" type="image/svg+xml" href="logo.svg" />
-<meta property="og:title" content="ATLAS — AI finance recruiting advisor" />
-<meta property="og:description" content="A Telegram bot that sends you markets, recruiting deadlines, and networking reminders every morning." />
+<meta property="og:title" content="ATLAS — AI advisor for finance students" />
+<meta property="og:description" content="A complete AI advisor in your pocket. Markets, recruiting, interview prep, networking — delivered through Telegram every morning." />
 <meta property="og:url" content="https://useatlasai.org" />
 <meta property="og:image" content="https://useatlasai.org/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -78,6 +78,7 @@ nav {
 .hero {
   padding: clamp(80px, 12vh, 140px) 0 clamp(80px, 10vh, 120px);
   position: relative; overflow: hidden;
+  border-bottom: 1px solid var(--line-soft);
 }
 .hero::before {
   content: ""; position: absolute; top: -20%; right: -5%;
@@ -141,28 +142,7 @@ h1.display em {
 .btn-primary:hover { background: var(--violet-soft); }
 .btn-primary:active { transform: translateY(1px); }
 .btn-primary svg { width: 12px; height: 12px; }
-.cta-note {
-  font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.04em;
-}
-
-/* HERO FORM (bottom CTA only) */
-.hero-form {
-  margin-top: 32px; display: flex; gap: 8px; flex-wrap: wrap; max-width: 460px;
-}
-.hero-form input {
-  flex: 1 1 200px; padding: 14px 16px;
-  background: var(--bg-2); border: 1px solid var(--line);
-  color: var(--ink); font-size: 14px; font-family: var(--mono);
-  border-radius: 2px; outline: none;
-  transition: border-color 0.2s, background 0.2s;
-}
-.hero-form input:focus { border-color: var(--violet); background: #160B22; }
-.hero-form input::placeholder { color: var(--dimmer); }
-#bottom-success {
-  display: none; margin-top: 14px; max-width: 460px; padding: 12px 16px;
-  border: 1px solid var(--violet-deep); background: rgba(124,77,255,0.08);
-  color: var(--violet-soft); font-family: var(--mono); font-size: 12px; border-radius: 2px;
-}
+.cta-note { font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.04em; }
 
 /* BRIEF MOCK */
 .brief-mock {
@@ -170,38 +150,21 @@ h1.display em {
   border-radius: 10px; overflow: hidden; font-family: var(--mono);
 }
 .brief-mock-top {
-  padding: 14px 20px;
-  border-bottom: 1px solid var(--line);
+  padding: 14px 20px; border-bottom: 1px solid var(--line);
   display: flex; justify-content: space-between; align-items: center;
   background: rgba(124,77,255,0.04);
 }
-.brief-sender {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 12px; font-weight: 500; color: var(--ink); letter-spacing: 0.04em;
-}
-.brief-sender-dot {
-  width: 7px; height: 7px; border-radius: 50%; background: var(--gain);
-}
-.brief-time {
-  font-size: 10px; color: var(--dimmer); letter-spacing: 0.1em;
-}
-.brief-body {
-  padding: 22px 22px 26px;
-  font-size: 12.5px; line-height: 1.8; color: var(--ink-2);
-}
-.brief-greeting {
-  font-size: 13px; color: var(--ink); font-weight: 500; margin-bottom: 18px;
-}
+.brief-sender { display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 500; color: var(--ink); letter-spacing: 0.04em; }
+.brief-sender-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gain); }
+.brief-time { font-size: 10px; color: var(--dimmer); letter-spacing: 0.1em; }
+.brief-body { padding: 22px 22px 26px; font-size: 12.5px; line-height: 1.8; color: var(--ink-2); }
+.brief-greeting { font-size: 13px; color: var(--ink); font-weight: 500; margin-bottom: 18px; }
 .brief-section-label {
   font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--violet-soft); margin-bottom: 8px; margin-top: 18px;
-  display: block;
+  color: var(--violet-soft); margin-bottom: 8px; margin-top: 18px; display: block;
 }
 .brief-section-label:first-of-type { margin-top: 0; }
-.brief-market-row {
-  display: grid; grid-template-columns: 50px 1fr auto;
-  gap: 10px; padding: 4px 0; align-items: baseline;
-}
+.brief-market-row { display: grid; grid-template-columns: 50px 1fr auto; gap: 10px; padding: 4px 0; align-items: baseline; }
 .brief-ticker { color: var(--ink); font-size: 12px; font-weight: 500; }
 .brief-price  { color: var(--ink-2); font-size: 12px; }
 .brief-up     { color: var(--gain); font-size: 12px; font-weight: 500; }
@@ -223,44 +186,49 @@ h1.display em {
 }
 .sec-label .bar { width: 24px; height: 1px; background: var(--violet-deep); }
 
-/* PAIN SECTION */
-.pain {
+/* 3 DEMOS */
+.demos {
   padding: clamp(80px, 11vh, 120px) 0;
   border-bottom: 1px solid var(--line-soft);
 }
-.pain-head {
+.demos-intro {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: clamp(32px, 5vw, 72px); align-items: start;
-  margin-bottom: clamp(40px, 6vh, 56px);
+  gap: clamp(32px, 5vw, 72px); align-items: end;
+  margin-bottom: clamp(48px, 7vh, 64px);
 }
-@media (max-width: 700px) { .pain-head { grid-template-columns: 1fr; } }
-.pain h2 {
+@media (max-width: 700px) { .demos-intro { grid-template-columns: 1fr; } }
+.demos-intro h2 {
   font-family: var(--serif); font-weight: 300;
   font-size: clamp(28px, 3.6vw, 44px);
   letter-spacing: -0.02em; line-height: 1.05; color: var(--ink);
 }
-.pain-intro {
-  font-size: 15px; line-height: 1.7; color: var(--ink-2); padding-top: 6px;
-}
-.pain-grid {
+.demos-intro p { font-size: 15px; line-height: 1.7; color: var(--ink-2); }
+.demos-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1px; background: var(--line);
-  border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+  gap: clamp(16px, 2.5vw, 28px);
 }
-@media (max-width: 680px) { .pain-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 420px) { .pain-grid { grid-template-columns: 1fr; } }
-.pain-item {
-  background: var(--bg);
-  padding: clamp(22px, 3vw, 32px);
-  border-top: 2px solid var(--loss);
+@media (max-width: 760px) { .demos-grid { grid-template-columns: 1fr; } }
+.demo-card { display: flex; flex-direction: column; gap: 16px; }
+.demo-tag {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--violet-soft);
 }
-.pain-item p { font-size: 14px; line-height: 1.6; color: var(--ink-2); }
-.pain-resolve {
-  margin-top: clamp(28px, 4vh, 44px);
-  font-size: 14px; color: var(--dim);
-  font-family: var(--mono); letter-spacing: 0.04em;
+.demo-bubble {
+  background: var(--bg-2); border: 1px solid var(--line);
+  border-radius: 8px; padding: 18px 20px; font-family: var(--mono);
+  font-size: 12px; flex: 1;
 }
-.pain-resolve em { color: var(--violet-soft); font-style: normal; }
+.demo-time { font-size: 10px; color: var(--dimmer); letter-spacing: 0.1em; margin-bottom: 14px; }
+.demo-line { line-height: 1.75; color: var(--ink-2); }
+.demo-line.hi { color: var(--ink); }
+.demo-line.up { color: var(--gain); font-weight: 500; }
+.demo-line.dn { color: var(--loss); }
+.demo-line.act { color: var(--ink); }
+.demo-line.act::before { content: "→ "; color: var(--violet-soft); }
+.demo-line.warn { color: var(--loss); }
+.demo-line.warn::before { content: "→ "; color: var(--loss); }
+.demo-sep { height: 1px; background: var(--line-soft); margin: 10px 0; }
+.demo-desc { font-size: 14px; line-height: 1.6; color: var(--ink-2); }
 
 /* EXPLORE CARDS */
 .explore {
@@ -279,27 +247,19 @@ h1.display em {
   border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
 }
 .explore-card {
-  background: var(--bg);
-  padding: clamp(32px, 4vw, 52px);
+  background: var(--bg); padding: clamp(32px, 4vw, 52px);
   display: flex; flex-direction: column;
   gap: 16px; min-height: 280px;
-  text-decoration: none; color: inherit;
-  transition: background 0.22s;
+  text-decoration: none; color: inherit; transition: background 0.22s;
 }
 .explore-card:hover { background: var(--bg-2); }
 .explore-card:hover .explore-arrow { color: var(--violet-soft); transform: translateX(4px); }
-.explore-num {
-  font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--dimmer);
-}
-.explore-tag {
-  font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--violet-soft);
-}
+.explore-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dimmer); }
+.explore-tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--violet-soft); }
 .explore-card h3 {
   font-family: var(--serif); font-weight: 300;
-  font-size: clamp(20px, 2.4vw, 28px);
-  letter-spacing: -0.02em; line-height: 1.15;
+  font-size: clamp(22px, 2.8vw, 32px);
+  letter-spacing: -0.02em; line-height: 1.1;
   color: var(--ink); text-wrap: balance; flex: 1;
 }
 .explore-card p { font-size: 14px; line-height: 1.6; color: var(--ink-2); max-width: 360px; }
@@ -311,7 +271,7 @@ h1.display em {
 }
 @media (max-width: 680px) { .explore-grid { grid-template-columns: 1fr; } .explore-card { min-height: auto; } }
 
-/* TELEGRAM SECTION */
+/* TELEGRAM NOTE */
 .tg-note {
   padding: clamp(56px, 8vh, 80px) 0;
   border-bottom: 1px solid var(--line-soft);
@@ -321,27 +281,46 @@ h1.display em {
   gap: clamp(40px, 6vw, 100px); align-items: center;
 }
 @media (max-width: 640px) { .tg-note-inner { grid-template-columns: 1fr; } }
-.tg-note-label {
-  font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--violet-soft); margin-bottom: 14px;
-}
+.tg-note-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--violet-soft); margin-bottom: 14px; }
 .tg-note-heading {
   font-family: var(--serif); font-weight: 300;
   font-size: clamp(20px, 2.4vw, 28px);
   letter-spacing: -0.02em; color: var(--ink); margin-bottom: 16px; line-height: 1.1;
 }
-.tg-note-text {
-  font-size: 14px; color: var(--ink-2); line-height: 1.7; max-width: 580px;
-}
+.tg-note-text { font-size: 14px; color: var(--ink-2); line-height: 1.7; max-width: 580px; }
 .tg-note-text + .tg-note-text { margin-top: 10px; }
 .tg-note-link {
   display: inline-flex; align-items: center; gap: 8px;
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--violet-soft);
-  white-space: nowrap; flex-shrink: 0;
-  transition: color 0.18s;
+  white-space: nowrap; flex-shrink: 0; transition: color 0.18s;
 }
 .tg-note-link:hover { color: var(--ink); }
+
+/* SOCIAL PROOF */
+.proof {
+  padding: clamp(80px, 11vh, 120px) 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.proof-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--line);
+  border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+}
+@media (max-width: 760px) { .proof-grid { grid-template-columns: 1fr; } }
+.proof-card {
+  background: var(--bg); padding: clamp(28px, 3.5vw, 44px);
+  display: flex; flex-direction: column; gap: 20px; transition: background 0.2s;
+}
+.proof-card:hover { background: var(--bg-2); }
+.proof-quote {
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: 17px; line-height: 1.55; letter-spacing: -0.01em;
+  color: var(--ink); flex: 1;
+}
+.proof-attr { display: flex; flex-direction: column; gap: 3px; }
+.proof-name { font-weight: 600; font-size: 13px; color: var(--ink); }
+.proof-role { font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.06em; }
 
 /* END CTA */
 .end {
@@ -356,16 +335,9 @@ h1.display em {
   background: radial-gradient(circle, rgba(124,77,255,0.14) 0%, transparent 60%);
   pointer-events: none;
 }
-.end-logo {
-  display: flex; align-items: center; justify-content: center;
-  gap: 20px; margin-bottom: 32px; position: relative;
-}
+.end-logo { display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 32px; position: relative; }
 .end-logo svg.mark { width: 72px; height: 72px; }
-.end-logo .word {
-  font-family: var(--sans); font-weight: 400;
-  font-size: clamp(34px, 4.5vw, 52px);
-  letter-spacing: 0.32em; color: var(--ink); line-height: 1;
-}
+.end-logo .word { font-family: var(--sans); font-weight: 400; font-size: clamp(34px, 4.5vw, 52px); letter-spacing: 0.32em; color: var(--ink); line-height: 1; }
 .end h2 {
   font-family: var(--serif); font-weight: 300;
   font-size: clamp(34px, 5vw, 60px);
@@ -378,8 +350,21 @@ h1.display em {
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .end .note { margin-top: 14px; color: var(--dim); font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; position: relative; }
+.hero-form { margin-top: 32px; display: flex; gap: 8px; flex-wrap: wrap; max-width: 460px; }
+.hero-form input {
+  flex: 1 1 200px; padding: 14px 16px;
+  background: var(--bg-2); border: 1px solid var(--line);
+  color: var(--ink); font-size: 14px; font-family: var(--mono);
+  border-radius: 2px; outline: none; transition: border-color 0.2s, background 0.2s;
+}
+.hero-form input:focus { border-color: var(--violet); background: #160B22; }
+.hero-form input::placeholder { color: var(--dimmer); }
 .end .hero-form { margin: 28px auto 0; justify-content: center; position: relative; }
-.end #bottom-success { margin: 16px auto 0; }
+#bottom-success {
+  display: none; margin: 14px auto 0; max-width: 460px; padding: 12px 16px;
+  border: 1px solid var(--violet-deep); background: rgba(124,77,255,0.08);
+  color: var(--violet-soft); font-family: var(--mono); font-size: 12px; border-radius: 2px;
+}
 
 /* FOOTER */
 footer {
@@ -423,8 +408,8 @@ footer .links a:hover { color: var(--violet-soft); }
   </a>
   <div class="nav-links">
     <a href="/features.html">Features</a>
-    <a href="/for-you.html">Who it's for</a>
     <a href="/how-it-works.html">How it works</a>
+    <a href="/for-you.html">Who it's for</a>
     <a href="/faq.html">FAQ</a>
     <a href="/about.html">About</a>
   </div>
@@ -439,19 +424,18 @@ footer .links a:hover { color: var(--violet-soft); }
   <div class="wrap">
     <div class="hero-grid">
 
-      <!-- Left: headline + CTA -->
       <div>
         <div class="hero-eyebrow">
           <span class="pulse" id="market-pulse"></span>
           <span id="market-status">Live · markets open · 9:30–4:00 ET</span>
         </div>
         <h1 class="display">
-          An AI advisor<br/>
-          for <em>finance</em><br/>
-          recruiting.
+          Your complete<br/>
+          finance <em>advisor.</em><br/>
+          In your pocket.
         </h1>
         <p class="hero-def">
-          Atlas is a <strong>Telegram bot</strong> that sends you a personalized morning brief every day — markets, recruiting deadlines, networking reminders, and what to prep next. Set up in 60 seconds. Nothing to maintain.
+          Atlas is a <strong>Telegram bot</strong> that keeps finance and economics students on top of markets, prepared for every interview, and on track with recruiting. Set up in 60 seconds. Nothing to maintain.
         </p>
         <div class="hero-cta-wrap">
           <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener" class="btn-primary">
@@ -514,25 +498,54 @@ footer .links a:hover { color: var(--violet-soft); }
   </div>
 </section>
 
-<!-- PAIN SECTION -->
-<section class="pain" id="pain">
+<!-- 3 DEMOS -->
+<section class="demos" id="demos">
   <div class="wrap">
-    <div class="pain-head">
+    <div class="demos-intro">
       <div>
-        <div class="sec-label"><span class="bar"></span>Why it exists</div>
-        <h2>Finance recruiting punishes the unprepared.</h2>
+        <div class="sec-label"><span class="bar"></span>What it does</div>
+        <h2>More than a brief. A full advisor.</h2>
       </div>
-      <p class="pain-intro">Not because you're not smart. Because these things slip when you're stretched thin — and in recruiting, slipping once is usually enough.</p>
+      <p>Atlas isn't a newsletter you forget to read. It messages you, tracks your goals, and acts on your behalf — all through a single Telegram conversation.</p>
     </div>
-    <div class="pain-grid">
-      <div class="pain-item"><p>You followed up 10 days late. They'd already moved on.</p></div>
-      <div class="pain-item"><p>Markets moved overnight. You found out in the interview.</p></div>
-      <div class="pain-item"><p>OCR opened Monday. You heard Wednesday.</p></div>
-      <div class="pain-item"><p>You prepped for M&amp;A coverage. They asked about rates.</p></div>
-      <div class="pain-item"><p>Your networking list hasn't been opened since September.</p></div>
-      <div class="pain-item"><p>The coffee chat was 3 weeks ago. Still no thank-you sent.</p></div>
+    <div class="demos-grid">
+
+      <div class="demo-card">
+        <span class="demo-tag">Morning Brief</span>
+        <div class="demo-bubble">
+          <div class="demo-time">06:42 · YOUR BRIEF</div>
+          <div class="demo-line hi">Fed hints at one more cut this cycle.</div>
+          <div class="demo-line">NVDA <span style="color:var(--gain)">+2.1%</span> &nbsp; PLTR <span style="color:var(--gain)">+0.9%</span> &nbsp; XLE <span style="color:var(--loss)">-1.1%</span></div>
+          <div class="demo-sep"></div>
+          <div class="demo-line act">GS earnings call at 8AM — listen before class.</div>
+        </div>
+        <p class="demo-desc">Markets, macro, and what it means for your watchlist — before you leave for class.</p>
+      </div>
+
+      <div class="demo-card">
+        <span class="demo-tag">Breaking News</span>
+        <div class="demo-bubble">
+          <div class="demo-time">08:30 · CPI RELEASE</div>
+          <div class="demo-line hi">Headline 2.4% YoY (cons. 2.6%). Core 3.1%.</div>
+          <div class="demo-line">Cooler than expected — repricing rate-cut odds higher.</div>
+          <div class="demo-sep"></div>
+          <div class="demo-line act">Rate cuts back on the table. Know this for interviews.</div>
+        </div>
+        <p class="demo-desc">CPI, FOMC, earnings, geopolitics — the moment it breaks, Atlas explains why it matters to you specifically.</p>
+      </div>
+
+      <div class="demo-card">
+        <span class="demo-tag">Cold Email Draft</span>
+        <div class="demo-bubble">
+          <div class="demo-time">DRAFT · LAZARD</div>
+          <div class="demo-line hi">"...recently dug into the Hexcel deal in our sell-side seminar and wanted to connect..."</div>
+          <div class="demo-sep"></div>
+          <div class="demo-line act">Saved to Gmail drafts. You just hit send.</div>
+        </div>
+        <p class="demo-desc">Tell Atlas who you're reaching out to. It writes the email in your voice and saves it straight to your drafts.</p>
+      </div>
+
     </div>
-    <p class="pain-resolve">Atlas tracks these. Reminds you before they cost you. <em>Every morning, without fail.</em></p>
   </div>
 </section>
 
@@ -546,32 +559,32 @@ footer .links a:hover { color: var(--violet-soft); }
       <a href="/features.html" class="explore-card">
         <span class="explore-num">01</span>
         <span class="explore-tag">Features</span>
-        <h3>Morning briefs. Market data. Interview prep. Networking reminders.</h3>
-        <p>Every tool Atlas has, explained clearly. No vague bullet points.</p>
+        <h3>What Atlas actually does for you</h3>
+        <p>Morning briefs, live market data, interview prep, cold email drafts, application tracking — and it runs on autopilot.</p>
         <span class="explore-arrow">See all features <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span>
       </a>
 
-      <a href="/for-you.html" class="explore-card">
+      <a href="/how-it-works.html" class="explore-card">
         <span class="explore-num">02</span>
-        <span class="explore-tag">Who it's for</span>
-        <h3>Built for finance recruiting. Not for everyone.</h3>
-        <p>If you're going for IB, trading, PE, or consulting — this is for you. If not, it probably isn't.</p>
-        <span class="explore-arrow">Is this for me? <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span>
+        <span class="explore-tag">How it works</span>
+        <h3>Set up in 60 seconds. Then just wait for the text.</h3>
+        <p>Open Telegram, answer 8 questions about your goals, and your first brief arrives tomorrow morning. Nothing to maintain.</p>
+        <span class="explore-arrow">See how it works <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span>
       </a>
 
-      <a href="/how-it-works.html" class="explore-card">
+      <a href="/for-you.html" class="explore-card">
         <span class="explore-num">03</span>
-        <span class="explore-tag">How it works</span>
-        <h3>Open Telegram. Answer 8 questions. First brief tomorrow.</h3>
-        <p>That's the full setup. No integrations required. Gmail and Calendar are optional add-ons.</p>
-        <span class="explore-arrow">See how it works <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span>
+        <span class="explore-tag">Who it's for</span>
+        <h3>Made for students who need to stay ahead</h3>
+        <p>Finance, economics, business. If you're serious about what comes next, this was designed around your specific situation.</p>
+        <span class="explore-arrow">Is this for me? <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span>
       </a>
 
       <a href="/faq.html" class="explore-card">
         <span class="explore-num">04</span>
         <span class="explore-tag">FAQ</span>
-        <h3>What it reads, stores, and how personalization actually works.</h3>
-        <p>Straight answers to the questions worth asking before you connect your accounts.</p>
+        <h3>Every question worth asking before you trust it</h3>
+        <p>What does it do with your Gmail? What does it store? Straight answers, no vague reassurances.</p>
         <span class="explore-arrow">Read the FAQ <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span>
       </a>
 
@@ -579,7 +592,7 @@ footer .links a:hover { color: var(--violet-soft); }
   </div>
 </section>
 
-<!-- TELEGRAM SECTION -->
+<!-- TELEGRAM NOTE -->
 <div class="tg-note">
   <div class="wrap">
     <div class="tg-note-inner">
@@ -593,6 +606,40 @@ footer .links a:hover { color: var(--violet-soft); }
     </div>
   </div>
 </div>
+
+<!-- SOCIAL PROOF -->
+<section class="proof">
+  <div class="wrap">
+    <div class="sec-label"><span class="bar"></span>From students using Atlas</div>
+    <div class="proof-grid">
+
+      <div class="proof-card">
+        <p class="proof-quote">"I used to spend 20 minutes every morning piecing together what happened overnight. Now Atlas just texts me. I know more in 30 seconds than I used to in half an hour."</p>
+        <div class="proof-attr">
+          <span class="proof-name">Jake R.</span>
+          <span class="proof-role">UVA · Finance</span>
+        </div>
+      </div>
+
+      <div class="proof-card">
+        <p class="proof-quote">"I sent more cold emails my first week using Atlas than I had all of junior year. It writes them in my voice, references real deals, and saves them straight to my drafts. I just hit send."</p>
+        <div class="proof-attr">
+          <span class="proof-name">Maya T.</span>
+          <span class="proof-role">Georgetown · Economics</span>
+        </div>
+      </div>
+
+      <div class="proof-card">
+        <p class="proof-quote">"What got me was when it started connecting the news to my actual watchlist without me asking. It's not just a market bot — it knows what I care about."</p>
+        <div class="proof-attr">
+          <span class="proof-name">Chris L.</span>
+          <span class="proof-role">NYU Stern · Finance &amp; Economics</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- END CTA -->
 <section class="end">
@@ -681,7 +728,7 @@ footer .links a:hover { color: var(--violet-soft); }
   })();
 
   // Scroll arrow
-  document.getElementById('scroll-down').addEventListener('click', () => document.getElementById('pain').scrollIntoView({behavior:'smooth'}));
+  document.getElementById('scroll-down').addEventListener('click', () => document.getElementById('demos').scrollIntoView({behavior:'smooth'}));
   window.addEventListener('scroll', () => document.getElementById('arrow-wrap').classList.toggle('gone', scrollY > 80), {passive:true});
 </script>
 </body>
