@@ -37,7 +37,7 @@
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 a { color: inherit; text-decoration: none; }
 button, input { font: inherit; color: inherit; }
 ::selection { background: var(--violet); color: #fff; }
@@ -97,7 +97,7 @@ nav {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: clamp(48px, 7vw, 100px); align-items: center;
 }
-@media (max-width: 840px) { .hero-grid { grid-template-columns: 1fr; } .brief-mock { display: none; } }
+@media (max-width: 840px) { .hero-grid { grid-template-columns: 1fr; } }
 .hero-eyebrow {
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--violet-soft); display: inline-flex; align-items: center; gap: 10px;
@@ -144,39 +144,55 @@ h1.display em {
 .btn-primary svg { width: 12px; height: 12px; }
 .cta-note { font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.04em; }
 
-/* BRIEF MOCK */
-.brief-mock {
+/* HERO COMPARE */
+.hero-compare {
   background: var(--bg-2); border: 1px solid var(--line);
-  border-radius: 10px; overflow: hidden; font-family: var(--mono);
+  border-radius: 10px; overflow: hidden;
 }
-.brief-mock-top {
-  padding: 14px 20px; border-bottom: 1px solid var(--line);
+.hero-compare-top {
+  padding: 14px 22px; border-bottom: 1px solid var(--line);
   display: flex; justify-content: space-between; align-items: center;
   background: rgba(124,77,255,0.04);
 }
-.brief-sender { display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 500; color: var(--ink); letter-spacing: 0.04em; }
-.brief-sender-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gain); }
-.brief-time { font-size: 10px; color: var(--dimmer); letter-spacing: 0.1em; }
-.brief-body { padding: 22px 22px 26px; font-size: 12.5px; line-height: 1.8; color: var(--ink-2); }
-.brief-greeting { font-size: 13px; color: var(--ink); font-weight: 500; margin-bottom: 18px; }
-.brief-section-label {
-  font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--violet-soft); margin-bottom: 8px; margin-top: 18px; display: block;
+.hero-compare-title {
+  font-family: var(--sans); font-size: 12.5px; font-weight: 600;
+  color: var(--ink); letter-spacing: 0.02em;
 }
-.brief-section-label:first-of-type { margin-top: 0; }
-.brief-market-row { display: grid; grid-template-columns: 50px 1fr auto; gap: 10px; padding: 4px 0; align-items: baseline; }
-.brief-ticker { color: var(--ink); font-size: 12px; font-weight: 500; }
-.brief-price  { color: var(--ink-2); font-size: 12px; }
-.brief-up     { color: var(--gain); font-size: 12px; font-weight: 500; }
-.brief-dn     { color: var(--loss); font-size: 12px; font-weight: 500; }
-.brief-news-line { padding: 3px 0; color: var(--ink-2); font-size: 12px; }
-.brief-news-line::before { content: "/ "; color: var(--dimmer); }
-.brief-divider { border: none; border-top: 1px solid var(--line-soft); margin: 18px 0 14px; }
-.brief-action { color: var(--ink); font-size: 12.5px; line-height: 1.65; }
-.brief-action + .brief-action { margin-top: 8px; }
-.brief-action::before { content: "→ "; color: var(--violet-soft); }
-.brief-warn { color: var(--loss); font-size: 12.5px; line-height: 1.65; margin-top: 8px; }
-.brief-warn::before { content: "→ "; color: var(--loss); }
+.hero-compare-tag {
+  font-family: var(--mono); font-size: 9.5px;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--dimmer);
+}
+.hero-compare-row {
+  display: grid; grid-template-columns: 1fr auto auto;
+  gap: 14px; align-items: center;
+  padding: 14px 22px; border-bottom: 1px solid var(--line-soft);
+}
+.hero-compare-row:last-child { border-bottom: none; }
+.hero-compare-feat {
+  font-size: 13.5px; color: var(--ink-2); line-height: 1.4;
+}
+.hero-compare-yes {
+  font-family: var(--mono); font-size: 12px; font-weight: 600;
+  color: var(--gain); display: flex; align-items: center; gap: 6px;
+  min-width: 70px; justify-content: center;
+}
+.hero-compare-no {
+  font-family: var(--mono); font-size: 12px;
+  color: var(--dimmer); display: flex; align-items: center; gap: 6px;
+  min-width: 70px; justify-content: center;
+}
+.hero-compare-foot {
+  padding: 12px 22px; background: rgba(10,6,18,0.6);
+  border-top: 1px solid var(--line);
+  display: grid; grid-template-columns: 1fr auto auto; gap: 14px;
+}
+.hero-compare-foot span {
+  font-family: var(--mono); font-size: 9.5px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+}
+.hero-compare-foot .lab { color: var(--dimmer); }
+.hero-compare-foot .h-atlas { color: var(--violet-soft); min-width: 70px; text-align: center; }
+.hero-compare-foot .h-other { color: var(--dimmer); min-width: 70px; text-align: center; }
 
 /* SECTION LABEL */
 .sec-label {
@@ -185,50 +201,6 @@ h1.display em {
   text-transform: uppercase; color: var(--violet-soft); margin-bottom: 20px;
 }
 .sec-label .bar { width: 24px; height: 1px; background: var(--violet-deep); }
-
-/* 3 DEMOS */
-.demos {
-  padding: clamp(80px, 11vh, 120px) 0;
-  border-bottom: 1px solid var(--line-soft);
-}
-.demos-intro {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: clamp(32px, 5vw, 72px); align-items: end;
-  margin-bottom: clamp(48px, 7vh, 64px);
-}
-@media (max-width: 700px) { .demos-intro { grid-template-columns: 1fr; } }
-.demos-intro h2 {
-  font-family: var(--serif); font-weight: 300;
-  font-size: clamp(28px, 3.6vw, 44px);
-  letter-spacing: -0.02em; line-height: 1.05; color: var(--ink);
-}
-.demos-intro p { font-size: 15px; line-height: 1.7; color: var(--ink-2); }
-.demos-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: clamp(16px, 2.5vw, 28px);
-}
-@media (max-width: 760px) { .demos-grid { grid-template-columns: 1fr; } }
-.demo-card { display: flex; flex-direction: column; gap: 16px; }
-.demo-tag {
-  font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--violet-soft);
-}
-.demo-bubble {
-  background: var(--bg-2); border: 1px solid var(--line);
-  border-radius: 8px; padding: 18px 20px; font-family: var(--mono);
-  font-size: 12px; flex: 1;
-}
-.demo-time { font-size: 10px; color: var(--dimmer); letter-spacing: 0.1em; margin-bottom: 14px; }
-.demo-line { line-height: 1.75; color: var(--ink-2); }
-.demo-line.hi { color: var(--ink); }
-.demo-line.up { color: var(--gain); font-weight: 500; }
-.demo-line.dn { color: var(--loss); }
-.demo-line.act { color: var(--ink); }
-.demo-line.act::before { content: "→ "; color: var(--violet-soft); }
-.demo-line.warn { color: var(--loss); }
-.demo-line.warn::before { content: "→ "; color: var(--loss); }
-.demo-sep { height: 1px; background: var(--line-soft); margin: 10px 0; }
-.demo-desc { font-size: 14px; line-height: 1.6; color: var(--ink-2); }
 
 /* EXPLORE CARDS */
 .explore {
@@ -271,11 +243,18 @@ h1.display em {
 }
 @media (max-width: 680px) { .explore-grid { grid-template-columns: 1fr; } .explore-card { min-height: auto; } }
 
+/* TELEGRAM TRANSITION — soft gradient fade dark→cream */
+.tg-transition {
+  height: clamp(80px, 12vh, 140px);
+  background: linear-gradient(180deg, var(--bg) 0%, #1F1A28 35%, #6E5F50 75%, #F2EDE4 100%);
+  border-top: 1px solid var(--line-soft);
+}
+
 /* TELEGRAM NOTE — cream section */
 .tg-note {
-  padding: clamp(72px, 10vh, 112px) 0;
+  padding: clamp(72px, 10vh, 112px) 0 clamp(80px, 11vh, 120px);
   background: #F2EDE4;
-  border-top: 1px solid #DDD6C8; border-bottom: 1px solid #DDD6C8;
+  border-bottom: 1px solid #DDD6C8;
 }
 .tg-note-inner {
   display: grid; grid-template-columns: 1fr 1fr;
@@ -283,7 +262,6 @@ h1.display em {
 }
 @media (max-width: 700px) { .tg-note-inner { grid-template-columns: 1fr; } }
 .tg-note-left {}
-.tg-note-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #7C4DFF; margin-bottom: 16px; display: block; }
 .tg-note-heading {
   font-family: var(--serif); font-weight: 300;
   font-size: clamp(28px, 3.8vw, 48px);
@@ -309,8 +287,11 @@ h1.display em {
   display: flex; gap: 16px; align-items: flex-start;
 }
 .tg-detail-tile + .tg-detail-tile { margin-top: 2px; border-radius: 4px; }
-.tg-detail-tile .tdt-icon {
-  font-size: 18px; flex-shrink: 0; margin-top: 1px;
+.tg-detail-tile .tdt-num {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.18em; color: #7C4DFF;
+  flex-shrink: 0; padding-top: 3px;
+  font-weight: 600;
 }
 .tg-detail-tile .tdt-label {
   font-size: 14px; font-weight: 600; color: #1A0F2C; margin-bottom: 3px;
@@ -343,47 +324,6 @@ h1.display em {
 .proof-attr { display: flex; flex-direction: column; gap: 3px; }
 .proof-name { font-weight: 600; font-size: 13px; color: var(--ink); }
 .proof-role { font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.06em; }
-
-/* COMPARISON */
-.compare {
-  padding: clamp(80px, 11vh, 120px) 0;
-  border-bottom: 1px solid var(--line-soft);
-}
-.compare-intro { margin-bottom: clamp(44px, 6vh, 64px); }
-.compare-intro h2 {
-  font-family: var(--serif); font-weight: 300;
-  font-size: clamp(30px, 4vw, 48px);
-  letter-spacing: -0.025em; color: var(--ink); text-wrap: balance;
-  margin-bottom: 12px;
-}
-.compare-intro p { font-size: 15px; color: var(--ink-2); max-width: 520px; line-height: 1.7; }
-.compare-table {
-  width: 100%; border-collapse: separate; border-spacing: 0;
-  border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
-}
-.compare-table th {
-  padding: 16px 24px; font-family: var(--mono); font-size: 11px;
-  letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500;
-  text-align: left; border-bottom: 1px solid var(--line);
-  background: var(--bg-2);
-}
-.compare-table th:first-child { color: var(--dim); }
-.compare-table th.col-atlas { color: var(--violet-soft); }
-.compare-table th.col-other { color: var(--dimmer); }
-.compare-table td {
-  padding: 18px 24px; font-size: 15px; line-height: 1.5;
-  border-bottom: 1px solid var(--line-soft); vertical-align: middle;
-}
-.compare-table tr:last-child td { border-bottom: none; }
-.compare-table td:first-child { color: var(--ink-2); font-size: 14px; }
-.compare-table td.col-atlas { color: var(--ink); background: rgba(124,77,255,0.03); }
-.compare-table td.col-other { color: var(--dimmer); }
-.compare-table .yes { color: var(--gain); font-family: var(--mono); font-size: 13px; font-weight: 600; }
-.compare-table .no { color: var(--loss); font-family: var(--mono); font-size: 13px; }
-.compare-table .partial { color: var(--dim); font-size: 13px; }
-@media (max-width: 600px) {
-  .compare-table th, .compare-table td { padding: 14px 14px; font-size: 13px; }
-}
 
 /* END CTA */
 .end {
@@ -498,7 +438,7 @@ footer .links a:hover { color: var(--violet-soft); }
           In your pocket.
         </h1>
         <p class="hero-def">
-          Atlas is a <strong>Telegram bot</strong> that keeps finance and economics students on top of markets, prepared for every interview, and on track with recruiting. Set up in 60 seconds. Nothing to maintain.
+          Atlas is a <strong>Telegram bot</strong> that keeps finance and economics students current on markets, ready for every interview, and ahead of every recruiting deadline. Set up in 60 seconds. Nothing to maintain.
         </p>
         <div class="hero-cta-wrap">
           <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener" class="btn-primary">
@@ -509,45 +449,41 @@ footer .links a:hover { color: var(--violet-soft); }
         </div>
       </div>
 
-      <!-- Right: Atlas brief mockup -->
-      <div class="brief-mock">
-        <div class="brief-mock-top">
-          <div class="brief-sender">
-            <span class="brief-sender-dot"></span>
-            Atlas
-          </div>
-          <span class="brief-time">THU · 7:04 AM</span>
+      <!-- Right: Compact comparison panel -->
+      <div class="hero-compare">
+        <div class="hero-compare-top">
+          <span class="hero-compare-title">What you get with Atlas</span>
+          <span class="hero-compare-tag">vs. doing it yourself</span>
         </div>
-        <div class="brief-body">
-          <div class="brief-greeting">Good morning, Phillip.</div>
-
-          <span class="brief-section-label">Markets</span>
-          <div class="brief-market-row">
-            <span class="brief-ticker">SPY</span>
-            <span class="brief-price">523.40</span>
-            <span class="brief-up">+0.8%</span>
-          </div>
-          <div class="brief-market-row">
-            <span class="brief-ticker">GS</span>
-            <span class="brief-price">481.20</span>
-            <span class="brief-up">+1.2%</span>
-          </div>
-          <div class="brief-market-row">
-            <span class="brief-ticker">NVDA</span>
-            <span class="brief-price">905.60</span>
-            <span class="brief-dn">-0.4%</span>
-          </div>
-
-          <span class="brief-section-label">Top Stories</span>
-          <div class="brief-news-line">Fed holds rates; two cuts projected for Q3</div>
-          <div class="brief-news-line">Goldman upgrades energy to overweight</div>
-          <div class="brief-news-line">OCR opens Monday — 8 firms participating</div>
-
-          <hr class="brief-divider" />
-
-          <span class="brief-section-label">Action Items</span>
-          <div class="brief-action">GS first round in 3 days. DCF drill still unscheduled.</div>
-          <div class="brief-warn">Sarah Kim (JPM) — no reply in 8 days. You said you'd follow up.</div>
+        <div class="hero-compare-row">
+          <span class="hero-compare-feat">Personalized morning brief, every day</span>
+          <span class="hero-compare-yes">✓</span>
+          <span class="hero-compare-no">—</span>
+        </div>
+        <div class="hero-compare-row">
+          <span class="hero-compare-feat">Live market data on your watchlist</span>
+          <span class="hero-compare-yes">✓</span>
+          <span class="hero-compare-no">—</span>
+        </div>
+        <div class="hero-compare-row">
+          <span class="hero-compare-feat">Interview prep specific to the firm</span>
+          <span class="hero-compare-yes">✓</span>
+          <span class="hero-compare-no">—</span>
+        </div>
+        <div class="hero-compare-row">
+          <span class="hero-compare-feat">Cold emails written in your voice</span>
+          <span class="hero-compare-yes">✓</span>
+          <span class="hero-compare-no">—</span>
+        </div>
+        <div class="hero-compare-row">
+          <span class="hero-compare-feat">Reminds you when follow-ups go cold</span>
+          <span class="hero-compare-yes">✓</span>
+          <span class="hero-compare-no">—</span>
+        </div>
+        <div class="hero-compare-foot">
+          <span class="lab">Feature</span>
+          <span class="h-atlas">Atlas</span>
+          <span class="h-other">Generic</span>
         </div>
       </div>
 
@@ -558,57 +494,6 @@ footer .links a:hover { color: var(--violet-soft); }
     <button class="scroll-arrow" id="scroll-down" aria-label="Scroll down">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </button>
-  </div>
-</section>
-
-<!-- 3 DEMOS -->
-<section class="demos" id="demos">
-  <div class="wrap">
-    <div class="demos-intro">
-      <div>
-        <div class="sec-label"><span class="bar"></span>What it does</div>
-        <h2>More than a brief. A full advisor.</h2>
-      </div>
-      <p>Atlas isn't a newsletter you forget to read. It messages you, tracks your goals, and acts on your behalf — all through a single Telegram conversation.</p>
-    </div>
-    <div class="demos-grid">
-
-      <div class="demo-card">
-        <span class="demo-tag">Morning Brief</span>
-        <div class="demo-bubble">
-          <div class="demo-time">06:42 · YOUR BRIEF</div>
-          <div class="demo-line hi">Fed hints at one more cut this cycle.</div>
-          <div class="demo-line">NVDA <span style="color:var(--gain)">+2.1%</span> &nbsp; PLTR <span style="color:var(--gain)">+0.9%</span> &nbsp; XLE <span style="color:var(--loss)">-1.1%</span></div>
-          <div class="demo-sep"></div>
-          <div class="demo-line act">GS earnings call at 8AM — listen before class.</div>
-        </div>
-        <p class="demo-desc">Markets, macro, and what it means for your watchlist — before you leave for class.</p>
-      </div>
-
-      <div class="demo-card">
-        <span class="demo-tag">Breaking News</span>
-        <div class="demo-bubble">
-          <div class="demo-time">08:30 · CPI RELEASE</div>
-          <div class="demo-line hi">Headline 2.4% YoY (cons. 2.6%). Core 3.1%.</div>
-          <div class="demo-line">Cooler than expected — repricing rate-cut odds higher.</div>
-          <div class="demo-sep"></div>
-          <div class="demo-line act">Rate cuts back on the table. Know this for interviews.</div>
-        </div>
-        <p class="demo-desc">CPI, FOMC, earnings, geopolitics — the moment it breaks, Atlas explains why it matters to you specifically.</p>
-      </div>
-
-      <div class="demo-card">
-        <span class="demo-tag">Cold Email Draft</span>
-        <div class="demo-bubble">
-          <div class="demo-time">DRAFT · LAZARD</div>
-          <div class="demo-line hi">"...recently dug into the Hexcel deal in our sell-side seminar and wanted to connect..."</div>
-          <div class="demo-sep"></div>
-          <div class="demo-line act">Saved to Gmail drafts. You just hit send.</div>
-        </div>
-        <p class="demo-desc">Tell Atlas who you're reaching out to. It writes the email in your voice and saves it straight to your drafts.</p>
-      </div>
-
-    </div>
   </div>
 </section>
 
@@ -655,13 +540,15 @@ footer .links a:hover { color: var(--violet-soft); }
   </div>
 </section>
 
+<!-- TELEGRAM TRANSITION — soft fade -->
+<div class="tg-transition" aria-hidden="true"></div>
+
 <!-- TELEGRAM NOTE — cream -->
 <div class="tg-note">
   <div class="wrap">
     <div class="tg-note-inner">
       <div class="tg-note-left">
-        <span class="tg-note-label">Why Telegram</span>
-        <p class="tg-note-heading">It lives in your phone like a contact.</p>
+        <p class="tg-note-heading">It lives in your phone<br/>like a contact.</p>
         <p class="tg-note-text">No dashboard to log into. No app to remember to check. Atlas messages you every morning at the time you set — and you reply when you need something. That's the entire interface.</p>
         <p class="tg-note-text">Telegram is free, has no ads, and isn't owned by Meta or Google. If you don't already have it, setup takes 60 seconds.</p>
         <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener" class="tg-note-cta">
@@ -671,28 +558,28 @@ footer .links a:hover { color: var(--violet-soft); }
       </div>
       <div class="tg-note-right">
         <div class="tg-detail-tile">
-          <span class="tdt-icon">💬</span>
+          <div class="tdt-num">01</div>
           <div>
             <div class="tdt-label">No new app to learn</div>
             <div class="tdt-desc">If you text, you can use Atlas. It's just a conversation — type a question, get an answer.</div>
           </div>
         </div>
         <div class="tg-detail-tile">
-          <span class="tdt-icon">⏰</span>
+          <div class="tdt-num">02</div>
           <div>
             <div class="tdt-label">It texts you — you don't chase it</div>
             <div class="tdt-desc">Atlas sends your brief every morning unprompted. You don't have to open anything. It comes to you.</div>
           </div>
         </div>
         <div class="tg-detail-tile">
-          <span class="tdt-icon">🔒</span>
+          <div class="tdt-num">03</div>
           <div>
             <div class="tdt-label">Not built by Meta or Google</div>
             <div class="tdt-desc">Telegram is independent, free, and has no ads. 900 million users. Your conversations stay yours.</div>
           </div>
         </div>
         <div class="tg-detail-tile">
-          <span class="tdt-icon">⚡</span>
+          <div class="tdt-num">04</div>
           <div>
             <div class="tdt-label">Already on your phone in 60 seconds</div>
             <div class="tdt-desc">Download from App Store or Google Play. Sign up with your number. That's it — Atlas is waiting.</div>
@@ -734,65 +621,6 @@ footer .links a:hover { color: var(--violet-soft); }
       </div>
 
     </div>
-  </div>
-</section>
-
-<!-- COMPARISON -->
-<section class="compare" id="compare">
-  <div class="wrap">
-    <div class="compare-intro">
-      <div class="sec-label"><span class="bar"></span>Why Atlas</div>
-      <h2>What you get that you don't have anywhere else</h2>
-      <p>Nothing else combines live market intelligence, recruiting prep, and personalized follow-up — and delivers it unsolicited every morning.</p>
-    </div>
-    <table class="compare-table">
-      <thead>
-        <tr>
-          <th></th>
-          <th class="col-atlas">Atlas</th>
-          <th class="col-other">Generic AI (ChatGPT, etc.)</th>
-          <th class="col-other">Doing it yourself</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Personalized morning brief, every day</td>
-          <td class="col-atlas"><span class="yes">✓ Automatic</span></td>
-          <td class="col-other"><span class="no">✗ You have to ask</span></td>
-          <td class="col-other"><span class="no">✗ Hours of work</span></td>
-        </tr>
-        <tr>
-          <td>Live market data on your watchlist</td>
-          <td class="col-atlas"><span class="yes">✓ Real-time</span></td>
-          <td class="col-other"><span class="no">✗ No live data</span></td>
-          <td class="col-other"><span class="partial">Manual checking</span></td>
-        </tr>
-        <tr>
-          <td>Knows your goals, your firms, your timeline</td>
-          <td class="col-atlas"><span class="yes">✓ Full memory</span></td>
-          <td class="col-other"><span class="no">✗ Resets every chat</span></td>
-          <td class="col-other"><span class="no">✗ Not applicable</span></td>
-        </tr>
-        <tr>
-          <td>Reminds you when a follow-up goes cold</td>
-          <td class="col-atlas"><span class="yes">✓ In your brief</span></td>
-          <td class="col-other"><span class="no">✗ No proactive output</span></td>
-          <td class="col-other"><span class="partial">If you remember</span></td>
-        </tr>
-        <tr>
-          <td>Cold emails written in your voice, saved to Gmail</td>
-          <td class="col-atlas"><span class="yes">✓ One message</span></td>
-          <td class="col-other"><span class="partial">Generic drafts only</span></td>
-          <td class="col-other"><span class="no">✗ 30+ minutes</span></td>
-        </tr>
-        <tr>
-          <td>Interview prep specific to the firm and round</td>
-          <td class="col-atlas"><span class="yes">✓ Goldman, Blackstone, etc.</span></td>
-          <td class="col-other"><span class="partial">Generic questions</span></td>
-          <td class="col-other"><span class="partial">If you know what to prep</span></td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </section>
 
@@ -883,7 +711,7 @@ footer .links a:hover { color: var(--violet-soft); }
   })();
 
   // Scroll arrow
-  document.getElementById('scroll-down').addEventListener('click', () => document.getElementById('demos').scrollIntoView({behavior:'smooth'}));
+  document.getElementById('scroll-down').addEventListener('click', () => document.getElementById('explore').scrollIntoView({behavior:'smooth'}));
   window.addEventListener('scroll', () => document.getElementById('arrow-wrap').classList.toggle('gone', scrollY > 80), {passive:true});
 </script>
 </body>

@@ -31,10 +31,11 @@
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 a { color: inherit; text-decoration: none; }
 ::selection { background: var(--violet); color: #fff; }
 .wrap { max-width: 1180px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+.wrap-narrow { max-width: 880px; margin: 0; padding: 0 clamp(20px, 4vw, 48px); }
 
 /* NAV */
 nav {
@@ -103,30 +104,10 @@ nav {
   position: relative; z-index: 1;
 }
 
-/* FAQ LAYOUT */
-.faq-layout {
-  display: grid; grid-template-columns: 200px 1fr;
-  gap: clamp(40px, 6vw, 80px); align-items: start;
-  padding: clamp(72px, 10vh, 108px) 0 clamp(80px, 10vh, 120px);
+/* FAQ BODY */
+.faq-body {
+  padding: clamp(56px, 8vh, 88px) 0 clamp(80px, 10vh, 120px);
 }
-@media (max-width: 840px) { .faq-layout { grid-template-columns: 1fr; } .faq-nav { display: none; } }
-
-/* STICKY NAV SIDEBAR */
-.faq-nav {
-  position: sticky; top: 80px;
-  display: flex; flex-direction: column; gap: 4px;
-}
-.faq-nav-label {
-  font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--dimmer);
-  margin-bottom: 12px; padding-bottom: 12px;
-  border-bottom: 1px solid var(--line);
-}
-.faq-nav a {
-  font-size: 13px; color: var(--dim); padding: 5px 0;
-  transition: color 0.18s; line-height: 1.4;
-}
-.faq-nav a:hover { color: var(--ink); }
 
 /* FAQ GROUPS */
 .faq-groups { display: flex; flex-direction: column; gap: 56px; }
@@ -281,7 +262,7 @@ footer .links a:hover { color: var(--violet-soft); }
 
 <!-- PAGE HEADER -->
 <header class="page-header">
-  <div class="wrap">
+  <div class="wrap-narrow">
     <div class="breadcrumb">
       <a href="/">Atlas</a>
       <span class="sep">/</span>
@@ -293,19 +274,8 @@ footer .links a:hover { color: var(--violet-soft); }
 </header>
 
 <!-- FAQ BODY -->
-<div class="wrap">
-  <div class="faq-layout">
-
-    <!-- Sidebar -->
-    <nav class="faq-nav" aria-label="FAQ sections">
-      <div class="faq-nav-label">Sections</div>
-      <a href="#general">General</a>
-      <a href="#telegram">Telegram</a>
-      <a href="#gmail">Gmail</a>
-      <a href="#privacy">Privacy</a>
-      <a href="#features">Features</a>
-    </nav>
-
+<div class="faq-body">
+  <div class="wrap-narrow">
     <div class="faq-groups">
 
       <!-- GENERAL -->
@@ -527,41 +497,9 @@ footer .links a:hover { color: var(--violet-soft); }
         </div>
       </div>
 
-      <!-- TRUST BOX -->
-      <div class="trust-box">
-        <h3>Still have questions?</h3>
-        <p>Atlas is built by one person, not a company with a support queue. If something is unclear or not working, ask Atlas directly in the chat or reach out via the contact in the <a href="/privacy.html">privacy policy</a>.</p>
-        <div class="trust-grid">
-          <div class="trust-item">
-            <div class="t-label">Built by</div>
-            <div class="t-val">Phillip Walsh, University of Tampa Economics</div>
-          </div>
-          <div class="trust-item">
-            <div class="t-label">Data</div>
-            <div class="t-val"><span class="good">Secured</span> with row-level access controls. Not public.</div>
-          </div>
-          <div class="trust-item">
-            <div class="t-label">Ads</div>
-            <div class="t-val"><span class="bad">Never.</span> Your data is not a product.</div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </div>
-
-<!-- END CTA -->
-<section class="end">
-  <div class="wrap" style="position:relative;">
-    <h2>Questions answered.<br/><em>Ready to start?</em></h2>
-    <p class="note">Free in beta · No credit card · 60 seconds</p>
-    <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener" class="cta-btn">
-      Open Atlas in Telegram
-      <svg viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
-    </a>
-  </div>
-</section>
 
 <!-- FOOTER -->
 <footer>
