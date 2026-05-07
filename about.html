@@ -47,7 +47,7 @@
   ::selection { background: var(--violet); color: #fff; }
 
   .wrap { max-width: 1180px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
-  .wrap-narrow { max-width: 760px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+  .wrap-narrow { max-width: 760px; margin: 0; padding: 0 clamp(20px, 4vw, 48px); }
 
   /* ─── NAV ─── */
   nav {
@@ -344,17 +344,6 @@
   </a>
 </nav>
 
-<div class="page-layout">
-<aside class="page-sidebar">
-  <div class="sidebar-label">About</div>
-  <ul class="sidebar-links">
-    <li><a href="#story" class="sidebar-link">The story</a></li>
-    <li><a href="#mission" class="sidebar-link">Mission</a></li>
-    <li><a href="#built" class="sidebar-link">How it's built</a></li>
-  </ul>
-</aside>
-<div class="page-content">
-
 <!-- HERO -->
 <section class="about-hero" id="hero">
   <div class="wrap-narrow">
@@ -452,21 +441,6 @@
   </div>
 </section>
 
-<!-- CTA -->
-<section class="about-cta">
-  <div class="wrap">
-    <h2>Try it — it takes <em>60 seconds.</em></h2>
-    <a href="https://t.me/AtlasAIAdvisorBot" target="_blank" rel="noopener" class="btn-primary">
-      Open in Telegram
-      <svg viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="square"/></svg>
-    </a>
-    <p class="note">Free · No credit card · No app to download</p>
-  </div>
-</section>
-
-</div><!-- end page-content -->
-</div><!-- end page-layout -->
-
 <!-- FOOTER -->
 <footer>
   <div class="left">
@@ -510,19 +484,5 @@
   </defs>
 </svg>
 
-<script>
-const sidebarLinks = document.querySelectorAll('.sidebar-link');
-const sections = document.querySelectorAll('[id]');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      sidebarLinks.forEach(l => l.classList.remove('active'));
-      const active = document.querySelector(`.sidebar-link[href="#${entry.target.id}"]`);
-      if (active) active.classList.add('active');
-    }
-  });
-}, { rootMargin: '-20% 0px -70% 0px' });
-sections.forEach(s => observer.observe(s));
-</script>
 </body>
 </html>
